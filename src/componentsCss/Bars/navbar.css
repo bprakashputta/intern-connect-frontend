@@ -1,0 +1,166 @@
+@import url("https://fonts.googleapis.com/css?family=Poppins:400,500,600,700,800,900");
+
+:root {
+  --bluecol: #82c7f3;
+  --darkblue: rgb(3, 3, 61);
+}
+
+nav {
+  padding: 0;
+  margin: 0;
+  top: 0;
+  /* position: fixed; */
+  width: 100%;
+  z-index: 100;
+}
+
+.navbar-bg-class {
+  height: 70px;
+  width: 100%;
+  position: relative;
+  left: 0px;
+  /* box-shadow: 0 6px rgb(130, 199, 243); */
+  -webkit-transition: all 0.5s;
+  transition: all 0.5s ease;
+
+  display: flex;
+  flex-wrap: inherit;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.our-title {
+  float: left;
+  margin-left: 20px;
+}
+
+.navbar-top {
+  background-color: transparent;
+  color: black !important;
+  width: 100%;
+  position: fixed;
+}
+
+.navbar-top a {
+  color: black !important;
+  text-decoration: none;
+}
+
+.nav-text,
+.nav-link {
+  color: rgb(0, 0, 0);
+  font-weight: 700;
+}
+
+.navbar-colorChange {
+  background-color: var(--darkblue);
+  color: rgb(255, 255, 255) !important;
+  transition: background-color 200ms linear;
+  z-index: 1;
+  position: fixed;
+}
+
+.header-menu {
+  display: flex;
+  margin-left: auto;
+  float: right;
+}
+
+nav a {
+  margin-right: 30px;
+  transition: color 0.25s ease;
+  text-decoration: none;
+}
+
+nav a:hover {
+  color: #1523e1;
+}
+
+/* Media Queries */
+
+/* Styles for screens smaller than 576px (Mobile) */
+@media (max-width: 575px) {
+  .header-menu {
+    display: inline-block;
+  }
+
+  .navbar-bg-class {
+    height: 60px;
+  }
+
+  .our-title {
+    margin-left: 10px;
+  }
+
+  .nav-text a {
+    display: inline-block;
+    margin-right: 10px;
+  }
+}
+
+/* Styles for screens between 576px and 767px (Mobile Landscape) */
+@media (min-width: 576px) and (max-width: 767px) {
+  .navbar-bg-class {
+    height: 60px;
+  }
+
+  .nav-text {
+    display: inline-block;
+    margin-right: 10px;
+  }
+}
+
+/* Styles for screens between 768px and 1023px (Tablet) */
+@media (min-width: 768px) and (max-width: 1023px) {
+  .navbar-bg-class {
+    height: 60px;
+  }
+  .nav-text {
+    color: rgb(0, 0, 0);
+    font-weight: 700;
+  }
+}
+
+/* Styles for screens larger than 1023px (Desktop) */
+@media (min-width: 1024px) {
+  .navbar-bg-class {
+    height: 70px;
+  }
+}
+
+.dropdown .dropdown-menu {
+  display: block;
+  opacity: 0;
+  -webkit-transition: all 500ms ease-in;
+  -moz-transition: all 500ms ease-in;
+  -ms-transition: all 500ms ease-in;
+  -o-transition: all 500ms ease-in;
+  transition: all 500ms ease-in;
+  right: 1%;
+  width: fit-content;
+}
+.dropdown {
+  position: unset;
+}
+.dropdown-menu li {
+  clear: both;
+  color: rgba(0, 0, 0, 0.87);
+  cursor: pointer;
+  min-height: 50px;
+  line-height: 1.5rem;
+  width: 100%;
+  text-align: left;
+  margin: 10px;
+  padding: 10px 15px;
+}
+.dropdown:hover .dropdown-menu {
+  display: block;
+  opacity: 1;
+  top: 60px;
+  color: rgb(8, 122, 244);
+}
+
+.vrau {
+  display: block;
+  opacity: 1;
+}

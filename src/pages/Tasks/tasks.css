@@ -1,0 +1,328 @@
+/* body {
+  margin: 0;
+  padding-top: 100px; /* Adjust this value to match the height of your navbar */
+
+.task-page {
+  display: flex;
+  height: 100vh;
+  margin-top: 10%;
+}
+
+/* .task-page :first-child {
+  width: 400px;
+} */
+
+.student-list {
+  flex: 1;
+  padding: 20px;
+  /* background: #f5f5f5; */
+  flex-basis: 10%;
+}
+
+.student-list h2 {
+  margin-bottom: 10px;
+}
+
+.student-list ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.student-list li {
+  cursor: pointer;
+  padding: 5px 10px;
+  border-radius: 5px;
+  margin-bottom: 5px;
+  background: #ffffff;
+}
+
+.student-list li:hover {
+  background: #f2f2f2;
+}
+
+.task-section {
+  flex: 3;
+  padding: 20px;
+}
+
+.student-name h2 {
+  margin-bottom: 10px;
+}
+
+.tasks h3,
+.completed-tasks h3,
+.resend-work h3 {
+  margin-bottom: 10px;
+}
+
+.tasks,
+.completed-tasks ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.tasks li,
+.completed-tasks li {
+  padding: 5px 10px;
+  border-radius: 5px;
+  margin-bottom: 5px;
+  background: #ffffff;
+}
+
+.tasks form {
+  display: flex;
+  margin-top: 10px;
+}
+
+.tasks input[type="text"] {
+  flex: 1;
+  padding: 5px;
+  border-radius: 5px 0 0 5px;
+  border: none;
+}
+
+.tasks button {
+  padding: 5px 10px;
+  border: none;
+  border-radius: 0 5px 5px 0;
+  background: #4caf50;
+  color: #ffffff;
+  cursor: pointer;
+}
+
+.resend-work {
+  margin-top: 20px;
+}
+
+.class__announce {
+  padding: 20px;
+  margin: 25px;
+  box-shadow: 0px 1px 6px -2px black;
+  justify-content: space-between;
+  border-radius: 15px;
+  margin-right: 20px;
+}
+
+/* Additional styles can be added as needed */
+.classwork-container {
+  display: flex;
+  justify-content: space-between;
+}
+
+.completed-tasks,
+.resend-work {
+  flex: 1;
+  margin-right: 10px;
+}
+
+.active-class {
+  flex: 1;
+  padding: 20px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.active-class:hover {
+  background-color: #f0f0f0;
+}
+
+.active-class.selected-item {
+  background-color: #f0f0f0;
+  width: 100%;
+}
+.selected-item {
+  width: 100%;
+}
+
+.active-class h3 {
+  margin: 0;
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.active-class div {
+  margin-top: 10px;
+}
+
+.active-class ul {
+  padding-left: 20px;
+}
+
+.section-nav {
+  display: flex;
+  width: 100%;
+}
+
+.task-item {
+  flex: 1;
+  padding: 10px;
+  text-align: center;
+  background-color: #f0f0f0;
+  cursor: pointer;
+}
+
+.task-item.selected-item {
+  background-color: #fafafa;
+}
+
+.task-assigned {
+  margin: 20px;
+  padding: 10px;
+  background-color: #f5f5f5;
+}
+.section-content {
+  width: 100%;
+  padding: 20px;
+}
+
+.assigning {
+  width: 140px;
+  height: auto;
+
+  transition: 0.5s linear;
+  position: relative;
+  display: block;
+  overflow: hidden;
+  padding: 15px;
+  text-align: right;
+  margin: 0 5px;
+  background: transparent;
+  text-transform: uppercase;
+  font-weight: 900;
+  left: 50%;
+}
+
+.assigning:before {
+  position: absolute;
+  content: "";
+  left: 0;
+  bottom: 0;
+  height: 4px;
+  width: 100%;
+  border-bottom: 4px solid transparent;
+  border-left: 4px solid transparent;
+  box-sizing: border-box;
+  transform: translateX(100%);
+}
+
+.assigning:after {
+  position: absolute;
+  content: "";
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 4px;
+  border-top: 4px solid transparent;
+  border-right: 4px solid transparent;
+  box-sizing: border-box;
+  transform: translateX(-100%);
+}
+
+.assigning:hover {
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
+}
+
+.assigning:hover:before {
+  border-color: #262626;
+  height: 100%;
+  transform: translateX(0);
+  transition: 0.3s transform linear, 0.3s height linear 0.3s;
+}
+
+.assigning:hover:after {
+  border-color: #262626;
+  height: 100%;
+  transform: translateX(0);
+  transition: 0.3s transform linear, 0.3s height linear 0.5s;
+}
+
+button {
+  color: black;
+  text-decoration: none;
+  cursor: pointer;
+  outline: none;
+  border: none;
+  background: transparent;
+}
+
+.form-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.7);
+  backdrop-filter: blur(1px);
+  z-index: 9999;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.form-container {
+  background-color: #ffffff;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+}
+
+.cancel-button {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: none;
+  border: none;
+  font-size: 20px;
+  cursor: pointer;
+  color: #000000;
+}
+
+.task-form {
+  width: auto;
+}
+.task-container {
+  position: relative;
+  width: 100%;
+  min-height: 80vh;
+  margin: 10px;
+}
+
+.my-tasks {
+  overflow-x: scroll;
+  height: 100vh;
+}
+/* chatWindow.css */
+
+.messages {
+  height: 300px;
+  overflow-y: scroll;
+  border: 1px solid #ccc;
+  padding: 10px;
+}
+
+.message {
+  padding: 5px;
+  margin-bottom: 10px;
+  border-radius: 5px;
+}
+
+.message.student {
+  background-color: #e2f0ff;
+}
+
+.message.recruiter {
+  background-color: #f4f4f4;
+}
+
+form {
+  margin-top: 10px;
+}
+
+/* input[type="text"] {
+  width: 200px;
+  padding: 5px;
+  margin-right: 10px;
+} */

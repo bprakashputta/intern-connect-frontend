@@ -1,0 +1,29 @@
+.job-title {
+  font-weight: 500;
+  font-size: 1.2rem;
+  font-family: "Poppins", "sans-serif";
+}
+
+.jobtitle2 {
+  font-weight: 700;
+  color: black;
+}
+.job-description {
+  background-color: #f0f0f0;
+  padding: 10px;
+  border-radius: 5px;
+  display: inline-block;
+}
+.job-data {
+  padding: 10px;
+  border-radius: 5px;
+  display: inline-block;
+  font-size: 1rem;
+}
+hr {
+  border: none;
+  border-top: 4px solid #ccc;
+  margin: 10px 0;
+  font-weight: 300;
+  height: 20px;
+}
