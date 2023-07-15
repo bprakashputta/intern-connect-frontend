@@ -140,7 +140,7 @@ nav a:hover {
   width: fit-content;
 }
 .dropdown {
-  position: unset;
+  margin-right: 20px;
 }
 .dropdown-menu li {
   clear: both;

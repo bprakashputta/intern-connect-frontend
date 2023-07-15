@@ -27,7 +27,10 @@ const ChatWindow = ({ sender, taskId }) => {
     if (inputText.trim() === "") {
       return;
     }
-
+    const textarea = document.querySelector(".message-area");
+    if (textarea) {
+      textarea.style.height = "auto";
+    }
     const newMessage = {
       text: inputText,
       sender: sender,
@@ -59,27 +62,45 @@ const ChatWindow = ({ sender, taskId }) => {
 
   return (
     <div>
-      <div className="messages">
-        {taskMessages.map((message, index) => (
-          <div
-            key={index}
-            className={`message ${
-              message.sender === sender ? sender : "other"
-            }`}
-          >
-            {message.text}
+      <div className="messageBox">
+        <>
+          <div className="messages">
+            {taskMessages
+              .slice()
+              .reverse()
+              .map((message, index) => (
+                <div
+                  key={index}
+                  className={`message ${
+                    message.sender === sender ? sender : "other"
+                  }`}
+                >
+                  {message.text}
+                </div>
+              ))}
           </div>
-        ))}
+          <div className="sendMessage">
+            <form onSubmit={handleMessageSubmit}>
+              <div className="message-area-container">
+                <textarea
+                  type="text"
+                  placeholder="Type your message..."
+                  className="message-area"
+                  value={inputText}
+                  onChange={(e) => setInputText(e.target.value)}
+                  onInput={(e) => {
+                    e.target.style.height = "auto";
+                    e.target.style.height = e.target.scrollHeight + "px";
+                  }}
+                />
+                <i className="fa fa-paperclip attachment-icon"></i>
+              </div>
+
+              <button type="submit">Send</button>
+            </form>
+          </div>
+        </>
       </div>
-      <form onSubmit={handleMessageSubmit}>
-        <input
-          type="text"
-          placeholder="Type your message..."
-          value={inputText}
-          onChange={(e) => setInputText(e.target.value)}
-        />
-        <button type="submit">Send</button>
-      </form>
     </div>
   );
 };

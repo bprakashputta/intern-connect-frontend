@@ -2,7 +2,7 @@ import React, { useState } from "react";
 
 import UserList from "../Users/UserList";
 import UserForm from "../Users/UserForm";
-import "../../pages.css/admin.css";
+import "../../pages/Admin/admin.css";
 
 const AdminDashboardUser = (props) => {
   const [currentUser, setCurrentUser] = useState(null);

@@ -7,9 +7,8 @@ import { Link, useParams } from "react-router-dom";
 import CardElement from "../../Component/CardElement";
 
 import LoadingBox from "../../Component/LoadingBox";
-import SelectComponentCatergory from "../../Component/SelectComponentCategory";
-import SelectComponentLocation from "../../Component/SelectComponentLocation";
 import "../../componentsCss/jobpage.css";
+import SelectComponent from "../../Component/SelectComponent";
 
 const JobList = () => {
   const { jobs, setUniqueLocation, pages, loading } = useSelector(
@@ -76,6 +75,7 @@ const JobList = () => {
                 </div>
               </div>
             </div>
+
             <div className="left-section">
               <div className="filter-card">
                 <div className="filter-heading">
@@ -85,7 +85,7 @@ const JobList = () => {
                     Filter jobs by category
                   </Typography>
                 </div>
-                <SelectComponentCatergory
+                <SelectComponent
                   handleChangeCategory={handleChangeCategory}
                   cat={keyword}
                 />
@@ -98,7 +98,7 @@ const JobList = () => {
                     Filter jobs by location
                   </Typography>
                 </div>
-                <SelectComponentLocation
+                <SelectComponent
                   handleChangeLocation={handleChangeLocation}
                   cat={location}
                 />

@@ -24,11 +24,11 @@ const SingleJob = () => {
     dispatch(jobLoadSingleAction(id));
   }, [id]);
 
-  useEffect(() => {
-    if (singleJob && singleJob.company_id) {
-      dispatch(companyLoadSingleAction(singleJob.company_id));
-    }
-  }, [singleJob]);
+  // useEffect(() => {
+  //   if (singleJob && singleJob.company_id) {
+  //     dispatch(companyLoadSingleAction(singleJob.company_id));
+  //   }
+  // }, [singleJob]);
 
   const { singleCompany } = useSelector((state) => state.singleCompany);
   const [applied, setApplied] = useState(false);
@@ -42,6 +42,8 @@ const SingleJob = () => {
         description: singleJob && singleJob.description,
         category: singleJob && singleJob.job_type,
         location: singleJob && singleJob.location,
+        jobId: singleJob && singleJob.job_id,
+        companyId: singleJob && singleJob.company_id,
       })
     );
   };
@@ -72,26 +74,25 @@ const SingleJob = () => {
                       {singleJob && singleJob.role_name}
                     </Typography>
                     <hr />
-                    <h2 style={{ margin: "0px" }} className="job-title">
-                      Company Details
-                    </h2>
+
                     <Typography variant="body2">
                       <h2 style={{ margin: "0px" }} className="job-title">
-                        Company Name:
+                        Job_Id:
                         <span className="job-data">
-                          {singleCompany && singleCompany.companyName}
+                          {singleJob && singleJob.job_id}
                         </span>
                       </h2>
                     </Typography>
 
                     <Typography variant="body2">
                       <h2 style={{ margin: "0px" }} className="job-title">
-                        Company type:
+                        Company_Id:
                         <span className="job-data">
-                          {singleCompany && singleCompany.companytype}
+                          {singleJob && singleJob.company_id}
                         </span>
                       </h2>
                     </Typography>
+
                     <hr />
 
                     <h2 style={{ margin: "0px" }} className="job-title">
@@ -125,7 +126,7 @@ const SingleJob = () => {
                         {singleJob && singleJob.location}
                       </span>
                     </Typography>
-                    <Typography
+                    {/* <Typography
                       variant="body2"
                       component="h2"
                       sx={{ margin: "5px 0px " }}
@@ -165,7 +166,7 @@ const SingleJob = () => {
                       <span className="job-data">
                         {singleJob && singleJob.deadline}
                       </span>
-                    </Typography>
+                    </Typography> */}
 
                     <Typography
                       variant="body2"
@@ -181,19 +182,7 @@ const SingleJob = () => {
                       </span>
                     </Typography>
                     <hr />
-                    <Typography
-                      variant="body2"
-                      component="h2"
-                      sx={{ margin: "10px 0px " }}
-                    >
-                      <Box component="span" className="job-title">
-                        Education:
-                      </Box>
 
-                      <span className="job-data">
-                        {singleJob && singleJob.education}
-                      </span>
-                    </Typography>
                     <Typography
                       variant="body2"
                       component="h2"
@@ -253,7 +242,7 @@ const SingleJob = () => {
               </Box>
             </Stack>
           </Container>
-        </Box>{" "}
+        </Box>
       </Box>
       <Footerbar />
     </>

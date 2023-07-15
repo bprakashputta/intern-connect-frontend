@@ -15,7 +15,7 @@ const Taskpage = () => {
   const userType = userInfo?.userType;
 
   return (
-    <div className="">
+    <div className="task-allot">
       {userType === "company" ? <CompanyTaskPage /> : <StudentTaskPage />}
     </div>
   );

@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 
 import JobForm from "../Jobs/JobForm";
-import "../../pages.css/admin.css";
+import "../../pages/Admin/admin.css";
 
 const AdminDashboardJob = (props) => {
   const [currentJob, setCurrentJob] = useState(null);

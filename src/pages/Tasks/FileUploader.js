@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { Upload, Modal, Button } from "antd";
 import { PlusOutlined } from "@ant-design/icons";
-import axios from "axios";
+import axios from "../../api/base";
 
 function FileUploader() {
   const [previewVisible, setPreviewVisible] = useState(false);
@@ -35,28 +35,29 @@ function FileUploader() {
 
   const handleChange = ({ fileList }) => setFileList(fileList);
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
+    console.log("fileList");
 
     let formData = new FormData();
     for (var a = 0; a < fileList.length; a++) {
-      formData.append("file[]", fileList[a].originFileObj);
+      formData.append("files", fileList[a].originFileObj);
     }
 
-    axios
-      .post("http://localhost/save.php", formData)
-      .then((res) => {
-        alert("Files uploaded.");
-      })
-      .catch((err) => {
-        console.log("err", err);
+    try {
+      const response = await axios.post("file/upload", formData, {
+        headers: { "Content-Type": "multipart/form-data" },
       });
+
+      console.log("File uploaded:", response.data.fileUrl);
+    } catch (error) {
+      console.error("Failed to upload file:", error);
+    }
   };
 
   const uploadButton = (
-    <div>
-      <PlusOutlined />
-      <div style={{ marginTop: 8 }}>Upload</div>
+    <div className="upload-button">
+      <div style={{ marginLeft: 8 }}> + Add Files</div>
     </div>
   );
 
@@ -78,35 +79,25 @@ function FileUploader() {
   };
 
   return (
-    <div className="MainDiv">
-      <div className="jumbotron text-center pt-5">
-        <h3 className="mt-5 mb-5">Submit</h3>
-      </div>
-
-      <div className="">
+    <div className="mt-5 files-submitter">
+      <div className="upload-files">
         <Upload
-          listType="picture-card"
+          listType="picture"
           fileList={fileList}
-          onPreview={handlePreview}
+          // onPreview={handlePreview}
           onChange={handleChange}
           beforeUpload={() => false}
           customRequest={customRequest}
           accept={fileTypes.join(",")}
+          className="ant-upload ant-upload-select"
         >
           {fileList.length >= 8 ? null : uploadButton}
         </Upload>
-        <Modal
-          visible={previewVisible}
-          title={previewTitle}
-          footer={null}
-          onCancel={handleCancel}
-        >
-          <img alt="example" style={{ width: "100%" }} src={previewImage} />
-        </Modal>
-        <Button type="primary" onClick={handleSubmit}>
-          Submit
-        </Button>
       </div>
+
+      <Button type="primary" onClick={handleSubmit}>
+        Submit
+      </Button>
     </div>
   );
 }
