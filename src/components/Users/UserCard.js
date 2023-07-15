@@ -1,7 +1,7 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import React from "react";
 import user from "../../images/user.png";
-import "../../pages.css/admin.css";
+import "../../pages/Admin/admin.css";
 
 const UserCard = (props) => {
   const {

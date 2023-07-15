@@ -1,17 +1,12 @@
-/* body {
-  margin: 0;
-  padding-top: 100px; /* Adjust this value to match the height of your navbar */
-
 .task-page {
   display: flex;
   height: 100vh;
-  margin-top: 10%;
+  margin-top: 5%;
 }
 
-/* .task-page :first-child {
-  width: 400px;
-} */
-
+.task-allot {
+  background: linear-gradient(to bottom, #f9f9f9, #ececec);
+}
 .student-list {
   flex: 1;
   padding: 20px;
@@ -90,19 +85,39 @@
   background: #4caf50;
   color: #ffffff;
   cursor: pointer;
+  height: 50px;
 }
 
 .resend-work {
   margin-top: 20px;
 }
 
-.class__announce {
-  padding: 20px;
+.task-cards {
   margin: 25px;
   box-shadow: 0px 1px 6px -2px black;
   justify-content: space-between;
   border-radius: 15px;
   margin-right: 20px;
+  height: 250px;
+  background-color: white;
+}
+.task-card-bottom {
+  /* background-color: white; */
+}
+.task-title {
+  background-image: linear-gradient(
+    to right top,
+    #0368c1,
+    #1289d4,
+    #42a9e2,
+    #71c9ee,
+    #a2e7fb
+  );
+  padding: 20px;
+  border-radius: 10px;
+  cursor: pointer;
+  color: #f0f0f0;
+  font-weight: 600;
 }
 
 /* Additional styles can be added as needed */
@@ -175,6 +190,7 @@
 .section-content {
   width: 100%;
   padding: 20px;
+  height: 80vh;
 }
 
 .assigning {
@@ -292,25 +308,36 @@ button {
 
 .my-tasks {
   overflow-x: scroll;
-  height: 100vh;
+  height: 80vh;
 }
 /* chatWindow.css */
 
 .messages {
-  height: 300px;
+  height: 55vh;
   overflow-y: scroll;
   border: 1px solid #ccc;
-  padding: 10px;
+  padding: 15px 10px 15px 20px;
+  display: flex;
+  flex-direction: column-reverse;
+  overflow-x: hidden;
+  background-color: white;
 }
 
 .message {
-  padding: 5px;
   margin-bottom: 10px;
-  border-radius: 5px;
+  display: inline-block;
+  padding: 10px;
+  border-radius: 10px;
+  background-color: #1877f2;
+  color: white;
+  max-width: 50%;
+  word-wrap: break-word;
 }
 
 .message.student {
-  background-color: #e2f0ff;
+  float: right;
+  align-self: flex-end;
+  margin-left: 10%;
 }
 
 .message.recruiter {
@@ -320,9 +347,80 @@ button {
 form {
   margin-top: 10px;
 }
-
-/* input[type="text"] {
-  width: 200px;
-  padding: 5px;
+.sendMessage {
+  width: 100%;
+}
+.message-area-container {
+  position: relative;
+  width: 100%;
   margin-right: 10px;
-} */
+}
+.message-area {
+  flex: 1;
+  width: 100%;
+  resize: none;
+  overflow-y: auto;
+  min-height: 20px;
+  max-height: 260px;
+  overflow-x: hidden;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  padding: 8px 31px 8px 11px;
+}
+.attachment-icon {
+  position: absolute;
+  top: 50%;
+  right: 5px;
+  transform: translateY(-50%);
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.submitted-work {
+  background: white;
+  display: inline-block;
+  margin: 8px;
+  padding: 5%;
+  width: 100%;
+  position: relative;
+  height: 100%;
+  transition: all 0.3s 0s ease-in;
+  z-index: 1;
+}
+
+.submitted {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.task-stream {
+  text-align: left;
+  padding: 10px;
+  background: #fffaeb;
+  border: 1px solid #ffef85;
+}
+
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+::-webkit-scrollbar-thumb {
+  background: white;
+}
+
+.ant-upload,
+.ant-upload-select {
+  height: 50px !important;
+}
+
+.upload-button {
+  padding: 10px;
+  border: 3px dashed rgb(0, 183, 255);
+  width: 150px;
+}

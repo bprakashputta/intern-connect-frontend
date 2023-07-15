@@ -4,7 +4,7 @@ import TaskForm from "../../components/Tasks/TaskForm";
 import { useDispatch, useSelector } from "react-redux";
 import { taskLoadAction } from "../../redux/actions/taskAction";
 import ChatWindow from "./Chatwindow";
-import FileUpload from "../../Component/FileUpload";
+import FileUploader from "./FileUploader";
 
 const CompanyTaskPage = () => {
   const [showForm, setShowForm] = useState(false);
@@ -81,9 +81,7 @@ const CompanyTaskPage = () => {
           )}
 
           {selectedSection === "submit" && (
-            <div className="submitted-work">
-              <FileUpload />
-            </div>
+            <div className="submitted-work"></div>
           )}
         </div>
       </div>

@@ -8,7 +8,7 @@
       rgba(40, 160, 240, 0.5),
       rgba(177, 0, 236, 0.5)
     ),
-    url(joblist.png);
+    url("../images/joblist.png");
   height: 95vh;
   background-size: cover;
   color: rgb(239, 234, 234);

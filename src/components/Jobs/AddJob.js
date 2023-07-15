@@ -137,7 +137,19 @@ const AddJob = () => {
             ></textarea>
           </div>
           <div className="form-row">
-            <button className="created" onClick={handleSubmit}>
+            <button
+              className="created"
+              onClick={handleSubmit}
+              style={{
+                fontSize: "13px",
+                fontWeight: "700",
+                color: "black",
+                padding: "10px",
+                textTransform: "capitalize",
+                backgroundImage:
+                  "linear-gradient(to right top, #a8eb12, #00e97d, #00ddc2, #00cae9, #12b3eb)",
+              }}
+            >
               Create Job
             </button>
           </div>

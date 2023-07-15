@@ -1,7 +1,7 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import React, { useState, useEffect } from "react";
 import api from "../../api/base";
-import "../../pages.css/admin.css";
+import "../../pages/Admin/admin.css";
 // import Sidebar from "../../components/Sidebar";
 import AdminDashboardUser from "../../components/Admin/AdminDashboardUser";
 import AdminDashboardJob from "../../components/Admin/AdminDashboardJob";

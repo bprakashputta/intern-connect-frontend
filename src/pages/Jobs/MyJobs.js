@@ -1,9 +1,7 @@
 /* eslint-disable no-unused-vars */
 import React, { useState, useEffect } from "react";
 import api from "../../api/base";
-import SearchInput from "../../Component/SearchInput";
 import "../../pages.css/jobs.css";
-import JobList from "../../components/Jobs/JobList";
 import Footerbar from "../../components/Bars/Footerbar";
 import { useDispatch, useSelector } from "react-redux";
 import { jobsAppliedLoadAction } from "../../redux/actions/jobAction";
@@ -20,8 +18,8 @@ function Jobs() {
   }, []);
 
   return (
-    <div className="jobs">
-      <div className="jobs__container">
+    <div>
+      <div style={{ marginTop: "8rem" }}>
         {jobs &&
           jobs.map((job, i) => (
             <CardElement
