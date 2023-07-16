@@ -18,7 +18,7 @@ import { useContext } from "react";
 import JobList from "./components/Jobs/JobList";
 import { CssBaseline, ThemeProvider } from "@mui/material";
 import { theme } from "./Component/theme";
-import SingleJob from "./components/Jobs/singleJob";
+import SingleJob from "./components/Jobs/SingleJob";
 import UserList from "./components/Users/UserList";
 import AddJob from "./components/Jobs/AddJob";
 import Profile from "./components/Employer/Profile";
