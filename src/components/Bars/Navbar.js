@@ -15,6 +15,9 @@ const Navbar = () => {
   const [dropdownVisible, setDropdownVisible] = useState(false);
 
   const dispatch = useDispatch();
+  const userInfo = JSON.parse(localStorage.getItem("userInfo"));
+  const email = userInfo?.email;
+  const profilePhoto = userInfo?.profilePhoto;
 
   const handleDropdownToggle = () => {
     setDropdownVisible(!dropdownVisible);
@@ -29,6 +32,7 @@ const Navbar = () => {
           if (data && data.user) {
             setLoggedInUser(data.user);
             localStorage.setItem("userInfo", JSON.stringify(data.user));
+            console.log(userInfo.userType);
           } else {
             setLoggedInUser(null);
           }
@@ -101,12 +105,15 @@ const Navbar = () => {
                         className="dropdown-toggle nav-text"
                         onClick={handleDropdownToggle}
                       >
-                        <FontAwesomeIcon
-                          icon={faCircleUser}
+                        <img
+                          src={profilePhoto}
+                          alt="Profile"
+                          className="profile-photo"
                           style={{
-                            color: "#66a5e1",
-                            fontSize: "24px",
-                            right: "20px",
+                            borderRadius: "50%",
+                            height: "30px",
+                            width: "30px",
+                            marginRight: "10px",
                           }}
                         />
                       </button>
@@ -130,15 +137,19 @@ const Navbar = () => {
                             </li>
                             <li>
                               <a href="/user/myapplications">
-                                <button> My Applications</button>
+                                <button>
+                                  {userInfo.userType === "company"
+                                    ? "My Jobs"
+                                    : "My Applications"}
+                                </button>
                               </a>
                             </li>
+
                             <li>
                               <a href="#">
                                 <button>Something</button>
                               </a>
                             </li>
-                            {/* <li role="separator" className="divider"></li> */}
                             <li>
                               <FontAwesomeIcon icon={faSignOutAlt} />
                               <button onClick={handleLogout}>Logout</button>

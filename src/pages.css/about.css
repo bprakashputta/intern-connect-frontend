@@ -13,7 +13,7 @@
   width: 40%;
   height: 400px;
 
-  background-image: url(head.jpg);
+  background-image: url("../images/head.jpg");
   height: 500px;
   background-position: center;
   background-repeat: no-repeat;

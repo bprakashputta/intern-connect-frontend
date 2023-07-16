@@ -1,22 +1,26 @@
 import { Box } from "@mui/material";
 import React from "react";
-import Footerbar from "../components/Bars/Footerbar.js";
-import Navbar from "../components/Bars/Navbar.js";
+import Notfound from "../images/Notfound.png";
 
 const PageNotFound = () => {
   return (
     <>
-      <Navbar />
       <Box
         sx={{
-          height: "81vh",
+          height: "30vh",
           display: "flex",
           alignItems: "center",
           justifyContent: "center",
+          marginTop: "10%",
         }}
       >
-        <h1>Page not found!</h1>
+        <img
+          src={Notfound}
+          alt="Page Not Found"
+          style={{ maxWidth: "100%", maxHeight: "100%" }}
+        />
       </Box>
+      <h2>404 Page Not Found</h2>
     </>
   );
 };

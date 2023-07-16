@@ -5,14 +5,15 @@ import { taskLoadAction } from "../../redux/actions/taskAction";
 import TaskList from "../../components/Tasks/TaskList";
 import FileUploader from "./FileUploader";
 import ChatWindow from "./Chatwindow";
+import FileList from "../../Component/FileList";
 
 const StudentTaskPage = () => {
-  const [selectedSection, setSelectedSection] = useState("tasks");
+  const [selectedSection, setSelectedSection] = useState("Stream");
   const [selectedTask, setSelectedTask] = useState(null);
   const [selectedTaskTitle, setSelectedTaskTitle] = useState("");
 
   const { tasks } = useSelector((state) => state.loadTasks);
-
+  const { jobs } = useSelector((state) => state.loadJobs);
   const handleSectionClick = (section) => {
     setSelectedSection(section);
   };
@@ -22,7 +23,7 @@ const StudentTaskPage = () => {
     if (selectedTask) {
       setSelectedTask(selectedTask);
       setSelectedTaskTitle(selectedTask.title);
-      setSelectedSection("tasks");
+      setSelectedSection("Stream");
     }
   };
 
@@ -45,11 +46,11 @@ const StudentTaskPage = () => {
           <div className="section-nav">
             <div
               className={`task-item ${
-                selectedSection === "tasks" ? "selected-item" : ""
+                selectedSection === "Stream" ? "selected-item" : ""
               }`}
-              onClick={() => handleSectionClick("tasks")}
+              onClick={() => handleSectionClick("Stream")}
             >
-              Tasks
+              Stream
             </div>
             <div
               className={`task-item ${
@@ -57,20 +58,26 @@ const StudentTaskPage = () => {
               }`}
               onClick={() => handleSectionClick("submit")}
             >
-              Submitted Work
+              Add your Work
             </div>
           </div>
         </div>
         <div className="section-content">
-          {selectedSection === "tasks" && selectedTask && selectedTaskTitle && (
-            <div className="tasks">
-              <h2>{selectedTaskTitle}</h2>
-              <ChatWindow sender="student" taskId={selectedTask.task_id} />
-            </div>
-          )}
+          {selectedSection === "Stream" &&
+            selectedTask &&
+            selectedTaskTitle && (
+              <div className="tasks">
+                <div className="">
+                  <h3 className="task-stream">{selectedTaskTitle}</h3>
+                  <p>{jobs.role_name}</p>
+                </div>
+                <ChatWindow sender="student" taskId={selectedTask.task_id} />
+              </div>
+            )}
 
           {selectedSection === "submit" && selectedTask && (
             <div className="submitted-work">
+              <FileList taskId={selectedTask.task_id} />
               <FileUploader taskId={selectedTask.task_id} />
             </div>
           )}

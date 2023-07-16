@@ -14,7 +14,6 @@ import UserForm from "./components/Users/UserForm";
 import Admin from "./pages/Admin/Admin";
 import PageNotFound from "./pages/PageNotFound";
 import FileUploader from "./pages/Tasks/FileUploader";
-import { useContext } from "react";
 import JobList from "./components/Jobs/JobList";
 import { CssBaseline, ThemeProvider } from "@mui/material";
 import { theme } from "./Component/theme";
@@ -22,7 +21,6 @@ import SingleJob from "./components/Jobs/SingleJob";
 import UserList from "./components/Users/UserList";
 import AddJob from "./components/Jobs/AddJob";
 import Profile from "./components/Employer/Profile";
-import CreateTask from "./pages/Tasks/CreateTask";
 import ViewTask from "./pages/Tasks/ViewTask";
 import Tasks from "./pages/Tasks/Tasks";
 import Taskpage from "./pages/Tasks/Taskpage";
@@ -43,7 +41,6 @@ function App() {
           <div className="pages">
             <Routes>
               <Route path="/" element={<Home />} />
-              {/* <Route path="/user/profile" element={<UserProfile />} /> */}
               <Route
                 exact
                 path="/user/profile"
@@ -55,7 +52,6 @@ function App() {
               <Route path="/contactus" element={<Contact />} />
               <Route path="/aboutus" element={<About />} />
               <Route path="upload" element={<FileUploader />} />
-              {/* <Route path="/eprofile" element={<Profile />} /> */}
               <Route path="/jobpage" element={<JobList />} />
               <Route path="/search/location/:location" element={<JobList />} />
               <Route path="/search/:keyword" element={<JobList />} />
@@ -64,7 +60,6 @@ function App() {
 
               <Route exact path="/jobs" element={<Jobs />} />
               <Route exact path="/users/create" element={<UserForm />} />
-              {/* <Route exact path="/jobs/:jobId" element={<Job />} /> */}
               <Route path="/addjob" element={<AddJob />} />
               <Route path="/admin" element={<Admin />} />
               <Route path="/task" element={<Tasks />} />

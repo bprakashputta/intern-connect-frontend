@@ -524,7 +524,7 @@ p {
 }
 
 .background-img {
-  background-image: url(img.png);
+  background-image: url("../images/home_bg.png");
 
   width: auto;
   background-repeat: no-repeat;
@@ -628,7 +628,7 @@ p {
   background: #ffffff;
   box-shadow: 0 10px 20px -5px rgba(0, 0, 0, 0.125);
   height: 200px;
-  margin: 10px;
+  margin: 20px 0px;
   overflow: hidden;
   position: relative;
   width: 100%;
@@ -636,7 +636,7 @@ p {
 
 .slider::before,
 .slider::after {
-  background: linear-gradient(to right, white 0%, rgba(255, 255, 255, 0) 100%);
+  /* background: linear-gradient(to right, white 0%, rgba(255, 255, 255, 0) 100%); */
   content: "";
   height: 95%;
   position: absolute;
