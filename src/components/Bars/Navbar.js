@@ -4,7 +4,7 @@ import { Link, useNavigate } from "react-router-dom";
 import "../../componentsCss/Bars/navbar.css";
 // import axios from "../../api/base";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faSignOutAlt } from "@fortawesome/free-solid-svg-icons";
+import { faSignOutAlt, faUser } from "@fortawesome/free-solid-svg-icons";
 import { userLogoutAction } from "../../redux/actions/userAction";
 import { useDispatch } from "react-redux";
 
@@ -130,7 +130,8 @@ const Navbar = () => {
                             }}
                           >
                             <li>
-                              <i className="fa fa-user"></i>
+                              <FontAwesomeIcon icon={faUser} size="24px" />
+
                               <a href="/user/editprofile">
                                 <button> My Profile</button>
                               </a>
@@ -151,7 +152,10 @@ const Navbar = () => {
                               </a>
                             </li>
                             <li>
-                              <FontAwesomeIcon icon={faSignOutAlt} />
+                              <FontAwesomeIcon
+                                icon={faSignOutAlt}
+                                size="24px"
+                              />
                               <button onClick={handleLogout}>Logout</button>
                             </li>
                           </ul>

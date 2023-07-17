@@ -1,6 +1,13 @@
 import "../../pages.css/contact.css";
 import React, { useState } from "react";
-import axios from "axios";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {
+  faMapMarkerAlt,
+  faQuestionCircle,
+  faEnvelope,
+  faPhone,
+} from "@fortawesome/free-solid-svg-icons";
+
 import Footbar from "../../components/Bars/Footerbar";
 
 function Contact() {
@@ -55,12 +62,7 @@ function Contact() {
       <div class="contact">
         <div class="container__elem">
           <div className="elem__block">
-            <img
-              className="hover-img"
-              src="https://i.postimg.cc/gjnCSrHQ/62759-computer-location-icon-icons-free-download-png-hd.png"
-              width="50%"
-              alt="call"
-            />
+            <FontAwesomeIcon icon={faMapMarkerAlt} className="hover-img" />
           </div>
 
           <h2 class="mode">Our Address</h2>
@@ -69,12 +71,7 @@ function Contact() {
         </div>
         <div class="container__elem">
           <div class="elem__block">
-            <img
-              class="hover-img"
-              src="https://i.postimg.cc/XvK00tKD/call.png"
-              width="50%"
-              alt="call"
-            />
+            <FontAwesomeIcon icon={faPhone} className="hover-img" />
           </div>
 
           <h2 class="mode">CALL US</h2>
@@ -82,12 +79,7 @@ function Contact() {
         </div>
         <div class="container__elem">
           <div class="elem__block">
-            <img
-              class="hover-img"
-              src="https://i.postimg.cc/Fzzt3RM2/write.png"
-              width="50%"
-              alt="mail"
-            />
+            <FontAwesomeIcon icon={faEnvelope} className="hover-img" />
           </div>
           <h2 class="mode">WRITE US</h2>
           <p class="mode">
@@ -96,12 +88,7 @@ function Contact() {
         </div>
         <div class="container__elem">
           <div class="elem__block">
-            <img
-              class="hover-img"
-              src="https://i.postimg.cc/tT2QsPM3/faq.png"
-              width="50%"
-              alt="faq"
-            />
+            <FontAwesomeIcon icon={faQuestionCircle} className="hover-img" />
           </div>
 
           <h2 class="mode">FAQ</h2>

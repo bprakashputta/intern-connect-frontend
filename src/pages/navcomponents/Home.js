@@ -8,6 +8,9 @@ import {
   faJs,
   faAngular,
   faNode,
+  faFacebook,
+  faYoutube,
+  faTwitter,
   faLinkedin,
 } from "@fortawesome/free-brands-svg-icons";
 
@@ -122,56 +125,81 @@ function Home() {
           <div className="col fourth highlighted-bg small-box">
             <div class="icon icon-large">
               <h3>HTML5</h3>
-              <FontAwesomeIcon icon={faHtml5} style={{ color: "#e34f26" }} />
+              <FontAwesomeIcon
+                icon={faHtml5}
+                style={{ color: "#e34f26", fontSize: "8rem" }}
+              />
             </div>
           </div>
 
           <div className="col fourth highlighted-bg small-box">
             <div class="icon icon-large">
               <h3>CSS3</h3>
-              <FontAwesomeIcon icon={faCss3} style={{ color: "#2965f1" }} />
+              <FontAwesomeIcon
+                icon={faCss3}
+                style={{ color: "#2965f1", fontSize: "8rem" }}
+              />
             </div>
           </div>
 
           <div className="col fourth highlighted-bg small-box">
             <div class="icon icon-large">
               <h3>JavaScript</h3>
-              <FontAwesomeIcon icon={faJs} style={{ color: "#F0DB4F" }} />
+              <FontAwesomeIcon
+                icon={faJs}
+                style={{ color: "#F0DB4F", fontSize: "8rem" }}
+              />
             </div>
           </div>
 
           <div className="col fourth highlighted-bg small-box">
             <div class="icon icon-large">
               <h3>MongoDB</h3>
-              <img src={ReactLogo} alt="React Logo" />
+              <img
+                src={ReactLogo}
+                alt="React Logo"
+                style={{ width: "100px", height: "130px" }}
+              />
             </div>
           </div>
 
           <div className="col fourth highlighted-bg small-box">
             <div class="icon icon-large">
               <h3>Git</h3>
-              <FontAwesomeIcon icon={faGit} style={{ color: "#4183c4" }} />
+              <FontAwesomeIcon
+                icon={faGit}
+                style={{ color: "#4183c4", fontSize: "8rem" }}
+              />
             </div>
           </div>
 
           <div className="col fourth highlighted-bg small-box">
             <div class="icon icon-large">
               <h3>Node.js</h3>
-              <FontAwesomeIcon icon={faNode} style={{ color: "#80BD01" }} />
+              <FontAwesomeIcon
+                icon={faNode}
+                style={{ color: "#80BD01", fontSize: "8rem" }}
+              />
             </div>
           </div>
 
           <div className="col fourth highlighted-bg small-box">
             <div class="icon icon-large">
               <h3>Angular.js</h3>
-              <FontAwesomeIcon icon={faAngular} style={{ color: "#DD1B16" }} />
+              <FontAwesomeIcon
+                icon={faAngular}
+                style={{ color: "#DD1B16", fontSize: "8rem" }}
+              />
             </div>
           </div>
 
           <div className="col fourth highlighted-bg small-box">
             <div class="icon icon-large">
               <h3>Agile</h3>
-              <FontAwesomeIcon icon={faAngular} style={{ color: "#0e3a86" }} />
+              <FontAwesomeIcon
+                icon={faAngular}
+                style={{ color: "#0e3a86", fontSize: "8rem" }}
+              />
             </div>
           </div>
         </section>
@@ -200,28 +228,25 @@ function Home() {
                 remaining .
               </p>
             </div>
-            <div class="social_icons">
-              <div class="square">
-                <div class="icons">
-                  <i class="fa fa-facebook" aria-hidden="true"></i>
+            <div className="social_icons">
+              <div className="square">
+                <div className="icons">
+                  <FontAwesomeIcon icon={faFacebook} />
                 </div>
               </div>
-              <div class="square">
-                <div class="icons">
-                  <i class="fa fa-youtube" aria-hidden="true"></i>
+              <div className="square">
+                <div className="icons">
+                  <FontAwesomeIcon icon={faYoutube} />
                 </div>
               </div>
-              <div class="square">
-                <div class="icons">
-                  <i class="fa fa-twitter" aria-hidden="true"></i>
+              <div className="square">
+                <div className="icons">
+                  <FontAwesomeIcon icon={faTwitter} />
                 </div>
               </div>
-              <div class="square">
-                <div class="icons">
-                  <FontAwesomeIcon
-                    icon={faLinkedin}
-                    style={{ color: "black" }}
-                  />
+              <div className="square">
+                <div className="icons">
+                  <FontAwesomeIcon icon={faLinkedin} />
                 </div>
               </div>
             </div>
