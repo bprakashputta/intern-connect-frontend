@@ -16,59 +16,14 @@
   box-sizing: inherit;
 }
 
-html {
-  box-sizing: border-box;
-  line-height: 1.4;
-}
-
 a {
-  color: rgb(255, 255, 255);
   font-weight: 700;
   text-decoration: none;
   transition: 0.3s;
 }
 
-main a {
-  box-shadow: inset 0 -2px white;
-  color: #229fbf;
-}
-main a:hover {
-  box-shadow: inset 0 -30em #f2b139;
-  color: white;
-}
-
-h1 {
-  text-align: center;
-  font-size: 3.6em;
-  line-height: 1.4;
-}
-
-h2 {
-  font-family: "Roboto Slab", serif;
-  font-size: 1.8em;
-  line-height: 1.4;
-  margin-top: 1em;
-  position: relative;
-  margin-bottom: 10px;
-  text-rendering: optimizeLegibility;
-  /* margin-bottom: 1em; */
-}
-
-h3 {
-  font-weight: 400;
-  /* font-size: 1.4em; */
-  line-height: 1.4;
-  margin-top: 1.3em;
-  margin-bottom: 1.3em;
-  color: #229fbf;
-}
-
-img {
-  max-width: 100%;
-}
-
-p {
-  margin: 1rem 0;
+.h2-style {
+  font-family: "Poppins", sans-serif;
 }
 
 .topping {
@@ -79,10 +34,7 @@ p {
   position: inherit;
   margin-top: 4.7em;
 }
-.content {
-  font-size: 19px;
-  width: 100%;
-}
+
 .header-title {
   color: rgb(23, 23, 24);
   font-family: Lato, "Helvetica Neue", sans-serif;
@@ -93,15 +45,14 @@ p {
   float: left;
   font-weight: bold;
   width: auto;
+  text-align: center;
 }
 
 .header-description {
   color: rgb(0, 50, 81);
   font-weight: 700;
-
   font-size: 1.4em;
   line-height: 1.4;
-  /* margin-top: 1em; */
   margin-bottom: 10em;
   width: 500px;
   margin-left: 1em;
@@ -112,7 +63,6 @@ p {
   top: 60%;
   left: 0%;
   height: 100px;
-
   color: rgb(1, 1, 1);
   padding: 20px;
 }
@@ -124,7 +74,6 @@ p {
   transition: all 0.2s ease;
   border: none;
   background: none;
-
   float: left;
 }
 
@@ -287,9 +236,6 @@ p {
     float: left;
   }
 }
-/* .full-width {
-  width: 100%;
-} */
 
 .skils {
   float: left;
@@ -365,10 +311,11 @@ p {
 }
 
 .icon-large {
-  color: #6da768;
+  color: #27831c;
   line-height: 0;
   font-size: 8.4em;
-  margin-top: -1.3rem;
+  font-weight: 700;
+  margin-top: 10px;
 }
 .icon-large:before {
   padding: 0;
@@ -564,7 +511,6 @@ p {
   }
 }
 
-/* about sec media queries */
 /* Styles for screens smaller than 768px (Mobile) */
 @media (max-width: 767px) {
   .about {
@@ -692,13 +638,8 @@ p {
   text-shadow: 0 0 1px;
   font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
 }
-
-/* .icon {
-  font-size: 36px;
-  margin-bottom: 10px;
-} */
-
+/* 
 .label {
   font-size: 18px;
   text-align: center;
-}
+} */

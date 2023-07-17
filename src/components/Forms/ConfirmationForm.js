@@ -13,7 +13,7 @@ const ConfirmationForm = ({ formData, onNext, onPrevious }) => {
   const handleSubmit = (e) => {
     e.preventDefault();
     if (window.confirm("Are you sure you want to proceed?")) {
-      navigate("/"); // Proceed to the next step
+      navigate("/");
     }
   };
   const formatDateString = (dateString) => {

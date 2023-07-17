@@ -40,7 +40,7 @@ const PersonalInfoForm = ({ onNext, formData, setFormData }) => {
         <i className="fa fa-smile-o"></i>
       </small>
       <div className="text">
-        <h2> Your Personal Information</h2>
+        <h2 className="h2-style"> Your Personal Information</h2>
         <p>Enter your personal information to get closer to companies.</p>
       </div>
       <div className="input-text">

@@ -1,5 +1,3 @@
-/* eslint-disable no-unused-vars */
-/* eslint-disable jsx-a11y/anchor-is-valid */
 import axios from "../../api/base";
 import React, { useState } from "react";
 import "../../componentsCss/logInpage.css";
@@ -10,8 +8,6 @@ const { REACT_APP_SERVER_URL } = process.env;
 function LogIn() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [userID, setUserID] = useState(null);
-  const [message, setMessage] = useState("");
 
   const navigate = useNavigate();
 

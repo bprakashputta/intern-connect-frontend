@@ -2,9 +2,9 @@
 import React, { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import "../../componentsCss/Bars/navbar.css";
-import axios from "axios";
+// import axios from "../../api/base";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faCircleUser, faSignOutAlt } from "@fortawesome/free-solid-svg-icons";
+import { faSignOutAlt } from "@fortawesome/free-solid-svg-icons";
 import { userLogoutAction } from "../../redux/actions/userAction";
 import { useDispatch } from "react-redux";
 
@@ -16,7 +16,7 @@ const Navbar = () => {
 
   const dispatch = useDispatch();
   const userInfo = JSON.parse(localStorage.getItem("userInfo"));
-  const email = userInfo?.email;
+  // const email = userInfo?.email;
   const profilePhoto = userInfo?.profilePhoto;
 
   const handleDropdownToggle = () => {
@@ -131,7 +131,7 @@ const Navbar = () => {
                           >
                             <li>
                               <i className="fa fa-user"></i>
-                              <a href="#">
+                              <a href="/user/editprofile">
                                 <button> My Profile</button>
                               </a>
                             </li>
