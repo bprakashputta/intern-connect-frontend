@@ -71,7 +71,7 @@ const ChatWindow = ({ sender, taskId }) => {
               .map((message, index) => (
                 <div
                   key={index}
-                  className={`message ${
+                  className={`message-sender ${
                     message.sender === sender ? sender : "other"
                   }`}
                 >

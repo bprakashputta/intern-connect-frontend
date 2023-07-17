@@ -25,6 +25,7 @@ import ViewTask from "./pages/Tasks/ViewTask";
 import Tasks from "./pages/Tasks/Tasks";
 import Taskpage from "./pages/Tasks/Taskpage";
 import { useSelector } from "react-redux";
+import ProfilePage from "./pages/ProfilePage";
 
 function App() {
   const { userInfo } = useSelector((state) => state.signIn);
@@ -46,6 +47,7 @@ function App() {
                 path="/user/profile"
                 element={userType === "company" ? <Profile /> : <UserProfile />}
               />
+              <Route path="/user/editprofile" element={<ProfilePage />} />
               <Route path="/user/login" element={<LogIn />} />
               <Route path="/user/register" element={<SignUp />} />
               <Route path="/user/myapplications" element={<MyJobs />} />

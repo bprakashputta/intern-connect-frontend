@@ -160,7 +160,6 @@ const MultiStepForm = () => {
   return (
     <div class="profile mt-11">
       <div className="container">
-        {/* <h1 className="multistep-form-title">Multi-Step Form</h1> */}
         <div className="card">
           <div className="form">
             <div className="left-side">

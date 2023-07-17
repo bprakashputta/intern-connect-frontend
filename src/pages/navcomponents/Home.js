@@ -10,6 +10,7 @@ import {
   faNode,
   faLinkedin,
 } from "@fortawesome/free-brands-svg-icons";
+
 import ReactLogo from "../../componentsCss/icon.svg";
 import Footerbar from "../../components/Bars/Footerbar";
 
@@ -51,7 +52,7 @@ function Home() {
       <div class="row justify-content-center mb-5">
         <div class="col-md-7 heading-section text-center ftco-animate fadeInUp ftco-animated">
           <span class="subheading"> </span>
-          <h2 class="mb-0">Our Job Categories</h2>
+          <h2 class="h2-style">Our Job Categories</h2>
         </div>
       </div>
       <section>

@@ -323,7 +323,7 @@ button {
   background-color: white;
 }
 
-.message {
+.message-sender {
   margin-bottom: 10px;
   display: inline-block;
   padding: 10px;
@@ -334,13 +334,13 @@ button {
   word-wrap: break-word;
 }
 
-.message.student {
+.message-sender.student {
   float: right;
   align-self: flex-end;
   margin-left: 10%;
 }
 
-.message.recruiter {
+.message-sender.recruiter {
   background-color: #f4f4f4;
 }
 
