@@ -125,21 +125,30 @@ function Home() {
           <div className="col fourth highlighted-bg small-box">
             <div class="icon icon-large">
               <h3>HTML5</h3>
-              <FontAwesomeIcon icon={faHtml5} style={{ color: "#e34f26" }} />
+              <FontAwesomeIcon
+                icon={faHtml5}
+                style={{ color: "#e34f26", height: "8rem" }}
+              />
             </div>
           </div>
 
           <div className="col fourth highlighted-bg small-box">
             <div class="icon icon-large">
               <h3>CSS3</h3>
-              <FontAwesomeIcon icon={faCss3} style={{ color: "#2965f1" }} />
+              <FontAwesomeIcon
+                icon={faCss3}
+                style={{ color: "#2965f1", height: "8rem" }}
+              />
             </div>
           </div>
 
           <div className="col fourth highlighted-bg small-box">
             <div class="icon icon-large">
               <h3>JavaScript</h3>
-              <FontAwesomeIcon icon={faJs} style={{ color: "#F0DB4F" }} />
+              <FontAwesomeIcon
+                icon={faJs}
+                style={{ color: "#F0DB4F", height: "8rem" }}
+              />
             </div>
           </div>
 
@@ -149,7 +158,7 @@ function Home() {
               <img
                 src={ReactLogo}
                 alt="React Logo"
-                style={{ width: "140px", height: "135px", objectFit: "cover" }}
+                style={{ width: "140px", height: "8rem", objectFit: "cover" }}
               />
             </div>
           </div>
@@ -157,28 +166,40 @@ function Home() {
           <div className="col fourth highlighted-bg small-box">
             <div class="icon icon-large">
               <h3>Git</h3>
-              <FontAwesomeIcon icon={faGit} style={{ color: "#4183c4" }} />
+              <FontAwesomeIcon
+                icon={faGit}
+                style={{ color: "#4183c4", height: "8rem" }}
+              />
             </div>
           </div>
 
           <div className="col fourth highlighted-bg small-box">
             <div class="icon icon-large">
               <h3>Node.js</h3>
-              <FontAwesomeIcon icon={faNode} style={{ color: "#80BD01" }} />
+              <FontAwesomeIcon
+                icon={faNode}
+                style={{ color: "#80BD01", height: "8rem" }}
+              />
             </div>
           </div>
 
           <div className="col fourth highlighted-bg small-box">
             <div class="icon icon-large">
               <h3>Angular.js</h3>
-              <FontAwesomeIcon icon={faAngular} style={{ color: "#DD1B16" }} />
+              <FontAwesomeIcon
+                icon={faAngular}
+                style={{ color: "#DD1B16", height: "8rem" }}
+              />
             </div>
           </div>
 
           <div className="col fourth highlighted-bg small-box">
             <div class="icon icon-large">
               <h3>Agile</h3>
-              <FontAwesomeIcon icon={faAngular} style={{ color: "#0e3a86" }} />
+              <FontAwesomeIcon
+                icon={faAngular}
+                style={{ color: "#0e3a86", height: "8rem" }}
+              />
             </div>
           </div>
         </section>
