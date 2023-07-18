@@ -164,7 +164,9 @@ textarea.ng-valid {
 .hover-img:hover {
   transform: scale(1.1);
 }
-
+.hover-img {
+  font-size: 35px;
+}
 .wrapper {
   width: 100%;
   height: 100vh;

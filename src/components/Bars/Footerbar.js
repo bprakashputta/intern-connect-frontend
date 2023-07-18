@@ -44,7 +44,7 @@ function Footerbar() {
                 </div>
                 <FontAwesomeIcon
                   icon={faPhone}
-                  style={{ color: "white", fontSize: "1.5rem" }}
+                  style={{ color: "white", height: "25px" }}
                 />
                 <div class="cta-text">
                   <h4>Call us</h4>
@@ -53,8 +53,7 @@ function Footerbar() {
                 <div class="footer-widget">
                   <FontAwesomeIcon
                     icon={faEnvelopeOpen}
-                    style={{ color: "white" }}
-                    size="xl"
+                    style={{ color: "white", height: "25px" }}
                   />
                   <div class="cta-text">
                     <h4>Mail us</h4>
