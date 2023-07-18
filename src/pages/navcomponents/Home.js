@@ -8,6 +8,9 @@ import {
   faJs,
   faAngular,
   faNode,
+  faFacebook,
+  faYoutube,
+  faTwitter,
   faLinkedin,
 } from "@fortawesome/free-brands-svg-icons";
 
@@ -143,7 +146,11 @@ function Home() {
           <div className="col fourth highlighted-bg small-box">
             <div class="icon icon-large">
               <h3>MongoDB</h3>
-              <img src={ReactLogo} alt="React Logo" />
+              <img
+                src={ReactLogo}
+                alt="React Logo"
+                style={{ width: "140px", height: "135px", objectFit: "cover" }}
+              />
             </div>
           </div>
 
@@ -200,28 +207,25 @@ function Home() {
                 remaining .
               </p>
             </div>
-            <div class="social_icons">
-              <div class="square">
-                <div class="icons">
-                  <i class="fa fa-facebook" aria-hidden="true"></i>
+            <div className="social_icons">
+              <div className="square">
+                <div className="icons">
+                  <FontAwesomeIcon icon={faFacebook} size="5x" />
                 </div>
               </div>
-              <div class="square">
-                <div class="icons">
-                  <i class="fa fa-youtube" aria-hidden="true"></i>
+              <div className="square">
+                <div className="icons">
+                  <FontAwesomeIcon icon={faYoutube} />
                 </div>
               </div>
-              <div class="square">
-                <div class="icons">
-                  <i class="fa fa-twitter" aria-hidden="true"></i>
+              <div className="square">
+                <div className="icons">
+                  <FontAwesomeIcon icon={faTwitter} />
                 </div>
               </div>
-              <div class="square">
-                <div class="icons">
-                  <FontAwesomeIcon
-                    icon={faLinkedin}
-                    style={{ color: "black" }}
-                  />
+              <div className="square">
+                <div className="icons">
+                  <FontAwesomeIcon icon={faLinkedin} />
                 </div>
               </div>
             </div>

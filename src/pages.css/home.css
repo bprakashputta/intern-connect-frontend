@@ -420,15 +420,15 @@ a {
 .square .icons {
   position: absolute;
   transform: rotateZ(-44deg);
-  margin: 20px 0 0px 21px;
+  margin: 15px 0 0px 11px;
 }
 
 .fa-facebook,
 .fa-twitter,
 .fa-dribbbler,
 .fa-youtube,
-.fa-dribbble {
-  width: 11px;
+.fa-linkedin {
+  width: 31px;
   height: 22px;
   color: rgb(2, 2, 2);
   font-family: FontAwesome;
