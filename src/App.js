@@ -1,5 +1,4 @@
 import { BrowserRouter, Route, Routes, Navigate } from "react-router-dom";
-
 import Navbar from "./components/Bars/Navbar";
 import Home from "./pages/navcomponents/Home";
 import UserProfile from "./pages/UserProfile";
@@ -7,7 +6,6 @@ import Contact from "./pages/navcomponents/Contactpage";
 import About from "./pages/navcomponents/About";
 import LogIn from "./pages/navcomponents/LogIn";
 import SignUp from "./pages/navcomponents/SignUp";
-
 import Jobs from "./pages/Admin/Jobs";
 import MyJobs from "./pages/Jobs/MyJobs";
 import UserForm from "./components/Users/UserForm";
@@ -26,6 +24,8 @@ import Tasks from "./pages/Tasks/Tasks";
 import Taskpage from "./pages/Tasks/Taskpage";
 import { useSelector } from "react-redux";
 import ProfilePage from "./pages/ProfilePage";
+
+console.log(process.env.REACT_APP_HOST_URL);
 
 function App() {
   const { userInfo } = useSelector((state) => state.signIn);
