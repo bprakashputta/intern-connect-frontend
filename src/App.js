@@ -66,7 +66,6 @@ function App() {
               <Route path="/jobpage" element={<JobList />} />
               <Route path="/search/location/:location" element={<JobList />} />
               <Route path="/search/:keyword" element={<JobList />} />
-
               <Route path="/job/:id" element={<SingleJob />} />
 
               <Route exact path="/jobs" element={<Jobs />} />

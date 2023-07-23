@@ -6,7 +6,7 @@
 .box-container {
   background-color: #f9f9ff;
   min-height: 100vh;
-  margin-top: 50px;
+  margin: 50px 40px;
 }
 
 .stack-container {
@@ -89,4 +89,42 @@
 } */
 .pagination-container {
   margin: 25px 0px 30px 30%;
+}
+
+/* CSS for the pagination component */
+.pagination-container {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+.pagination {
+  display: flex;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.page-item {
+  margin: 0 5px;
+}
+
+.page-link {
+  display: inline-block;
+  padding: 8px 12px;
+  border: 1px solid #ccc;
+  background-color: #fff;
+  color: #333;
+  cursor: pointer;
+  transition: background-color 0.2s, color 0.2s, border-color 0.2s;
+}
+
+.page-link:hover {
+  background-color: #f2f2f2;
+}
+
+.page-link.active {
+  background-color: #007bff;
+  color: #fff;
+  border-color: #007bff;
 }
