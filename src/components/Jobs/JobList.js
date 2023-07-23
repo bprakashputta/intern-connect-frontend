@@ -93,7 +93,11 @@ const JobList = () => {
               <div className="filter-card">
                 <div className="filter-heading">
                   <Typography
-                    sx={{ color: palette.secondary.main, fontWeight: 600 }}
+                    sx={{
+                      color: palette.secondary.main,
+                      fontWeight: 600,
+                      fontSize: "10px",
+                    }}
                   >
                     Filter jobs by location
                   </Typography>

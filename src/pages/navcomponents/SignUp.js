@@ -4,6 +4,12 @@ import React from "react";
 import { useState } from "react";
 import "../../componentsCss/logInpage.css";
 import { Link, useNavigate } from "react-router-dom";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {
+  faGoogle,
+  faLinkedin,
+  faGithub,
+} from "@fortawesome/free-brands-svg-icons";
 
 function SignUp() {
   const [email, setEmail] = useState("");
@@ -133,13 +139,14 @@ function SignUp() {
                             <div class="line"></div>
                           </div>
                           <div class="social-icons">
-                            <a href="http://ec2-3-108-196-182.ap-south-1.compute.amazonaws.com/auth/google/register">
+                            {/* <a href="http://ec2-3-108-196-182.ap-south-1.compute.amazonaws.com/auth/google/register"> */}
+                            <a href="http://localhost:8080/auth/google/register">
                               <button
                                 aria-label="Signup with Google"
                                 class="icon "
                               >
                                 <div className="g_icon">
-                                  <i className="fa fa-google"></i>
+                                  <FontAwesomeIcon icon={faGoogle} />
                                 </div>
                               </button>
                             </a>
@@ -149,7 +156,7 @@ function SignUp() {
                                 class="icon"
                               >
                                 <div className="g_icon">
-                                  <i className="fa fa-linkedin"></i>
+                                  <FontAwesomeIcon icon={faLinkedin} />
                                 </div>
                               </button>
                             </a>
@@ -159,7 +166,7 @@ function SignUp() {
                                 class="icon"
                               >
                                 <div className="g_icon">
-                                  <i className="fa fa-github"></i>
+                                  <FontAwesomeIcon icon={faGithub} />
                                 </div>
                               </button>
                             </a>

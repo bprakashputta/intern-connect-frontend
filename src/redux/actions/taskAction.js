@@ -28,6 +28,24 @@ export const taskLoadAction = () => async (dispatch) => {
   }
 };
 
+// Task load for specific user
+export const tasksForSpecficUserLoadAction = () => async (dispatch) => {
+  dispatch({ type: TASK_LOAD_REQUEST });
+  try {
+    const userInfo = JSON.parse(localStorage.getItem("userInfo"));
+    const { data } = await axios.get(`task/${userInfo._id}/all`);
+    dispatch({
+      type: TASK_LOAD_SUCCESS,
+      payload: data,
+    });
+  } catch (error) {
+    dispatch({
+      type: TASK_LOAD_FAIL,
+      payload: error.response.data.error,
+    });
+  }
+};
+
 // single task action
 export const taskLoadSingleAction = (id) => async (dispatch) => {
   dispatch({ type: TASK_LOAD_SINGLE_REQUEST });

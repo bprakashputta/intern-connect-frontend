@@ -15,7 +15,7 @@ const FileList = ({ taskId }) => {
 
   const fetchFileList = async () => {
     try {
-      const response = await axios.get(`file/list?taskId=${taskId}`);
+      const response = await axios.get(`file/list/${taskId}`);
       setFileList(response.data.fileList);
     } catch (error) {
       console.error(error);

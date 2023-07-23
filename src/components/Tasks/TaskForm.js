@@ -1,10 +1,11 @@
 import React, { useState } from "react";
+import axios from "../../api/base";
 import "../../pages/Tasks/tasks.css";
 
 function TaskForm() {
   const [task, setTask] = useState({
     assigned_by: "",
-    assigned_to: [],
+    task_id: "",
     title: "",
     description: "",
     status: "open",
@@ -12,14 +13,33 @@ function TaskForm() {
     attachments: [],
   });
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
-    // Perform any necessary operations with the task data, such as sending it to a server or updating state.
-    console.log(task);
+    await axios
+      .post("/taskallotment/create", task, {
+        baseURL: process.env.BACKEND_APP_SERVER_URL,
+      })
+      .then((response) => response.json())
+      .then((data) => {
+        console.log("Task submitted successfully:", data);
+        alert("Task submitted successfully!");
+        setTask({
+          assigned_by: "",
+          task_id: "",
+          title: "",
+          description: "",
+          status: "open",
+          due_date: null,
+          attachments: [],
+        });
+      })
+      .catch((error) => {
+        console.error("Error submitting task:", error);
+        alert("Error submitting task. Please try again later.");
+      });
   };
 
-  const handleChange = (event) => {
-    const { name, value } = event.target;
+  const handleChange = (name, value) => {
     setTask((prevTask) => ({
       ...prevTask,
       [name]: value,
@@ -37,12 +57,14 @@ function TaskForm() {
             <div className="mt-4 ">
               <div className="task-input">
                 <label>
-                  Assigned By:
+                  Task_Id:
                   <input
                     type="text"
-                    name="assignedBy"
-                    value={task.assignedBy}
-                    onChange={handleChange}
+                    name="task_id"
+                    value={task.task_id}
+                    onChange={(e) =>
+                      handleChange(e.target.name, e.target.value)
+                    }
                   />
                 </label>
               </div>
@@ -50,15 +72,31 @@ function TaskForm() {
             <div>
               <div className="mt-4">
                 <label>
-                  Title:
+                  Job_Id:
                   <input
                     type="text"
-                    name="title"
-                    value={task.title}
-                    onChange={handleChange}
+                    name="job_id"
+                    value={task.job_id}
+                    onChange={(e) =>
+                      handleChange(e.target.name, e.target.value)
+                    }
                   />
                 </label>
               </div>
+            </div>
+          </div>
+
+          <div className="mt-4 ">
+            <div className="task-input">
+              <label>
+                Title:
+                <input
+                  type="text"
+                  name="title"
+                  value={task.title}
+                  onChange={(e) => handleChange(e.target.name, e.target.value)}
+                />
+              </label>
             </div>
           </div>
           <div>
@@ -68,15 +106,14 @@ function TaskForm() {
             <div className="mt-4">
               <label className="tags">Description</label>
               <textarea
-                class="form-control"
+                className="form-control"
                 rows="6"
                 placeholder="Task Description"
-                ng-model="description"
                 name="description"
                 required
                 value={task.description}
                 onChange={(event) =>
-                  handleChange("description", event.target.value.split(","))
+                  handleChange("description", event.target.value)
                 }
               ></textarea>
             </div>
@@ -100,8 +137,8 @@ function TaskForm() {
                 Deadline:
                 <input
                   type="datetime-local"
-                  name="deadline"
-                  value={task.deadline}
+                  name="due_date"
+                  value={task.due_date}
                   onChange={handleChange}
                 />
               </label>
@@ -114,7 +151,7 @@ function TaskForm() {
                 type="file"
                 name="attachments"
                 multiple
-                onChange={handleChange}
+                onChange={(e) => handleChange(e.target.name, e.target.files)}
               />
             </label>
           </div>

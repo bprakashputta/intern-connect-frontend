@@ -8,15 +8,21 @@ import LocationOnIcon from "@mui/icons-material/LocationOn";
 import { Link, useNavigate } from "react-router-dom";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
-import { width } from "@mui/system";
-import { useDispatch} from "react-redux";
+import { useDispatch } from "react-redux";
 import {
   registerAjobApplicationAction,
   deleteJobApplicationAction,
 } from "../redux/actions/jobApplicationAction";
 
-
-const CardElement = ({ jobTitle, description, category, location, status, job_id }) => {
+const CardElement = ({
+  jobTitle,
+  description,
+  category,
+  location,
+  job_id,
+  addAppliedStudent,
+  status,
+}) => {
   const { palette } = useTheme();
   const [isFavorite, setIsFavorite] = useState(false);
   const navigate = useNavigate();
@@ -25,26 +31,28 @@ const CardElement = ({ jobTitle, description, category, location, status, job_id
   const user_id = userInfo._id;
   const [currentStatus, setCurrentStatus] = useState(status);
 
-
-
   const handleFavoriteClick = () => {
     setIsFavorite(!isFavorite);
   };
 
   const handleApplyClick = async () => {
     try {
-      // Dispatch different actions based on the status change
       if (currentStatus) {
-        await dispatch(deleteJobApplicationAction({job_id, user_id}));
+        await dispatch(deleteJobApplicationAction({ job_id, user_id }));
       } else {
-        await dispatch(registerAjobApplicationAction({job_id, user_id}));
+        await dispatch(registerAjobApplicationAction({ job_id, user_id }));
       }
       setCurrentStatus(!currentStatus);
-    } catch (error) {
-      // Handle error if necessary
-    }
+      const studentInfo = {
+        name: userInfo.firstname,
+        jobTitle,
+        description,
+        category,
+        location,
+      };
+      addAppliedStudent(studentInfo);
+    } catch (error) {}
   };
-
 
   return (
     <Card sx={{ minWidth: 275, mb: 5, mt: 3, bgcolor: palette.primary.white }}>
@@ -78,7 +86,7 @@ const CardElement = ({ jobTitle, description, category, location, status, job_id
         </div>
         <div style={{ display: "flex", alignItems: "center" }}>
           <LocationOnIcon
-            sx={{ color: palette.secondary.main, fontSize: 18 }}
+            sx={{ color: palette.secondary.main, width: "20px" }}
           />
           <Typography
             sx={{

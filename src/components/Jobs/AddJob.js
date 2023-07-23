@@ -1,14 +1,15 @@
 import React, { useState } from "react";
+import axios from "../../api/base";
 import "../../componentsCss/employerstyles/addjob.css";
+
 const AddJob = () => {
   const [jobDetails, setJobDetails] = useState({
-    title: "",
-    skillsets: [],
-    jobType: "",
-    duration: 0,
-    deadline: "",
-    maxApplicants: "",
-    maxPositions: "",
+    role_name: "",
+    skills_required: [],
+    job_type: "",
+    location: "",
+    company_id: "",
+    description: "",
   });
 
   const handleInput = (field, value) => {
@@ -18,14 +19,12 @@ const AddJob = () => {
   const handleUpdate = (e) => {
     e.preventDefault();
   };
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    fetch("", {
-      method: "POST",
-      headers: {},
-      body: JSON.stringify(jobDetails),
-    })
-      .then((response) => response.json())
+    await axios
+      .post("/jobs/create", jobDetails, {
+        baseURL: process.env.BACKEND_APP_SERVER_URL,
+      })
       .then((data) => {
         alert("Job Posted!");
         console.log(data);
@@ -44,17 +43,17 @@ const AddJob = () => {
         <div className="form">
           <div className="input-text">
             <div className="form-row">
-              {/* <label className="tags">Job Title</label> */}
               <input
                 class="form-control"
                 type="text"
                 placeholder="Job role"
-                value={jobDetails.title}
-                onChange={(event) => handleInput("title", event.target.value)}
+                value={jobDetails.role_name}
+                onChange={(event) =>
+                  handleInput("role_name", event.target.value)
+                }
               />
             </div>
-            <div className="form-row">
-              {/* <label className="tags">Company Name</label> */}
+            {/* <div className="form-row">
               <input
                 class="form-control"
                 type="text"
@@ -62,7 +61,7 @@ const AddJob = () => {
                 value={jobDetails.company}
                 onChange={(event) => handleInput("company", event.target.value)}
               />
-            </div>
+            </div> */}
           </div>
           <div className="form-row">
             <label className="tags">Enter Required Skills</label>
@@ -70,9 +69,9 @@ const AddJob = () => {
               class="form-control"
               type="text"
               placeholder="Seperate by (,)"
-              value={jobDetails.skillsets}
+              value={jobDetails.skills_required}
               onChange={(event) =>
-                handleInput("skillsets", event.target.value.split(","))
+                handleInput("skills_required", event.target.value.split(","))
               }
             />
           </div>
@@ -82,8 +81,10 @@ const AddJob = () => {
               <label className="tags">Job Type</label>
               <select
                 class="form-control"
-                value={jobDetails.jobType}
-                onChange={(event) => handleInput("jobType", event.target.value)}
+                value={jobDetails.job_type}
+                onChange={(event) =>
+                  handleInput("job_type", event.target.value)
+                }
               >
                 <option value="">Select Job Type</option>
                 <option value="Full Time">Full Time</option>
@@ -94,9 +95,9 @@ const AddJob = () => {
               <label className="tags">Location</label>
               <select
                 class="form-control"
-                value={jobDetails.duration}
+                value={jobDetails.location}
                 onChange={(event) =>
-                  handleInput("duration", event.target.value)
+                  handleInput("location", event.target.value)
                 }
               >
                 <option value="">Select Location</option>
@@ -113,7 +114,7 @@ const AddJob = () => {
               <label className="tags">Company_Id</label>
               <input
                 class="form-control"
-                type="number"
+                type="text"
                 value={jobDetails.company_id}
                 onChange={(event) =>
                   handleInput("company_id", event.target.value)
@@ -132,7 +133,7 @@ const AddJob = () => {
               required
               value={jobDetails.description}
               onChange={(event) =>
-                handleInput("description", event.target.value.split(","))
+                handleInput("description", event.target.value)
               }
             ></textarea>
           </div>
@@ -160,6 +161,3 @@ const AddJob = () => {
 };
 
 export default AddJob;
-// company
-// location
-// role

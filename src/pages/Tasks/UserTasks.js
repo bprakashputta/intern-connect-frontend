@@ -1,13 +1,15 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { taskLoadAction } from "../../redux/actions/taskAction";
 
+import { tasksForSpecficUserLoadAction } from "../../redux/actions/taskAction";
 import TaskList from "../../components/Tasks/TaskList";
 import FileUploader from "./FileUploader";
 import ChatWindow from "./Chatwindow";
 import FileList from "../../Component/FileList";
 
 const StudentTaskPage = () => {
+  const dispatch = useDispatch();
+
   const [selectedSection, setSelectedSection] = useState("Stream");
   const [selectedTask, setSelectedTask] = useState(null);
   const [selectedTaskTitle, setSelectedTaskTitle] = useState("");
@@ -27,10 +29,9 @@ const StudentTaskPage = () => {
     }
   };
 
-  const dispatch = useDispatch();
   useEffect(() => {
     console.log("task Load Action");
-    dispatch(taskLoadAction());
+    dispatch(tasksForSpecficUserLoadAction());
   }, [dispatch]);
 
   return (
@@ -71,14 +72,17 @@ const StudentTaskPage = () => {
                   <h3 className="task-stream">{selectedTaskTitle}</h3>
                   <p>{jobs.role_name}</p>
                 </div>
-                <ChatWindow sender="student" taskId={selectedTask.task_id} />
+                <ChatWindow
+                  sender="user"
+                  taskId={selectedTask.taskAllotmentId}
+                />
               </div>
             )}
 
           {selectedSection === "submit" && selectedTask && (
             <div className="submitted-work">
-              <FileList taskId={selectedTask.task_id} />
-              <FileUploader taskId={selectedTask.task_id} />
+              <FileList taskId={selectedTask.taskAllotmentId} />
+              <FileUploader taskId={selectedTask.taskAllotmentId} />
             </div>
           )}
         </div>

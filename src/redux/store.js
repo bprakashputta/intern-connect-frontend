@@ -9,6 +9,12 @@ import {
 } from "./reducers/jobReducer";
 
 import {
+  loadTaskAllotmentReducer,
+  loadTaskAllotmentSingleReducer,
+  registerAtaskAllotmentReducer,
+} from "./reducers/taskAllotmentReducer";
+
+import {
   loadTaskReducer,
   loadTaskSingleReducer,
   registerAtaskReducer,
@@ -49,6 +55,7 @@ const reducer = combineReducers({
   loadTasks: loadTaskReducer,
   loadCompanys: loadCompanyReducer,
   loadJobApplications: loadJobApplicationReducer,
+  loadTaskAllotments: loadTaskAllotmentReducer,
   jobTypeAll: loadJobTypeReducer,
   signIn: userReducerSignIn,
   logOut: userReducerLogout,
@@ -57,6 +64,7 @@ const reducer = combineReducers({
   singleTask: loadTaskSingleReducer,
   singleCompany: loadCompanySingleReducer,
   singleJobApplication: loadJobApplicationSingleReducer,
+  singleTaskAllotment: loadTaskAllotmentSingleReducer,
   userJobApplication: userApplyJobReducer,
   allUsers: allUserReducer,
   signUp: userReducerSignUp,
@@ -65,6 +73,7 @@ const reducer = combineReducers({
   registerTask: registerAtaskReducer,
   registerCompany: registerAcompanyReducer,
   registerJobApplication: registerAjobApplicationReducer,
+  registerTaskAllotment: registerAtaskAllotmentReducer,
   updateJobApplication: updateJobApplicationReducer,
   deleteJobApplication: deleteJobApplicationReducer,
   createJobType: createJobTypeReducer,
