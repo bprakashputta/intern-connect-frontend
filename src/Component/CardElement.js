@@ -77,7 +77,7 @@ const CardElement = ({
             border: "none",
             cursor: "pointer",
             fontSize: "18px",
-            color: isFavorite ? "red" : "grey",
+            color: isFavorite ? "red" : "white",
           }}
         >
           <i className="fa fa-heart"></i>
@@ -106,11 +106,7 @@ const CardElement = ({
             marginRight: "4px",
           }}
         >
-          <FontAwesomeIcon
-            icon={faMapMarkerAlt}
-            className="hover-img"
-            style={{ fontSize: "20px" }}
-          />
+          <FontAwesomeIcon icon={faMapMarkerAlt} style={{ width: "15px" }} />
         </span>
         <span style={{ color: "grey", fontSize: "15px", fontWeight: "bold" }}>
           {location}
@@ -132,7 +128,7 @@ const CardElement = ({
         </span>
       </div>
       <div style={{ marginBottom: "10px", fontWeight: "bold" }}>
-        Description:{" "}
+        Description:
         <span style={{ fontWeight: "normal" }}>
           {description.split(" ").slice(0, 15).join(" ")}...
         </span>

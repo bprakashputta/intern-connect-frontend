@@ -8,7 +8,7 @@ import About from "./pages/navcomponents/About";
 import LogIn from "./pages/navcomponents/LogIn";
 import SignUp from "./pages/navcomponents/SignUp";
 
-import Jobs from "./pages/Admin/Jobs";
+import Jobs from "./pages/Admin/JobPage";
 import MyJobs from "./pages/Jobs/MyJobs";
 import MyApplications from "./pages/Jobs/MyApplications";
 import UserForm from "./components/Users/UserForm";

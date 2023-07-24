@@ -16,9 +16,7 @@ function TaskForm() {
   const handleSubmit = async (event) => {
     event.preventDefault();
     await axios
-      .post("/taskallotment/create", task, {
-        baseURL: process.env.BACKEND_APP_SERVER_URL,
-      })
+      .post("/taskallotment/create", task)
       .then((response) => response.json())
       .then((data) => {
         console.log("Task submitted successfully:", data);

@@ -65,7 +65,7 @@ function Contact() {
             <FontAwesomeIcon
               icon={faMapMarkerAlt}
               className="hover-img"
-              style={{ fontSize: "25px" }}
+              // style={{ fontSize: "25px" }}
             />
           </div>
 
@@ -78,7 +78,7 @@ function Contact() {
             <FontAwesomeIcon
               icon={faPhone}
               className="hover-img"
-              style={{ fontSize: "25px" }}
+              // style={{ height: "30px" }}
             />
           </div>
 
@@ -90,7 +90,7 @@ function Contact() {
             <FontAwesomeIcon
               icon={faEnvelope}
               className="hover-img"
-              style={{ fontSize: "25px" }}
+              // style={{ fontSize: "25px" }}
             />
           </div>
           <h2 class="mode">WRITE US</h2>
@@ -103,7 +103,7 @@ function Contact() {
             <FontAwesomeIcon
               icon={faQuestionCircle}
               className="hover-img"
-              style={{ fontSize: "25px" }}
+              // style={{ height: "30px" }}
             />
           </div>
 
