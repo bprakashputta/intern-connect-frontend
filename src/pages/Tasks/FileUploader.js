@@ -4,7 +4,7 @@ import { Upload, Modal, Button } from "antd";
 import { PlusOutlined } from "@ant-design/icons";
 import axios from "../../api/base";
 
-function FileUploader() {
+function FileUploader({ taskId }) {
   const [previewVisible, setPreviewVisible] = useState(false);
   const [previewImage, setPreviewImage] = useState("");
   const [previewTitle, setPreviewTitle] = useState("");
@@ -45,7 +45,7 @@ function FileUploader() {
     }
 
     try {
-      const response = await axios.post("file/upload", formData, {
+      const response = await axios.post(`file/upload/${taskId}`, formData, {
         headers: { "Content-Type": "multipart/form-data" },
       });
 

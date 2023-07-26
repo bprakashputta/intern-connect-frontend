@@ -1,31 +1,26 @@
-import React, { useEffect, useState } from "react";
-import Card from "@mui/material/Card";
-import CardContent from "@mui/material/CardContent";
-import Button from "@mui/material/Button";
-import Typography from "@mui/material/Typography";
-import { IconButton, useTheme } from "@mui/material";
-import LocationOnIcon from "@mui/icons-material/LocationOn";
-import { Link, useNavigate } from "react-router-dom";
-import FavoriteIcon from "@mui/icons-material/Favorite";
-import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
-import { width } from "@mui/system";
-import { useDispatch} from "react-redux";
+import React, { useState } from "react";
+import { Link } from "react-router-dom";
+import { useDispatch } from "react-redux";
 import {
   registerAjobApplicationAction,
   deleteJobApplicationAction,
 } from "../redux/actions/jobApplicationAction";
-
-
-const CardElement = ({ jobTitle, description, category, location, status, job_id }) => {
-  const { palette } = useTheme();
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faMapMarkerAlt } from "@fortawesome/free-solid-svg-icons";
+const CardElement = ({
+  jobTitle,
+  description,
+  category,
+  location,
+  job_id,
+  addAppliedStudent,
+  status,
+}) => {
   const [isFavorite, setIsFavorite] = useState(false);
-  const navigate = useNavigate();
   const dispatch = useDispatch();
   const userInfo = JSON.parse(localStorage.getItem("userInfo"));
   const user_id = userInfo._id;
   const [currentStatus, setCurrentStatus] = useState(status);
-
-
 
   const handleFavoriteClick = () => {
     setIsFavorite(!isFavorite);
@@ -33,107 +28,134 @@ const CardElement = ({ jobTitle, description, category, location, status, job_id
 
   const handleApplyClick = async () => {
     try {
-      // Dispatch different actions based on the status change
       if (currentStatus) {
-        await dispatch(deleteJobApplicationAction({job_id, user_id}));
+        await dispatch(deleteJobApplicationAction({ job_id, user_id }));
       } else {
-        await dispatch(registerAjobApplicationAction({job_id, user_id}));
+        await dispatch(registerAjobApplicationAction({ job_id, user_id }));
       }
       setCurrentStatus(!currentStatus);
-    } catch (error) {
-      // Handle error if necessary
-    }
+      const studentInfo = {
+        name: userInfo.firstname,
+        jobTitle,
+        description,
+        category,
+        location,
+      };
+      addAppliedStudent(studentInfo);
+    } catch (error) {}
   };
 
-
   return (
-    <Card sx={{ minWidth: 275, mb: 5, mt: 3, bgcolor: palette.primary.white }}>
-      <CardContent>
-        <div style={{ display: "flex", alignItems: "center", margin: "10px" }}>
-          <Typography
-            variant="h5"
-            component="div"
-            style={{ fontWeight: "bolder" }}
-          >
-            {jobTitle}
-          </Typography>
-          <IconButton
-            onClick={handleFavoriteClick}
-            style={{ marginLeft: "auto" }}
-          >
-            {isFavorite ? (
-              <FavoriteIcon style={{ color: "red" }} />
-            ) : (
-              <FavoriteBorderIcon />
-            )}
-          </IconButton>
-          <Button
-            disableElevation
-            variant="contained"
-            sx={{ bgcolor: "#0277bd", color: "#fff" }}
-            onClick={handleApplyClick}
-          >
-            {currentStatus ? "Applied" : "Apply"}
-          </Button>
-        </div>
-        <div style={{ display: "flex", alignItems: "center" }}>
-          <LocationOnIcon
-            sx={{ color: palette.secondary.main, fontSize: 18 }}
-          />
-          <Typography
-            sx={{
-              fontSize: 15,
-              color: palette.secondary.main,
-              fontWeight: 500,
-              marginLeft: "4px",
-            }}
-            component="span"
-          >
-            {location}
-          </Typography>
-        </div>
-        <div style={{ float: "left", margin: "10px" }}>
-          <Typography
-            sx={{ mb: 1.7, fontWeight: "bold", float: "left" }}
-            color="text.secondary"
-          >
-            {category}
-          </Typography>
-        </div>
-        <div style={{ float: "left", margin: "10px", width: "100%" }}>
-          <Typography variant="body2" sx={{ fontWeight: "bold" }}>
-            Description:
-            <span style={{ fontWeight: "normal" }}>
-              {description.split(" ").slice(0, 15).join(" ")}...
-            </span>
-          </Typography>
-        </div>
-      </CardContent>
+    <div
+      style={{
+        minWidth: "275px",
+        marginBottom: "15px",
+        marginTop: "3px",
+        backgroundColor: "#fff",
+        padding: "20px",
+        boxShadow: "0 2px 4px rgba(0,0,0,0.2)",
+        borderRadius: "4px",
+      }}
+    >
       <div
-        style={{
-          float: "left",
-          margin: "10px 10px 20px",
-        }}
+        style={{ display: "flex", alignItems: "center", marginBottom: "10px" }}
       >
-        <Button
-          disableElevation
-          variant="contained"
-          size="small"
-          style={{ backgroundColor: "whitesmoke", color: "blue" }}
+        <h5
+          style={{
+            fontWeight: "bold",
+            flex: "1",
+            float: "left",
+            textAlign: "left",
+          }}
+        >
+          {jobTitle}
+        </h5>
+        <button
+          onClick={handleFavoriteClick}
+          style={{
+            backgroundColor: "transparent",
+            border: "none",
+            cursor: "pointer",
+            fontSize: "18px",
+            color: isFavorite ? "red" : "white",
+          }}
+        >
+          <i className="fa fa-heart"></i>
+        </button>
+        <button
+          style={{
+            backgroundColor: "#0277bd",
+            color: "#fff",
+            border: "none",
+            padding: "5px 10px",
+            cursor: "pointer",
+            marginLeft: "10px",
+          }}
+          onClick={handleApplyClick}
+        >
+          {currentStatus ? "Applied" : "Apply"}
+        </button>
+      </div>
+      <div
+        style={{ display: "flex", alignItems: "center", marginBottom: "10px" }}
+      >
+        <span
+          style={{
+            color: "grey",
+            fontWeight: "bold",
+            marginRight: "4px",
+          }}
+        >
+          <FontAwesomeIcon icon={faMapMarkerAlt} style={{ width: "15px" }} />
+        </span>
+        <span style={{ color: "grey", fontSize: "15px", fontWeight: "bold" }}>
+          {location}
+        </span>
+      </div>
+      <div style={{ marginBottom: "10px" }}>
+        <span
+          style={{
+            color: "grey",
+            fontSize: "15px",
+            fontWeight: "bold",
+            float: "left",
+            textAlign: "left",
+            marginBottom: "10px",
+            width: "100%",
+          }}
+        >
+          {category}
+        </span>
+      </div>
+      <div style={{ marginBottom: "10px", fontWeight: "bold" }}>
+        Description:
+        <span style={{ fontWeight: "normal" }}>
+          {description.split(" ").slice(0, 15).join(" ")}...
+        </span>
+      </div>
+      <div>
+        <button
+          style={{
+            backgroundColor: "whitesmoke",
+            color: "blue",
+            border: "none",
+            padding: "5px 10px",
+            cursor: "pointer",
+            textDecoration: "none",
+          }}
         >
           <Link
             to={`/job/${job_id}`}
             style={{
-              backgroundColor: "whitesmoke",
               color: "blue",
-              textTransform: "capitalize",
+              textDecoration: "none",
             }}
           >
             View Details...
           </Link>
-        </Button>
+        </button>
       </div>
-    </Card>
+    </div>
   );
 };
 

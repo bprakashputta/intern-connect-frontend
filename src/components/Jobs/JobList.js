@@ -1,6 +1,4 @@
 import React, { useEffect, useRef, useState } from "react";
-
-import { Container, Pagination, Typography, useTheme } from "@mui/material";
 import { useDispatch, useSelector } from "react-redux";
 import { jobLoadAction } from "../../redux/actions/jobAction";
 import { Link, useParams } from "react-router-dom";
@@ -15,7 +13,6 @@ const JobList = () => {
     (state) => state.loadJobs
   );
 
-  const { palette } = useTheme();
   const dispatch = useDispatch();
   const [keyword, setKeyword] = useState("");
   const [location, setLocation] = useState("");
@@ -34,11 +31,14 @@ const JobList = () => {
   const handleChangeLocation = (e) => {
     setLocation(e.target.value);
   };
+  const handlePageChange = (event, value) => {
+    setPage(value);
+  };
 
   return (
     <>
       <div className="box-container">
-        <Container>
+        <div>
           <div className="stack-container">
             <div className="right-section">
               <div className="job-listings">
@@ -65,13 +65,28 @@ const JobList = () => {
                   )}
                 </div>
                 <div className="pagination-container">
-                  <Pagination
-                    color="primary"
-                    variant="outlined"
-                    page={page}
-                    count={pages === 0 ? 1 : pages}
-                    onChange={(event, value) => setPage(value)}
-                  />
+                  <ul className="pagination">
+                    {Array.from(
+                      { length: pages === 0 ? 1 : pages },
+                      (_, index) => (
+                        <li
+                          key={index}
+                          className={`page-item${
+                            page === index + 1 ? " active" : ""
+                          }`}
+                        >
+                          <button
+                            className="page-link"
+                            onClick={(event) =>
+                              handlePageChange(event, index + 1)
+                            }
+                          >
+                            {index + 1}
+                          </button>
+                        </li>
+                      )
+                    )}
+                  </ul>
                 </div>
               </div>
             </div>
@@ -79,11 +94,9 @@ const JobList = () => {
             <div className="left-section">
               <div className="filter-card">
                 <div className="filter-heading">
-                  <Typography
-                    sx={{ color: palette.secondary.main, fontWeight: 600 }}
-                  >
+                  <h4 style={{ color: "#0277bd", fontWeight: 600 }}>
                     Filter jobs by category
-                  </Typography>
+                  </h4>
                 </div>
                 <SelectComponent
                   handleChangeCategory={handleChangeCategory}
@@ -92,11 +105,9 @@ const JobList = () => {
               </div>
               <div className="filter-card">
                 <div className="filter-heading">
-                  <Typography
-                    sx={{ color: palette.secondary.main, fontWeight: 600 }}
-                  >
+                  <h4 style={{ color: "#0277bd", fontWeight: 600 }}>
                     Filter jobs by location
-                  </Typography>
+                  </h4>
                 </div>
                 <SelectComponent
                   handleChangeLocation={handleChangeLocation}
@@ -105,7 +116,7 @@ const JobList = () => {
               </div>
             </div>
           </div>
-        </Container>
+        </div>
       </div>
     </>
   );

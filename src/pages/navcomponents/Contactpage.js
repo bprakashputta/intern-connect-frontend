@@ -62,7 +62,11 @@ function Contact() {
       <div class="contact">
         <div class="container__elem">
           <div className="elem__block">
-            <FontAwesomeIcon icon={faMapMarkerAlt} className="hover-img" />
+            <FontAwesomeIcon
+              icon={faMapMarkerAlt}
+              className="hover-img"
+              // style={{ fontSize: "25px" }}
+            />
           </div>
 
           <h2 class="mode">Our Address</h2>
@@ -71,7 +75,11 @@ function Contact() {
         </div>
         <div class="container__elem">
           <div class="elem__block">
-            <FontAwesomeIcon icon={faPhone} className="hover-img" />
+            <FontAwesomeIcon
+              icon={faPhone}
+              className="hover-img"
+              // style={{ height: "30px" }}
+            />
           </div>
 
           <h2 class="mode">CALL US</h2>
@@ -79,7 +87,11 @@ function Contact() {
         </div>
         <div class="container__elem">
           <div class="elem__block">
-            <FontAwesomeIcon icon={faEnvelope} className="hover-img" />
+            <FontAwesomeIcon
+              icon={faEnvelope}
+              className="hover-img"
+              // style={{ fontSize: "25px" }}
+            />
           </div>
           <h2 class="mode">WRITE US</h2>
           <p class="mode">
@@ -88,7 +100,11 @@ function Contact() {
         </div>
         <div class="container__elem">
           <div class="elem__block">
-            <FontAwesomeIcon icon={faQuestionCircle} className="hover-img" />
+            <FontAwesomeIcon
+              icon={faQuestionCircle}
+              className="hover-img"
+              // style={{ height: "30px" }}
+            />
           </div>
 
           <h2 class="mode">FAQ</h2>

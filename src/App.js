@@ -1,4 +1,4 @@
-import { BrowserRouter, Route, Routes, Navigate } from "react-router-dom";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
 
 import Navbar from "./components/Bars/Navbar";
 import Home from "./pages/navcomponents/Home";
@@ -8,8 +8,9 @@ import About from "./pages/navcomponents/About";
 import LogIn from "./pages/navcomponents/LogIn";
 import SignUp from "./pages/navcomponents/SignUp";
 
-import Jobs from "./pages/Admin/Jobs";
+import Jobs from "./pages/Admin/JobPage";
 import MyJobs from "./pages/Jobs/MyJobs";
+import MyApplications from "./pages/Jobs/MyApplications";
 import UserForm from "./components/Users/UserForm";
 import Admin from "./pages/Admin/Admin";
 import PageNotFound from "./pages/PageNotFound";
@@ -26,6 +27,10 @@ import Tasks from "./pages/Tasks/Tasks";
 import Taskpage from "./pages/Tasks/Taskpage";
 import { useSelector } from "react-redux";
 import ProfilePage from "./pages/ProfilePage";
+
+import AppliedStudents from "./components/Jobs/AppliedStudents";
+
+console.log(process.env.REACT_APP_HOST_URL);
 
 function App() {
   const { userInfo } = useSelector((state) => state.signIn);
@@ -47,17 +52,20 @@ function App() {
                 path="/user/profile"
                 element={userType === "company" ? <Profile /> : <UserProfile />}
               />
+
               <Route path="/user/editprofile" element={<ProfilePage />} />
               <Route path="/user/login" element={<LogIn />} />
               <Route path="/user/register" element={<SignUp />} />
-              <Route path="/user/myapplications" element={<MyJobs />} />
+              <Route path="/user/myapplications" element={<MyApplications />} />
+              <Route path="/employer/myjobs" element={<MyJobs />} />
+
+              <Route path="/appliedby" element={<AppliedStudents />} />
               <Route path="/contactus" element={<Contact />} />
               <Route path="/aboutus" element={<About />} />
               <Route path="upload" element={<FileUploader />} />
               <Route path="/jobpage" element={<JobList />} />
               <Route path="/search/location/:location" element={<JobList />} />
               <Route path="/search/:keyword" element={<JobList />} />
-
               <Route path="/job/:id" element={<SingleJob />} />
 
               <Route exact path="/jobs" element={<Jobs />} />

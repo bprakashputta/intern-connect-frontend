@@ -34,6 +34,33 @@ export const jobLoadAction =
     }
   };
 
+// load all created jobs by a company "/:companyId/myjobs"
+export const myJobsLoadAction = () => async (dispatch) => {
+  dispatch({ type: JOB_LOAD_REQUEST });
+  const userInfo = JSON.parse(localStorage.getItem("userInfo"));
+  if (userInfo.userType === "company") {
+    const company_id = userInfo.company_id;
+    try {
+      const { data } = await axios.get(`/jobs/${company_id}/myjobs`);
+      console.log("inside Job action", data);
+      dispatch({
+        type: JOB_LOAD_SUCCESS,
+        payload: data,
+      });
+    } catch (error) {
+      dispatch({
+        type: JOB_LOAD_FAIL,
+        payload: error.response.data.error,
+      });
+    }
+  } else {
+    dispatch({
+      type: JOB_LOAD_FAIL,
+      payload: "You are not a company",
+    });
+  }
+};
+
 // single job action
 export const jobLoadSingleAction = (id) => async (dispatch) => {
   dispatch({ type: JOB_LOAD_SINGLE_REQUEST });

@@ -4,7 +4,6 @@ import TaskForm from "../../components/Tasks/TaskForm";
 import { useDispatch, useSelector } from "react-redux";
 import { taskLoadAction } from "../../redux/actions/taskAction";
 import ChatWindow from "./Chatwindow";
-import FileUploader from "./FileUploader";
 
 const CompanyTaskPage = () => {
   const [showForm, setShowForm] = useState(false);
@@ -17,7 +16,11 @@ const CompanyTaskPage = () => {
   const handleSectionClick = (section) => {
     setSelectedSection(section);
   };
-
+  const [appliedStudents, setAppliedStudents] = useState([]);
+  const addAppliedStudent = (student) => {
+    setAppliedStudents([...appliedStudents, student]);
+  };
+  console.log("Applied Students:", appliedStudents);
   const closeForm = () => {
     setShowForm(false);
   };
@@ -40,7 +43,13 @@ const CompanyTaskPage = () => {
           </button>
         </div>
         <h2>Applied Students</h2>
-
+        {appliedStudents.map((student, index) => (
+          <div key={index}>
+            <p>Name: {student.firstname}</p>
+            appliedStudents={appliedStudents}
+            addAppliedStudent={addAppliedStudent}
+          </div>
+        ))}
         {showForm && (
           <div className="form-overlay">
             <div className="form-container">

@@ -1,8 +1,7 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import React, { useState, useEffect } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useNavigate, useLocation } from "react-router-dom";
 import "../../componentsCss/Bars/navbar.css";
-// import axios from "../../api/base";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSignOutAlt, faUser } from "@fortawesome/free-solid-svg-icons";
 import { userLogoutAction } from "../../redux/actions/userAction";
@@ -74,6 +73,20 @@ const Navbar = () => {
     };
   }, []);
 
+  const location = useLocation();
+  const isAdminPage = location.pathname.startsWith("/admin");
+
+  if (isAdminPage) {
+    return null;
+  }
+  const getDestinationURL = () => {
+    if (userInfo.userType === "user") {
+      return "/user/myapplications";
+    } else {
+      return "/employer/myjobs";
+    }
+  };
+
   return (
     <div className="fix">
       <nav className={colorChange ? "navbar-colorChange" : "navbar-top"}>
@@ -106,7 +119,7 @@ const Navbar = () => {
                         onClick={handleDropdownToggle}
                       >
                         <img
-                          src={profilePhoto}
+                          src={userInfo?.profilePhoto}
                           alt="Profile"
                           className="profile-photo"
                           style={{
@@ -143,18 +156,18 @@ const Navbar = () => {
                               </a>
                             </li>
                             <li>
-                              <a href="/user/myapplications">
+                              <Link to={getDestinationURL()}>
                                 <button>
-                                  {userInfo.userType === "company"
-                                    ? "My Jobs"
-                                    : "My Applications"}
+                                  {userInfo.userType === "user"
+                                    ? "My Applications"
+                                    : "My Jobs"}
                                 </button>
-                              </a>
+                              </Link>
                             </li>
 
                             <li>
-                              <a href="#">
-                                <button>Something</button>
+                              <a href="/taskpage">
+                                <button>View Tasks</button>
                               </a>
                             </li>
                             <li>

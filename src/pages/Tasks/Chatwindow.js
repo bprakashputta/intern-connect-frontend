@@ -1,19 +1,22 @@
 import React, { useState, useEffect } from "react";
+import axios from "../../api/base";
 
 const ChatWindow = ({ sender, taskId }) => {
-  const [messages, setMessages] = useState({});
-  const [inputText, setInputText] = useState("");
+  const [messages, setMessages] = useState([]);
 
   useEffect(() => {
-    // Fetch chat messages for the specific task using the taskId
     const fetchChatMessages = async () => {
       try {
-        const response = await fetch(`/api/tasks/${taskId}/chat`);
-        const chatData = await response.json();
-        setMessages((prevMessages) => ({
-          ...prevMessages,
-          [taskId]: chatData.messages,
-        }));
+        const response = await axios.get(`/taskallotment/view/${taskId}`, {
+          baseURL: process.env.BACKEND_APP_SERVER_URL,
+        });
+
+        if (!response.data || !Array.isArray(response.data.comments)) {
+          console.error("Invalid chat data format:", response.data);
+          return;
+        }
+
+        setMessages(response.data.comments);
       } catch (error) {
         console.error("Error fetching chat messages:", error);
       }
@@ -22,57 +25,45 @@ const ChatWindow = ({ sender, taskId }) => {
     fetchChatMessages();
   }, [taskId]);
 
-  const handleMessageSubmit = (e) => {
+  const [inputText, setInputText] = useState("");
+
+  const handleMessageSubmit = async (e) => {
     e.preventDefault();
     if (inputText.trim() === "") {
       return;
     }
-    const textarea = document.querySelector(".message-area");
-    if (textarea) {
-      textarea.style.height = "auto";
-    }
+
     const newMessage = {
       text: inputText,
-      sender: sender,
+      posted_by: sender,
     };
 
-    const sendMessage = async () => {
-      try {
-        await fetch(``, {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify(newMessage),
-        });
-        setMessages((prevMessages) => ({
-          ...prevMessages,
-          [taskId]: [...(prevMessages[taskId] || []), newMessage],
-        }));
-        setInputText("");
-      } catch (error) {
-        console.error("Error sending chat message:", error);
-      }
-    };
-
-    sendMessage();
+    try {
+      await axios.patch(`/taskallotment/${taskId}/comments`, [newMessage], {
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
+      setMessages((prevMessages) => [...prevMessages, newMessage]);
+      setInputText("");
+    } catch (error) {
+      console.error("Error sending chat message:", error);
+    }
   };
-
-  const taskMessages = messages[taskId] || [];
 
   return (
     <div>
       <div className="messageBox">
         <>
           <div className="messages">
-            {taskMessages
+            {messages
               .slice()
               .reverse()
               .map((message, index) => (
                 <div
                   key={index}
                   className={`message-sender ${
-                    message.sender === sender ? sender : "other"
+                    message.posted_by === sender ? sender : "other"
                   }`}
                 >
                   {message.text}

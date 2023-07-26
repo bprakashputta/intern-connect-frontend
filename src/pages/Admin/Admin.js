@@ -2,7 +2,7 @@
 import React, { useState, useEffect } from "react";
 import api from "../../api/base";
 import "../../pages/Admin/admin.css";
-// import Sidebar from "../../components/Sidebar";
+import Sidebar from "../../components/Bars/Sidebar";
 import AdminDashboardUser from "../../components/Admin/AdminDashboardUser";
 import AdminDashboardJob from "../../components/Admin/AdminDashboardJob";
 
@@ -116,7 +116,7 @@ function Admin() {
 
   return (
     <>
-      {/* <Sidebar /> */}
+      <Sidebar />
       <div className="mt-5">
         <button onClick={() => setView("users")}>Users</button>
         <button onClick={() => setView("jobs")}>Jobs</button>

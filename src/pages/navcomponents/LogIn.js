@@ -2,6 +2,12 @@ import axios from "../../api/base";
 import React, { useState } from "react";
 import "../../componentsCss/logInpage.css";
 import { Link, useNavigate } from "react-router-dom";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {
+  faGoogle,
+  faLinkedin,
+  faGithub,
+} from "@fortawesome/free-brands-svg-icons";
 
 const { REACT_APP_SERVER_URL } = process.env;
 
@@ -36,12 +42,12 @@ function LogIn() {
             <div className="card-3d-wrapper">
               <div className="card-front mt-3">
                 <div className="center-wrap">
-                  <span class="registered">
+                  <span className="registered">
                     New to IC? <Link to="/user/register">Register</Link>
                   </span>
                   <div className="section text-center">
                     <form className="logInForm" onSubmit={handleSubmit}>
-                      <h4 className="mb-4 pb-3 ">Log In</h4>
+                      <h4 className="mb-4 pb-3">Log In</h4>
                       <div className="form-group">
                         <input
                           type="email"
@@ -50,7 +56,7 @@ function LogIn() {
                           className="form-style"
                           placeholder="Your Email"
                           id="logemail"
-                          autocomplete="off"
+                          autoComplete="off"
                         />
                         <i className="input-icon uil uil-at"></i>
                       </div>
@@ -62,7 +68,7 @@ function LogIn() {
                           className="form-style"
                           placeholder="Your Password"
                           id="logpass"
-                          autocomplete="off"
+                          autoComplete="off"
                         />
                         <i className="input-icon uil uil-lock-alt"></i>
                       </div>
@@ -78,34 +84,40 @@ function LogIn() {
                     <div className="col-md-12 ">
                       <div className="login-or  ">
                         <div className=" mt-2">
-                          <span className="span-or ">or</span>
+                          <span className="span-or">or</span>
                         </div>
                       </div>
                     </div>
                     <div className="accounts">
-                      <div class="line"></div>
-                      <p class="message">Login with Accounts</p>
-                      <div class="line"></div>
+                      <div className="line"></div>
+                      <p className="message">Login with Accounts</p>
+                      <div className="line"></div>
                     </div>
-                    <div class="social-icons">
-                      <a href="http://ec2-3-108-196-182.ap-south-1.compute.amazonaws.com/auth/google/register">
-                        <button aria-label="Login with Google" class="icon ">
+                    <div className="social-icons">
+                      <a href="http://localhost:8080/auth/google/register">
+                        <button
+                          aria-label="Login with Google"
+                          className="icon "
+                        >
                           <div className="g_icon">
-                            <i className="fa fa-google"></i>
+                            <FontAwesomeIcon icon={faGoogle} />
                           </div>
                         </button>
                       </a>
                       <a>
-                        <button aria-label="Login with LinkedIn" class="icon">
+                        <button
+                          aria-label="Login with LinkedIn"
+                          className="icon"
+                        >
                           <div className="g_icon">
-                            <i className="fa fa-linkedin"></i>
+                            <FontAwesomeIcon icon={faLinkedin} />
                           </div>
                         </button>
                       </a>
                       <a>
-                        <button aria-label="Login with GitHub" class="icon">
+                        <button aria-label="Login with GitHub" className="icon">
                           <div className="g_icon">
-                            <i className="fa fa-github"></i>
+                            <FontAwesomeIcon icon={faGithub} />
                           </div>
                         </button>
                       </a>

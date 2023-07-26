@@ -334,14 +334,14 @@ button {
   word-wrap: break-word;
 }
 
-.message-sender.student {
+.message-sender.user {
   float: right;
   align-self: flex-end;
   margin-left: 10%;
 }
 
-.message-sender.recruiter {
-  background-color: #f4f4f4;
+.message-sender.other {
+  align-self: flex-start;
 }
 
 form {
