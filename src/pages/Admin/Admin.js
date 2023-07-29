@@ -5,6 +5,7 @@ import "../../pages/Admin/admin.css";
 import Sidebar from "../../components/Bars/Sidebar";
 import AdminDashboardUser from "../../components/Admin/AdminDashboardUser";
 import AdminDashboardJob from "../../components/Admin/AdminDashboardJob";
+import Dashboard from "./Dashboard";
 
 function Admin() {
   const [users, setUsers] = useState([]);
@@ -116,13 +117,14 @@ function Admin() {
 
   return (
     <>
-      <Sidebar />
-      <div className="mt-5">
+      {/* <Sidebar /> */}
+      {/* <div className="mt-5">
         <button onClick={() => setView("users")}>Users</button>
         <button onClick={() => setView("jobs")}>Jobs</button>
         <button onClick={() => setView(null)}>Home</button>
         {renderView()}
-      </div>
+      </div> */}
+      <Dashboard />
     </>
   );
 }

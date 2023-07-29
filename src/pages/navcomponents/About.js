@@ -38,6 +38,29 @@ function about() {
           </div>
         </div>
       </section>
+      <section>
+        <div className="displayer">
+          <div className="description">
+            <h1 className="about-title">Our Team</h1>
+            <p className="">
+              Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+              Aspernatur atque perferendis, laudantium quod architecto velit ad
+              officiis facere eveniet in fuga fugiat delectus rerum doloribus
+              quos consectetur unde, expedita, quibusdam corporis impedit quia
+              sequi aliquid sit. Ducimus labore molestias odio nam
+              necessitatibus laboriosam vero saepe enim nobis. Repudiandae
+              quidem, sint earum dolorum consequuntur dignissimos excepturi
+              mollitia omnis aliquid, corporis, unde!
+              <li>Lorem ipsum dolor sit amet.</li>
+              <li>Dicta doloribus veniam impedit, enim!</li>
+              <li>Quod, facilis cupiditate repellat voluptas.</li>
+              <li>Quae impedit id maxime fugiat.</li>
+              <li>Esse aut iste dolor. In.</li>
+            </p>
+          </div>
+          <div className="image-display"></div>
+        </div>
+      </section>
 
       <section class="m-5">
         <div class="service">

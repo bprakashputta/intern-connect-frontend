@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-import JobForm from "../Jobs/JobForm";
+import AddJob from "../Jobs/AddJob";
 import "../../pages/Admin/admin.css";
 
 const AdminDashboardJob = (props) => {
@@ -11,7 +11,7 @@ const AdminDashboardJob = (props) => {
   return (
     <div className="container-ulist-uprofile ">
       <div className="uform">
-        <JobForm onSubmit={createJobHandler} />
+        <AddJob onSubmit={createJobHandler} />
       </div>
       <div className="ulist">
         {/* <JobList

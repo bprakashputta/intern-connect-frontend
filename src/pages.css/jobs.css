@@ -226,6 +226,7 @@
 .single-feature h4 {
   padding-bottom: 15px;
   font-weight: 700;
+  color: chocolate;
 }
 
 @media (max-width: 960px) {

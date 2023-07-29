@@ -5,7 +5,7 @@ import "../../pages.css/jobs.css";
 import Footerbar from "../../components/Bars/Footerbar";
 import { useDispatch, useSelector } from "react-redux";
 import { jobsAppliedLoadAction } from "../../redux/actions/jobAction";
-import CardElement from "../../Component/CardElement";
+import CardElement from "../../components/Jobs/CardElement";
 
 function Jobs() {
   const dispatch = useDispatch();
@@ -18,8 +18,8 @@ function Jobs() {
   }, []);
 
   return (
-    <div>
-      <div style={{ marginTop: "8rem" }}>
+    <div style={{ marginTop: "4rem" }}>
+      <div style={{ margin: "4rem", backgroundColor: "#fafafa" }}>
         {jobs &&
           jobs.map((job, i) => (
             <CardElement

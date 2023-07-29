@@ -1,33 +1,42 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import TaskForm from "../../components/Tasks/TaskForm";
+import AddTask from "../../components/Tasks/AddTask";
 import { useDispatch, useSelector } from "react-redux";
 import { taskLoadAction } from "../../redux/actions/taskAction";
-import ChatWindow from "./Chatwindow";
+import ChatWindow from "../../components/Tasks/Chatwindow";
+import axios from "../../api/base";
+import { useParams } from "react-router-dom";
 
-const CompanyTaskPage = () => {
+const CompanyTaskPage = ({ job_id }) => {
+  console.log("jobid", job_id);
   const [showForm, setShowForm] = useState(false);
 
   const dispatch = useDispatch();
   const [selectedSection, setSelectedSection] = useState("tasks");
 
   const { tasks } = useSelector((state) => state.loadTasks);
-
   const handleSectionClick = (section) => {
     setSelectedSection(section);
   };
-  const [appliedStudents, setAppliedStudents] = useState([]);
-  const addAppliedStudent = (student) => {
-    setAppliedStudents([...appliedStudents, student]);
-  };
-  console.log("Applied Students:", appliedStudents);
+
+  const [appliedStudents, setAppliedStudents] = useState(null);
   const closeForm = () => {
     setShowForm(false);
   };
 
   useEffect(() => {
-    console.log("task Load Action");
     dispatch(taskLoadAction());
+    const fetchAppliedStudents = async () => {
+      try {
+        const response = await axios.get(`/jobs/${job_id}/appliedby`);
+        const appliedStudentsData = response.data.users;
+        setAppliedStudents(appliedStudentsData.map((user) => user));
+      } catch (error) {
+        console.error("Error fetching applied students:", error);
+      }
+    };
+
+    fetchAppliedStudents();
   }, [dispatch]);
 
   return (
@@ -43,20 +52,19 @@ const CompanyTaskPage = () => {
           </button>
         </div>
         <h2>Applied Students</h2>
-        {appliedStudents.map((student, index) => (
-          <div key={index}>
-            <p>Name: {student.firstname}</p>
-            appliedStudents={appliedStudents}
-            addAppliedStudent={addAppliedStudent}
-          </div>
-        ))}
+        {appliedStudents &&
+          appliedStudents.map((student) => (
+            <div key={student._id}>
+              <p>{student.firstName + " " + student.lastName}</p>
+            </div>
+          ))}
         {showForm && (
           <div className="form-overlay">
             <div className="form-container">
               <button className="cancel-button" onClick={closeForm}>
                 &#10005;
               </button>
-              <TaskForm />
+              <AddTask />
             </div>
           </div>
         )}

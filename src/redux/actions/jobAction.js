@@ -42,7 +42,6 @@ export const myJobsLoadAction = () => async (dispatch) => {
     const company_id = userInfo.company_id;
     try {
       const { data } = await axios.get(`/jobs/${company_id}/myjobs`);
-      console.log("inside Job action", data);
       dispatch({
         type: JOB_LOAD_SUCCESS,
         payload: data,
@@ -57,6 +56,25 @@ export const myJobsLoadAction = () => async (dispatch) => {
     dispatch({
       type: JOB_LOAD_FAIL,
       payload: "You are not a company",
+    });
+  }
+};
+
+// single job action with status for user
+export const jobLoadSingleUserAction = (id) => async (dispatch) => {
+  dispatch({ type: JOB_LOAD_SINGLE_REQUEST });
+  try {
+    const userInfo = JSON.parse(localStorage.getItem("userInfo"));
+    const { data } = await axios.get(`/jobs/user/${userInfo._id}/view/${id}`);
+    console.log("job with applied status", data);
+    dispatch({
+      type: JOB_LOAD_SINGLE_SUCCESS,
+      payload: data,
+    });
+  } catch (error) {
+    dispatch({
+      type: JOB_LOAD_SINGLE_FAIL,
+      payload: error.response.data.error,
     });
   }
 };

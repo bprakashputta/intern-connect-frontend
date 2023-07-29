@@ -1,9 +1,12 @@
 import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
-import LoadingBox from "../../Component/LoadingBox";
-import { jobLoadSingleAction } from "../../redux/actions/jobAction";
-
+import { jobLoadSingleUserAction } from "../../redux/actions/jobAction";
+import {
+  registerAjobApplicationAction,
+  deleteJobApplicationAction,
+} from "../../redux/actions/jobApplicationAction";
+import Footerbar from "../Bars/Footerbar";
 import { userApplyJobAction } from "../../redux/actions/userAction";
 import { useTheme } from "@emotion/react";
 import "../../componentsCss/singlejob.css";
@@ -12,29 +15,30 @@ const SingleJob = () => {
   const { palette } = useTheme();
   const dispatch = useDispatch();
   const { singleJob, loading } = useSelector((state) => state.singleJob);
-
+  const [applied, setApplied] = useState(false);
+  const [currentStatus, setCurrentStatus] = useState(applied);
+  const userInfo = JSON.parse(localStorage.getItem("userInfo"));
+  const user_id = userInfo._id;
   const { id } = useParams();
 
   useEffect(() => {
-    dispatch(jobLoadSingleAction(id));
-  }, [id]);
+    dispatch(jobLoadSingleUserAction(id));
+    singleJob && setApplied(singleJob.applied);
+  }, []);
 
   const { singleCompany } = useSelector((state) => state.singleCompany);
-  const [applied, setApplied] = useState(false);
 
-  const applyForAJob = () => {
-    setApplied(true);
-    alert("Application submitted successfully!");
-    dispatch(
-      userApplyJobAction({
-        jobTitle: singleJob && singleJob.role_name,
-        description: singleJob && singleJob.description,
-        category: singleJob && singleJob.job_type,
-        location: singleJob && singleJob.location,
-        jobId: singleJob && singleJob.job_id,
-        companyId: singleJob && singleJob.company_id,
-      })
-    );
+  const applyForAJob = async () => {
+    try {
+      var { job_id } = singleJob;
+      if (currentStatus) {
+        await dispatch(deleteJobApplicationAction({ job_id, user_id }));
+        setApplied(false);
+      } else {
+        await dispatch(registerAjobApplicationAction({ job_id, user_id }));
+        setApplied(true);
+      }
+    } catch (err) {}
   };
 
   return (
@@ -42,131 +46,171 @@ const SingleJob = () => {
       <div
         style={{
           backgroundColor: "#fafafa",
-          marginTop: "100px",
+          marginTop: "80px",
           minHeight: "100vh",
         }}
       >
-        <div style={{ pt: "30px" }}>
-          <div style={{ display: "flex", flexDirection: "column" }}>
-            <div style={{ flex: 4, padding: "8px" }}>
-              {/* {loading ? (
-                <LoadingBox />
-              ) : ( */}
-              <div
-                style={{
-                  backgroundColor: "#fff",
-                  textAlign: "left",
-                  margin: "10px 20px",
-                  padding: "20px",
-                  boxShadow: "0 2px 4px rgba(0,0,0,0.2)",
-                }}
-              >
-                <h3 style={{ margin: "5px 0px" }}>
-                  <span className="jobtitle2">Role :</span>
-                  {singleJob && singleJob.role_name}
-                </h3>
-                <hr />
+        <div
+          style={{
+            paddingTop: "30px",
+            borderTop: "5px solid #0277bd",
+            textAlign: "left",
+          }}
+        >
+          <div
+            style={{
+              backgroundColor: "#fff",
+              margin: "10px auto",
+              padding: "20px",
+              width: "60%",
+              boxShadow: "0 2px 4px rgba(0,0,0,0.2)",
+              borderLeft: "5px solid #0277bd",
+            }}
+          >
+            <h3 style={{ margin: "5px 0px" }}>
+              <span className="jobtitle2">Role :</span>
+              {singleJob && singleJob.role_name}
+            </h3>
+          </div>
 
-                <div style={{ marginBottom: "10px" }}>
-                  <h2 style={{ margin: "0px" }} className="job-title">
-                    Job_Id:
-                    <span className="job-data">
-                      {singleJob && singleJob.job_id}
-                    </span>
-                  </h2>
-                </div>
+          <div
+            style={{
+              backgroundColor: "#fff",
+              margin: "10px auto",
+              padding: "20px",
+              width: "60%",
+              boxShadow: "0 2px 4px rgba(0,0,0,0.2)",
+              borderLeft: "5px solid #0277bd",
+            }}
+          >
+            <div className="details-job">
+              <h2 style={{ margin: "0px" }} className="job-title">
+                Job_Id:
+                <span className="job-data">
+                  {singleJob && singleJob.job_id}
+                </span>
+              </h2>
+            </div>
 
-                <div style={{ marginBottom: "10px" }}>
-                  <h2 style={{ margin: "0px" }} className="job-title">
-                    Company_Id:
-                    <span className="job-data">
-                      {singleJob && singleJob.company_id}
-                    </span>
-                  </h2>
-                </div>
+            <div className="details-job">
+              <h2 style={{ margin: "0px" }} className="job-title">
+                Company_Id:
+                <span className="job-data">
+                  {singleJob && singleJob.company_id}
+                </span>
+              </h2>
+            </div>
+          </div>
 
-                <hr />
+          <div
+            style={{
+              backgroundColor: "#fff",
+              margin: "10px auto",
+              padding: "20px",
+              width: "60%",
+              boxShadow: "0 2px 4px rgba(0,0,0,0.2)",
+              borderLeft: "5px solid #0277bd",
+            }}
+          >
+            <h2
+              style={{ margin: "0px", textAlign: "center", fontWeight: "500" }}
+              className="job-title"
+            >
+              Job Details
+            </h2>
+            <hr />
+            <div className="details-job">
+              <span className="job-title">Job type</span>:
+              <span className="job-data">
+                {singleJob && singleJob.job_type
+                  ? singleJob.job_type
+                  : "No category"}
+              </span>
+            </div>
+            <div className="details-job">
+              <span className="job-title">Location:</span>
+              <span className="job-data">
+                {singleJob && singleJob.location}
+              </span>
+            </div>
 
-                <h2 style={{ margin: "0px" }} className="job-title">
-                  Job Details
-                </h2>
-                <div style={{ marginBottom: "10px" }}>
-                  <span className="job-title">Job type:</span>:
-                  <span className="job-data">
-                    {singleJob && singleJob.job_type
-                      ? singleJob.job_type
-                      : "No category"}
-                  </span>
-                </div>
-                <div style={{ marginBottom: "10px" }}>
-                  <span className="job-title">Location:</span>
-                  <span className="job-data">
-                    {singleJob && singleJob.location}
-                  </span>
-                </div>
+            <div className="details-job">
+              <span className="job-title">Job Description:</span>
+              <br />
+              <span className="job-description">
+                {singleJob && singleJob.description}
+              </span>
+            </div>
+          </div>
 
-                <div style={{ marginBottom: "10px" }}>
-                  <span className="job-title">Job Description:</span>
-                  <br />
-                  <span className="job-description">
-                    {singleJob && singleJob.description}
-                  </span>
-                </div>
-                <hr />
-
-                <div style={{ marginBottom: "10px" }}>
-                  <span className="job-title">Skills Required:</span>
-                  <div
+          <div
+            style={{
+              backgroundColor: "#fff",
+              margin: "10px auto",
+              padding: "20px",
+              width: "60%",
+              boxShadow: "0 2px 4px rgba(0,0,0,0.2)",
+              borderLeft: "5px solid #0277bd",
+            }}
+          >
+            <span className="job-title">Skills Required:</span>
+            <div
+              style={{
+                display: "flex",
+                flexWrap: "wrap",
+                gap: "10px",
+                marginTop: "10px",
+              }}
+            >
+              {singleJob &&
+                singleJob.skills_required.map((skill, index) => (
+                  <span
+                    key={index}
                     style={{
-                      display: "flex",
-                      flexWrap: "wrap",
-                      gap: "10px",
-                      marginTop: "10px",
+                      color: "white",
+                      padding: "10px",
+                      marginRight: "10px",
+                      borderRadius: "10px",
+                      backgroundImage:
+                        "linear-gradient(to right top, #051937, #004d7a, #008793, #00bf72, #a8eb12)",
                     }}
                   >
-                    {singleJob &&
-                      singleJob.skills_required.map((skill, index) => (
-                        <span
-                          key={index}
-                          style={{
-                            color: "white",
-                            padding: "10px",
-                            marginRight: "10px",
-                            borderRadius: "10px",
-                            backgroundImage:
-                              "linear-gradient(to right top, #051937, #004d7a, #008793, #00bf72, #a8eb12)",
-                          }}
-                        >
-                          {skill}
-                        </span>
-                      ))}
-                  </div>
-                </div>
-              </div>
+                    {skill}
+                  </span>
+                ))}
             </div>
-            <div style={{ flex: 1, padding: "8px" }}>
-              <div style={{ padding: "8px", backgroundColor: "#fff" }}>
-                <button
-                  onClick={applyForAJob}
-                  style={{
-                    fontSize: "13px",
-                    fontWeight: "700",
-                    color: "black",
-                    padding: "10px",
-                    textTransform: "capitalize",
-                    backgroundImage:
-                      "linear-gradient(to right top, #a8eb12, #00e97d, #00ddc2, #00cae9, #12b3eb)",
-                  }}
-                  disabled={applied}
-                >
-                  {applied ? "Applied" : "Apply!"}
-                </button>
-              </div>
-            </div>
+          </div>
+
+          <div
+            style={{
+              backgroundColor: "#fff",
+              margin: "10px auto",
+              padding: "8px",
+              width: "60%",
+              boxShadow: "0 2px 4px rgba(0,0,0,0.2)",
+              textAlign: "center",
+            }}
+          >
+            <button
+              onClick={applyForAJob}
+              style={{
+                fontSize: "18px",
+                fontWeight: "700",
+                color: "black",
+                padding: "13px",
+                textTransform: "capitalize",
+                backgroundImage:
+                  "linear-gradient(to right top, #a8eb12, #00e97d, #00ddc2, #00cae9, #12b3eb)",
+              }}
+              disabled={applied}
+            >
+              {applied ? "Applied" : "Apply!"}
+            </button>
           </div>
         </div>
       </div>
-      {/* <Footerbar /> */}
+
+      <Footerbar />
     </>
   );
 };

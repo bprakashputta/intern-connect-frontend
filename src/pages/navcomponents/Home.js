@@ -13,7 +13,8 @@ import {
   faTwitter,
   faLinkedin,
 } from "@fortawesome/free-brands-svg-icons";
-
+import profile from "../../images/profile.png";
+import certified from "../../images/certified.png";
 import ReactLogo from "../../componentsCss/icon.svg";
 import Footerbar from "../../components/Bars/Footerbar";
 
@@ -204,7 +205,89 @@ function Home() {
           </div>
         </section>
       </main>
+      <div className="process-heading">
+        <h1>How to get started?</h1>
+      </div>
+      <section>
+        <div>
+          <div className="custom-card-section">
+            <div className="custom-row">
+              <div className="custom-card setcard">
+                <div className="step-count">Step 1</div>
 
+                <div className="process">
+                  <h3>Complete Your Profile</h3>
+                  <span>
+                    Lorem Ipsum is simply dummy text of the printing and
+                    typesetting industry.
+                  </span>
+
+                  <div className="button-signup">
+                    <button class="signing-in">
+                      <span class="arrow" aria-hidden="true">
+                        <span class="icon arrow"></span>
+                      </span>
+                      <span class="button-text">SignUp</span>
+                    </button>
+                  </div>
+                </div>
+                <div className="profile-img">
+                  <img
+                    src={profile}
+                    alt="profile"
+                    style={{ width: "200px", height: "200px" }}
+                  />
+                </div>
+              </div>
+            </div>
+            <div className="custom-row">
+              <div className="custom-card">
+                <div className="step-count">Step 2</div>
+                <div className="process">
+                  <h3>Apply Internships</h3>
+                  <span>
+                    Lorem Ipsum is simply dummy text of the printing and
+                    typesetting industry.
+                  </span>
+                </div>
+              </div>
+              <div className="custom-card">
+                <div className="step-count">Step 3</div>
+                <div className="process">
+                  <h3>Complete Tasks</h3>
+                  <span>
+                    Lorem Ipsum is simply dummy text of the printing and
+                    typesetting industry.
+                  </span>
+                </div>
+              </div>
+            </div>
+            <div className="custom-row">
+              <div className="custom-card setcard">
+                <div className="step-count">Step 4</div>
+                <div className="process">
+                  <h3>Get Certificates</h3>
+                  <span>
+                    Lorem Ipsum is simply dummy text of the printing and
+                    typesetting industry.
+                  </span>
+                </div>
+                {/* <div className="profile-img">
+                  <img
+                    src={certified}
+                    alt="icon"
+                    style={{
+                      width: "200px",
+                      height: "200px",
+                      marginBottom: "0px",
+                    }}
+                  />
+                </div> */}
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
       <section>
         <div class="about">
           <div class="block2">
@@ -213,7 +296,7 @@ function Home() {
               <br />
             </div>
             <div className="texting">
-              <p style={{ align: "center" }}>
+              <p>
                 Lorem Ipsum is simply dummy text of the printing and typesetting
                 industry. Lorem Ipsum has been the industry's standard dummy
                 text ever since the 1500s, when an unknown printer took a galley

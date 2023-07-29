@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { jobTypeLoadAction } from "../redux/actions/jobTypeAction";
+import { jobTypeLoadAction } from "../../redux/actions/jobTypeAction";
 
 const SelectComponent = ({
   handleChangeCategory,
@@ -42,7 +42,7 @@ const SelectComponent = ({
             fontSize: "14px",
             outline: "none",
             backgroundImage:
-              "linear-gradient(to right bottom, #f9f9ff, #ecf1ff, #d9ebff, #c2e6fc, #a9e2f5)",
+              "linear-gradient(to right, #d7eef6, #a6d1e6, #76b4d8, #4795cb, #0277bd)",
           }}
         >
           <option value="">All</option>

@@ -1,12 +1,10 @@
 /* eslint-disable no-unused-vars */
 import React, { useState, useEffect } from "react";
 import api from "../../api/base";
-import SearchInput from "../../Component/SearchInput";
+import SearchInput from "../../components/Jobs/SearchInput";
 import "../../pages.css/jobs.css";
 import JobList from "../../components/Jobs/JobList";
 import Footerbar from "../../components/Bars/Footerbar";
-
-
 
 function Jobs() {
   const [jobs, setJobs] = useState([]);
