@@ -17,6 +17,7 @@ const CardElement = ({
   job_id,
   addAppliedStudent,
   status,
+  page,
 }) => {
   const [isFavorite, setIsFavorite] = useState(false);
   const dispatch = useDispatch();
@@ -170,7 +171,7 @@ const CardElement = ({
             View Details...
           </Link>
 
-          {userType === "company" && (
+          {page === "myjobs" && (
             <Link
               to={`/${job_id}/taskpage`}
               style={{
@@ -178,9 +179,25 @@ const CardElement = ({
                 textDecoration: "none",
                 border: "1px solid blue",
                 padding: "10px",
+                margin: "10px",
               }}
             >
               View Students...
+            </Link>
+          )}
+
+          {page === "myapplications" && (
+            <Link
+              to={`/${job_id}/taskpage`}
+              style={{
+                color: "blue",
+                textDecoration: "none",
+                border: "1px solid blue",
+                padding: "10px",
+                margin: "10px",
+              }}
+            >
+              View status...
             </Link>
           )}
         </button>

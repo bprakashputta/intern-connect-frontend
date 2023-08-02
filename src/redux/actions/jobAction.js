@@ -42,6 +42,8 @@ export const myJobsLoadAction = () => async (dispatch) => {
     const company_id = userInfo.company_id;
     try {
       const { data } = await axios.get(`/jobs/${company_id}/myjobs`);
+      console.log("API Response:", data);
+
       dispatch({
         type: JOB_LOAD_SUCCESS,
         payload: data,

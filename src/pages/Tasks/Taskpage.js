@@ -19,7 +19,6 @@ const Taskpage = () => {
       ) : (
         <StudentTaskPage job_id={job_id} />
       )}
-      console.log(job_id);
     </div>
   );
 };

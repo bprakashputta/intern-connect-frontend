@@ -30,6 +30,7 @@ function Jobs() {
               category={job.job_type ? job.job_type : "No category"}
               location={job.location}
               status={job.status}
+              page="myapplications"
             />
           ))}
       </div>

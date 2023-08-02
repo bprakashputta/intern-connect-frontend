@@ -14,7 +14,7 @@ import "../../componentsCss/singlejob.css";
 const SingleJob = () => {
   const { palette } = useTheme();
   const dispatch = useDispatch();
-  const { singleJob, loading } = useSelector((state) => state.singleJob);
+  const { singleJob } = useSelector((state) => state.singleJob);
   const [applied, setApplied] = useState(false);
   const [currentStatus, setCurrentStatus] = useState(applied);
   const userInfo = JSON.parse(localStorage.getItem("userInfo"));
@@ -25,6 +25,7 @@ const SingleJob = () => {
     dispatch(jobLoadSingleUserAction(id));
     singleJob && setApplied(singleJob.applied);
   }, []);
+  console.log(singleJob);
 
   const { singleCompany } = useSelector((state) => state.singleCompany);
 
