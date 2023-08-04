@@ -119,7 +119,7 @@ const Navbar = () => {
                         onClick={handleDropdownToggle}
                       >
                         <img
-                          src={profilePhoto}
+                          src={userInfo?.profilePhoto}
                           alt="Profile"
                           className="profile-photo"
                           style={{

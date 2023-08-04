@@ -22,9 +22,7 @@ const AddJob = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     await axios
-      .post("/jobs/create", jobDetails, {
-        baseURL: process.env.BACKEND_APP_SERVER_URL,
-      })
+      .post("/jobs/create", jobDetails)
       .then((data) => {
         alert("Job Posted!");
         console.log(data);
