@@ -13,10 +13,8 @@ const ProfilePage = ({ formData }) => {
 
   const handleFormSubmit = (e) => {
     e.preventDefault();
-    // Save the updated user data
     setUserData({ ...userData, ...formData });
     setEditMode(false);
-    // Optionally, you can send the updated data to an API endpoint for server-side storage
   };
 
   const handleFormChange = (e) => {
@@ -82,7 +80,6 @@ const ProfilePage = ({ formData }) => {
                   {userData.education.branch}
                 </span>
               </div>
-              {/* Render other education details as needed */}
             </div>
           )}
           {userData.workExperienceInfo &&
@@ -100,7 +97,6 @@ const ProfilePage = ({ formData }) => {
                       <span className="profile-value">
                         {experience.position}
                       </span>
-                      {/* Render other work experience details as needed */}
                     </div>
                   )
                 )}

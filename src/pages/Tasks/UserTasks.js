@@ -3,9 +3,9 @@ import { useDispatch, useSelector } from "react-redux";
 
 import { tasksForSpecficUserLoadAction } from "../../redux/actions/taskAction";
 import TaskList from "../../components/Tasks/TaskList";
-import FileUploader from "./FileUploader";
-import ChatWindow from "./Chatwindow";
-import FileList from "../../Component/FileList";
+import FileUploader from "../../components/Tasks/FileUploader";
+import ChatWindow from "../../components/Tasks/Chatwindow";
+import FileList from "../../components/Tasks/FileList";
 
 const StudentTaskPage = () => {
   const dispatch = useDispatch();

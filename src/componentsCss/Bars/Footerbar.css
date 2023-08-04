@@ -2,6 +2,7 @@ ul {
   margin: 0px;
   padding: 0px;
 }
+
 .footer-section {
   background: rgb(3, 3, 61);
   position: relative;
@@ -83,6 +84,7 @@ ul {
 .footer-widget ul li a {
   color: #878787;
   text-transform: capitalize;
+  text-decoration: none;
 }
 .subscribe-form {
   position: relative;
@@ -134,6 +136,7 @@ ul {
 .footer-menu li a {
   font-size: 14px;
   color: #878787;
+  text-decoration: none;
 }
 .block {
   background-color: rgb(3, 3, 61);

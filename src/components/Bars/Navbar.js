@@ -166,11 +166,6 @@ const Navbar = () => {
                             </li>
 
                             <li>
-                              <a href="/taskpage">
-                                <button>View Tasks</button>
-                              </a>
-                            </li>
-                            <li>
                               <FontAwesomeIcon
                                 icon={faSignOutAlt}
                                 style={{

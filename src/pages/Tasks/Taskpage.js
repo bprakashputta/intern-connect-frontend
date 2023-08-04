@@ -1,11 +1,8 @@
-import React, { useState, useEffect } from "react";
-import { Link, useNavigate } from "react-router-dom";
-import TaskForm from "../../components/Tasks/TaskForm";
-import TaskList from "../../components/Tasks/TaskList";
+import React from "react";
 import "./tasks.css";
 import { taskLoadAction } from "../../redux/actions/taskAction";
 import { useDispatch, useSelector } from "react-redux";
-import FileUploader from "./FileUploader";
+import { useParams } from "react-router-dom";
 
 import CompanyTaskPage from "./CompanyTask";
 import StudentTaskPage from "./UserTasks";
@@ -13,10 +10,15 @@ import StudentTaskPage from "./UserTasks";
 const Taskpage = () => {
   const { userInfo } = useSelector((state) => state.signIn);
   const userType = userInfo?.userType;
+  const { job_id } = useParams();
 
   return (
     <div className="task-allot">
-      {userType === "company" ? <CompanyTaskPage /> : <StudentTaskPage />}
+      {userType === "company" ? (
+        <CompanyTaskPage job_id={job_id} />
+      ) : (
+        <StudentTaskPage job_id={job_id} />
+      )}
     </div>
   );
 };

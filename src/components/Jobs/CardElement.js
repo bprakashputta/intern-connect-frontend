@@ -4,9 +4,11 @@ import { useDispatch } from "react-redux";
 import {
   registerAjobApplicationAction,
   deleteJobApplicationAction,
-} from "../redux/actions/jobApplicationAction";
+} from "../../redux/actions/jobApplicationAction";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faMapMarkerAlt } from "@fortawesome/free-solid-svg-icons";
+import { FaHeart, FaRegHeart } from "react-icons/fa";
+import { applyForAJob } from "./ApplyFunction";
 const CardElement = ({
   jobTitle,
   description,
@@ -15,12 +17,14 @@ const CardElement = ({
   job_id,
   addAppliedStudent,
   status,
+  page,
 }) => {
   const [isFavorite, setIsFavorite] = useState(false);
   const dispatch = useDispatch();
   const userInfo = JSON.parse(localStorage.getItem("userInfo"));
   const user_id = userInfo._id;
   const [currentStatus, setCurrentStatus] = useState(status);
+  const userType = userInfo?.userType;
 
   const handleFavoriteClick = () => {
     setIsFavorite(!isFavorite);
@@ -33,6 +37,14 @@ const CardElement = ({
       } else {
         await dispatch(registerAjobApplicationAction({ job_id, user_id }));
       }
+      applyForAJob(dispatch, {
+        jobTitle,
+        description,
+        category,
+        location,
+        job_id,
+      });
+
       setCurrentStatus(!currentStatus);
       const studentInfo = {
         name: userInfo.firstname,
@@ -48,11 +60,11 @@ const CardElement = ({
   return (
     <div
       style={{
-        minWidth: "275px",
+        width: "90%",
         marginBottom: "15px",
         marginTop: "3px",
         backgroundColor: "#fff",
-        padding: "20px",
+        padding: "30px",
         boxShadow: "0 2px 4px rgba(0,0,0,0.2)",
         borderRadius: "4px",
       }}
@@ -77,10 +89,12 @@ const CardElement = ({
             border: "none",
             cursor: "pointer",
             fontSize: "18px",
-            color: isFavorite ? "red" : "white",
+            color: isFavorite ? "red" : "black",
+            padding: "0",
+            outline: "none",
           }}
         >
-          <i className="fa fa-heart"></i>
+          {isFavorite ? <FaHeart style={{ color: "red" }} /> : <FaRegHeart />}
         </button>
         <button
           style={{
@@ -96,6 +110,7 @@ const CardElement = ({
           {currentStatus ? "Applied" : "Apply"}
         </button>
       </div>
+
       <div
         style={{ display: "flex", alignItems: "center", marginBottom: "10px" }}
       >
@@ -115,7 +130,7 @@ const CardElement = ({
       <div style={{ marginBottom: "10px" }}>
         <span
           style={{
-            color: "grey",
+            color: "black",
             fontSize: "15px",
             fontWeight: "bold",
             float: "left",
@@ -127,21 +142,21 @@ const CardElement = ({
           {category}
         </span>
       </div>
-      <div style={{ marginBottom: "10px", fontWeight: "bold" }}>
+      <div style={{ marginBottom: "10px", fontWeight: "bold", float: "left" }}>
         Description:
         <span style={{ fontWeight: "normal" }}>
           {description.split(" ").slice(0, 15).join(" ")}...
         </span>
       </div>
-      <div>
+      <div style={{ display: "block" }}>
         <button
           style={{
-            backgroundColor: "whitesmoke",
             color: "blue",
-            border: "none",
             padding: "5px 10px",
             cursor: "pointer",
-            textDecoration: "none",
+            width: "100%",
+            textAlign: "initial",
+            marginTop: "10px",
           }}
         >
           <Link
@@ -149,10 +164,42 @@ const CardElement = ({
             style={{
               color: "blue",
               textDecoration: "none",
+              border: "1px solid blue",
+              padding: "10px",
             }}
           >
             View Details...
           </Link>
+
+          {page === "myjobs" && (
+            <Link
+              to={`/${job_id}/taskpage`}
+              style={{
+                color: "blue",
+                textDecoration: "none",
+                border: "1px solid blue",
+                padding: "10px",
+                margin: "10px",
+              }}
+            >
+              View Students...
+            </Link>
+          )}
+
+          {page === "myapplications" && (
+            <Link
+              to={`/${job_id}/taskpage`}
+              style={{
+                color: "blue",
+                textDecoration: "none",
+                border: "1px solid blue",
+                padding: "10px",
+                margin: "10px",
+              }}
+            >
+              View status...
+            </Link>
+          )}
         </button>
       </div>
     </div>

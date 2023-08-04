@@ -50,8 +50,8 @@ function TaskForm() {
         <div className="heading">
           <h2>Add Task</h2>
         </div>
-        <div className="form">
-          <div className="input-text">
+        <div className="addtask-form">
+          <div className="input-text" style={{ justifyContent: "center" }}>
             <div className="mt-4 ">
               <div className="task-input">
                 <label>
@@ -82,21 +82,23 @@ function TaskForm() {
                 </label>
               </div>
             </div>
-          </div>
-
-          <div className="mt-4 ">
-            <div className="task-input">
-              <label>
-                Title:
-                <input
-                  type="text"
-                  name="title"
-                  value={task.title}
-                  onChange={(e) => handleChange(e.target.name, e.target.value)}
-                />
-              </label>
+            <div className="mt-4 ">
+              <div className="task-input">
+                <label>
+                  Title:
+                  <input
+                    type="text"
+                    name="title"
+                    value={task.title}
+                    onChange={(e) =>
+                      handleChange(e.target.name, e.target.value)
+                    }
+                  />
+                </label>
+              </div>
             </div>
           </div>
+
           <div>
             <div className="mt-4"></div>
           </div>
@@ -105,7 +107,7 @@ function TaskForm() {
               <label className="tags">Description</label>
               <textarea
                 className="form-control"
-                rows="6"
+                rows="3"
                 placeholder="Task Description"
                 name="description"
                 required
@@ -113,24 +115,31 @@ function TaskForm() {
                 onChange={(event) =>
                   handleChange("description", event.target.value)
                 }
+                style={{
+                  height: "150px",
+                  lineHeight: "150px",
+                  width: "80%",
+                  margin: "auto",
+                }}
               ></textarea>
             </div>
           </div>
-          <div className="input-text">
-            <div className="mt-4">
+          <div className="input-text" style={{ justifyContent: "center" }}>
+            <div className="">
               <label>
                 Status:
                 <select
                   name="status"
                   value={task.status}
                   onChange={handleChange}
+                  style={{ padding: "10px" }}
                 >
                   <option value="open">Open</option>
                   <option value="close">Closed</option>
                 </select>
               </label>
             </div>
-            <div className="mt-4">
+            <div className="">
               <label>
                 Deadline:
                 <input
@@ -138,13 +147,14 @@ function TaskForm() {
                   name="due_date"
                   value={task.due_date}
                   onChange={handleChange}
+                  style={{ padding: "10px" }}
                 />
               </label>
             </div>
           </div>
           <div>
-            <label>
-              Attachments:
+            <label style={{ fontWeight: "bold", padding: "10px" }}>
+              Attachment files:
               <input
                 type="file"
                 name="attachments"
@@ -154,8 +164,19 @@ function TaskForm() {
             </label>
           </div>
         </div>
-        <div className="form-row">
-          <button type="submit" className="created">
+        <div className="form-row mt-4">
+          <button
+            className="created"
+            style={{
+              fontSize: "13px",
+              fontWeight: "700",
+              color: "black",
+              padding: "10px",
+              textTransform: "capitalize",
+              backgroundImage:
+                "linear-gradient(to right top, #a8eb12, #00e97d, #00ddc2, #00cae9, #12b3eb)",
+            }}
+          >
             Submit
           </button>
         </div>

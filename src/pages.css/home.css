@@ -398,6 +398,7 @@ a {
   font-size: 46px;
   font-weight: 900;
   text-transform: uppercase;
+  margin-top: 30px;
 }
 
 .square {
@@ -412,7 +413,7 @@ a {
 }
 
 .square:hover {
-  background-color: #798184;
+  background-color: #d5d5d5;
   transition: ease 0.2s;
   cursor: pointer;
 }
@@ -445,8 +446,8 @@ a {
   color: rgba(27, 182, 239, 1);
 }
 
-.square:hover .fa-dribbble {
-  color: rgba(199, 59, 111, 1);
+.square:hover .fa-linkedin {
+  color: rgb(23, 34, 231);
 }
 
 .square:hover .fa-youtube {
@@ -454,7 +455,7 @@ a {
 }
 
 .texting {
-  text-align: center;
+  text-align: left;
   font-size: 18px;
   font-weight: 400;
   margin: 0px;
@@ -643,3 +644,155 @@ a {
   font-size: 18px;
   text-align: center;
 } */
+
+.custom-card-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.custom-row {
+  display: flex;
+  justify-content: center;
+  margin: 10px 0;
+}
+
+.custom-card {
+  display: flex;
+  align-items: center;
+  border: 1px solid rgb(22, 151, 230);
+  /* border-radius: 5%; */
+  padding: 20px;
+  margin: 0 10px;
+  width: 700px;
+  height: 200px;
+  text-align: left;
+  position: relative;
+  background-color: #e9ebff;
+}
+
+.setcard {
+  height: 250px;
+  width: 800px;
+}
+
+.step-count {
+  position: absolute;
+  top: 50%;
+  left: 20px;
+  transform: translateY(-50%);
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
+  background-color: #ff7200;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: bold;
+  font-size: 16px;
+}
+
+.process {
+  margin-left: 100px;
+}
+
+.button-signup {
+  position: relative;
+  display: inline-block;
+  cursor: pointer;
+  outline: none;
+  border: 0;
+  vertical-align: middle;
+  text-decoration: none;
+  background: transparent;
+  padding: 0;
+  font-size: inherit;
+  font-family: inherit;
+  float: right;
+  top: 30px;
+}
+button.signing-in {
+  width: 12rem;
+  height: auto;
+}
+button.signing-in .arrow {
+  transition: all 0.45s cubic-bezier(0.65, 0, 0.076, 1);
+  position: relative;
+  display: block;
+  margin: 0;
+  width: 3rem;
+  height: 3rem;
+  background: #282936;
+  border-radius: 1.625rem;
+}
+button.signing-in .arrow .icon {
+  transition: all 0.45s cubic-bezier(0.65, 0, 0.076, 1);
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  margin: auto;
+  background: #fff;
+}
+button.signing-in .arrow .icon.arrow {
+  transition: all 0.45s cubic-bezier(0.65, 0, 0.076, 1);
+  left: 0.625rem;
+  width: 1.125rem;
+  height: 0.125rem;
+  background: none;
+}
+button.signing-in .arrow .icon.arrow::before {
+  position: absolute;
+  content: "";
+  top: -0.25rem;
+  right: 0.0625rem;
+  width: 0.625rem;
+  height: 0.625rem;
+  border-top: 0.125rem solid #fff;
+  border-right: 0.125rem solid #fff;
+  transform: rotate(45deg);
+}
+button.signing-in .button-text {
+  transition: all 0.45s cubic-bezier(0.65, 0, 0.076, 1);
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  padding: 0.75rem 0;
+  margin: 0 0 0 1.85rem;
+  color: #282936;
+  font-weight: 700;
+  line-height: 1.6;
+  text-align: center;
+}
+button:hover .arrow {
+  width: 100%;
+}
+button:hover .arrow .icon.arrow {
+  background: #fff;
+  transform: translate(1rem, 0);
+}
+button:hover .button-text {
+  color: #fff;
+}
+.profile-img {
+  float: right;
+  margin-right: -100px;
+}
+.profile-img img {
+  margin-bottom: 160px;
+  object-fit: cover;
+}
+
+.process-heading h1 {
+  margin: 50px 0px;
+  background: rgb(2, 0, 36);
+  background: linear-gradient(
+    90deg,
+    rgba(2, 0, 36, 1) 0%,
+    rgba(236, 236, 244, 1) 0%,
+    rgba(59, 91, 227, 1) 100%
+  );
+  padding: 15px;
+  font-weight: 600;
+}

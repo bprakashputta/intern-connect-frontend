@@ -1,8 +1,14 @@
 import React, { useState } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { Upload, Modal, Button } from "antd";
-import { PlusOutlined } from "@ant-design/icons";
 import axios from "../../api/base";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {
+  faFolder,
+  faTimes,
+  faFileUpload,
+} from "@fortawesome/free-solid-svg-icons";
+import "../../pages/Tasks/tasks.css";
 
 function FileUploader({ taskId }) {
   const [previewVisible, setPreviewVisible] = useState(false);

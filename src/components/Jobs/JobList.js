@@ -2,11 +2,10 @@ import React, { useEffect, useRef, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { jobLoadAction } from "../../redux/actions/jobAction";
 import { Link, useParams } from "react-router-dom";
-import CardElement from "../../Component/CardElement";
+import CardElement from "./CardElement";
 
-import LoadingBox from "../../Component/LoadingBox";
 import "../../componentsCss/jobpage.css";
-import SelectComponent from "../../Component/SelectComponent";
+import SelectComponent from "./SelectComponent";
 
 const JobList = () => {
   const { jobs, setUniqueLocation, pages, loading } = useSelector(
@@ -44,7 +43,7 @@ const JobList = () => {
               <div className="job-listings">
                 <div className="load-box">
                   {loading ? (
-                    <LoadingBox />
+                    <div className="loading-indicator">Loading...</div>
                   ) : jobs && jobs.length === 0 ? (
                     <div className="no-result">
                       <h2>No result found!</h2>
@@ -60,6 +59,7 @@ const JobList = () => {
                         category={job.job_type ? job.job_type : "No category"}
                         location={job.location}
                         status={job.applied}
+                        dispatch={dispatch}
                       />
                     ))
                   )}
