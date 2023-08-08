@@ -5,6 +5,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { taskLoadAction } from "../../redux/actions/taskAction";
 import ChatWindow from "../../components/Tasks/Chatwindow";
 import axios from "../../api/base";
+import Razorpay from "../Razorpay";
 import { useParams } from "react-router-dom";
 
 import "../../pages.css/jobs.css";
@@ -58,7 +59,7 @@ const CompanyTaskPage = ({ job_id }) => {
           </button>
         </div>
         <h2 style={{ color: "black", fontSize: "20px", margin: "10px 0" }}>
-          Applied Students
+          Selected Students
         </h2>
         {appliedStudents &&
           appliedStudents.map((student) => (
@@ -101,6 +102,20 @@ const CompanyTaskPage = ({ job_id }) => {
               >
                 View Profile
               </button>
+              <button
+                style={{
+                  marginLeft: "10px",
+                  padding: "8px",
+                  backgroundColor: "lightgreen",
+                  borderRadius: "4px",
+                  border: "none",
+                  color: "white",
+                  cursor: "pointer",
+                }}
+                // onClick={()=>}
+              >
+                Certificate
+              </button>
             </div>
           ))}
         {showForm && (
@@ -112,9 +127,7 @@ const CompanyTaskPage = ({ job_id }) => {
                 data-remove="3000"
                 onClick={closeForm}
               ></button>
-              {/* <button className="cancel-button" onClick={closeForm}>
-                &#10005;
-              </button> */}
+
               <AddTask />
             </div>
           </div>

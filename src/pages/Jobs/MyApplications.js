@@ -1,4 +1,3 @@
-/* eslint-disable no-unused-vars */
 import React, { useState, useEffect } from "react";
 import api from "../../api/base";
 import "../../pages.css/jobs.css";
@@ -24,7 +23,7 @@ function Jobs() {
           jobs.map((job, i) => (
             <CardElement
               key={i}
-              id={job.job_id}
+              job_id={job.job_id}
               jobTitle={job.role_name}
               description={job.description}
               category={job.job_type ? job.job_type : "No category"}

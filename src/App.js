@@ -27,6 +27,8 @@ import AddTask from "./components/Tasks/AddTask";
 import TaskList from "./components/Tasks/TaskList";
 import Dashboard from "./pages/Admin/Dashboard";
 import Certificate from "./pages/Certificate";
+import RazorPay from "./pages/Razorpay";
+
 import CompanyTaskPage from "./pages/Tasks/CompanyTask";
 
 function App() {
@@ -70,6 +72,7 @@ function App() {
             <Route path="/:job_id/taskpage" element={<Taskpage />} />
             {/* <Route path="/task/create" element={<AddTask />} /> */}
             <Route path="/task/:id" element={<ViewTask />} />
+            <Route path="/payment" element={<RazorPay />} />
 
             <Route path="/certificate" element={<Certificate />} />
             <Route path="*" element={<PageNotFound />} />

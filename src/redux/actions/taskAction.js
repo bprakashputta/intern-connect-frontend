@@ -33,7 +33,9 @@ export const tasksForSpecficUserLoadAction = () => async (dispatch) => {
   dispatch({ type: TASK_LOAD_REQUEST });
   try {
     const userInfo = JSON.parse(localStorage.getItem("userInfo"));
+
     const { data } = await axios.get(`task/${userInfo._id}/all`);
+    console.log("data", userInfo._id);
     dispatch({
       type: TASK_LOAD_SUCCESS,
       payload: data,
