@@ -10,6 +10,8 @@ const TaskList = ({ tasks, handleTaskClick }) => {
     return new Date(dateString).toLocaleDateString(undefined, options);
   };
 
+  // console.log("Tasks in TaskList:", tasks);
+
   return (
     <div className="task-list">
       {tasks &&

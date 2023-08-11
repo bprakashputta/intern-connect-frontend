@@ -28,10 +28,13 @@ const StudentTaskPage = () => {
       setSelectedSection("Stream");
     }
   };
-
   useEffect(() => {
     console.log("task Load Action");
-    dispatch(tasksForSpecficUserLoadAction());
+    try {
+      dispatch(tasksForSpecficUserLoadAction());
+    } catch (error) {
+      console.error("Error dispatching action:", error);
+    }
   }, [dispatch]);
 
   return (

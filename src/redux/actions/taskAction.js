@@ -34,13 +34,18 @@ export const tasksForSpecficUserLoadAction = () => async (dispatch) => {
   try {
     const userInfo = JSON.parse(localStorage.getItem("userInfo"));
 
+    console.log("Fetching tasks for user:", userInfo._id);
+
     const { data } = await axios.get(`task/${userInfo._id}/all`);
-    console.log("data", userInfo._id);
+    console.log("Fetched tasks:", data);
+
     dispatch({
       type: TASK_LOAD_SUCCESS,
       payload: data,
     });
   } catch (error) {
+    console.error("Error fetching tasks:", error);
+
     dispatch({
       type: TASK_LOAD_FAIL,
       payload: error.response.data.error,
