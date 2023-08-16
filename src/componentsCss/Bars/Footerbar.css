@@ -100,19 +100,11 @@ ul {
 }
 .subscribe-form button {
   position: absolute;
-<<<<<<< HEAD
   right: -10px;
   background: #1cd8f9;
   padding: 14px 20px;
   border: 1px solid #1cd8f9;
   top: 0px;
-=======
-  right: -15px;
-  background: #1cd8f9;
-  padding: 14px 20px;
-  border: 1px solid #1cd8f9;
-  top: 10px;
->>>>>>> main
   margin: 0;
 }
 .subscribe-form button {

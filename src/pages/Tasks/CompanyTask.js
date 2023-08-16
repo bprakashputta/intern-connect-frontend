@@ -26,8 +26,8 @@ const CompanyTaskPage = ({ job_id, task_id }) => {
     setShowForm(false);
   };
 
-  const handleStudentClick = (studentId) => {
-    setSelectedStudent(studentId);
+  const handleStudentClick = (student) => {
+    setSelectedStudent(student);
     setSelectedSection("tasks");
     console.log("ss", selectedStudent);
   };
