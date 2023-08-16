@@ -23,13 +23,11 @@ import ViewTask from "./components/Tasks/ViewTask";
 import Taskpage from "./pages/Tasks/Taskpage";
 import { useSelector } from "react-redux";
 import ProfilePage from "./pages/ProfilePage";
-import AddTask from "./components/Tasks/AddTask";
 import TaskList from "./components/Tasks/TaskList";
 import Dashboard from "./pages/Admin/Dashboard";
 import Certificate from "./pages/Certificate";
 import RazorPay from "./pages/Razorpay";
 
-import CompanyTaskPage from "./pages/Tasks/CompanyTask";
 import AllTasks from "./components/Tasks/AllTasks";
 
 function App() {
