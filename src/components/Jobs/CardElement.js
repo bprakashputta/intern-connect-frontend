@@ -201,6 +201,21 @@ const CardElement = ({
               View status...
             </Link>
           )}
+
+          {page === "myapplications" && (
+            <Link
+              to={`/${job_id}/taskpage`}
+              style={{
+                color: "blue",
+                textDecoration: "none",
+                border: "1px solid blue",
+                padding: "10px",
+                margin: "10px",
+              }}
+            >
+              View status...
+            </Link>
+          )}
         </button>
       </div>
     </div>
