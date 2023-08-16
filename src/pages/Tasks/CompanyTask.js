@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
-import AddTask from "../../components/Tasks/AddTask";
-import { useDispatch, useSelector } from "react-redux";
+
+import { useDispatch } from "react-redux";
 import { taskLoadAction } from "../../redux/actions/taskAction";
 import ChatWindow from "../../components/Tasks/Chatwindow";
 import axios from "../../api/base";
@@ -13,7 +12,6 @@ const CompanyTaskPage = ({ job_id, task_id }) => {
   const [showForm, setShowForm] = useState(false);
   const [selectedSection, setSelectedSection] = useState("tasks");
   const [selectedStudent, setSelectedStudent] = useState(null);
-  const [selectedTask, setSelectedTask] = useState(null);
   const [appliedStudents, setAppliedStudents] = useState(null);
 
   const dispatch = useDispatch();
@@ -26,8 +24,8 @@ const CompanyTaskPage = ({ job_id, task_id }) => {
     setShowForm(false);
   };
 
-  const handleStudentClick = (student) => {
-    setSelectedStudent(student);
+  const handleStudentClick = (studentId) => {
+    setSelectedStudent(studentId);
     setSelectedSection("tasks");
     console.log("ss", selectedStudent);
   };

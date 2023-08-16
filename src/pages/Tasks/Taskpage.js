@@ -1,6 +1,5 @@
 import React from "react";
 import "./tasks.css";
-import { taskLoadAction } from "../../redux/actions/taskAction";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 
