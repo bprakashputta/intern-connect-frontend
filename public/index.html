@@ -26,6 +26,8 @@
   script-src 'self' 'nonce-randomvalue';
 "
     /> -->
+    <!-- Add the Razorpay SDK script -->
+    <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
 
     <link
       rel="stylesheet"
@@ -43,10 +45,15 @@
       rel="stylesheet"
       href="https://fonts.googleapis.com/icon?family=Material+Icons"
     />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+    />
     <title>InternConnect</title>
   </head>
   <body>
     <noscript>You need to enable JavaScript to run this app.</noscript>
+
     <div id="root"></div>
   </body>
 </html>

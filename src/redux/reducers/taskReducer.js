@@ -18,6 +18,7 @@ export const loadTaskReducer = (state = { tasks: [] }, action) => {
     case TASK_LOAD_REQUEST:
       return { loading: true };
     case TASK_LOAD_SUCCESS:
+      console.log("Data from API:", action.payload);
       return {
         loading: false,
         success: action.payload.success,

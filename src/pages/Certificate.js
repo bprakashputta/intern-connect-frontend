@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import axios from "../api/base";
 import { saveAs } from "file-saver";
 import "../pages.css/certificate.css";
@@ -8,6 +8,11 @@ const Certificate = () => {
   const [courseName, setCourseName] = useState("");
   const [date, setDate] = useState("");
 
+  useEffect(() => {
+    const today = new Date();
+    const formattedDate = today.toISOString().substr(0, 10);
+    setDate(formattedDate);
+  }, []);
   const generateCertificate = async () => {
     const response = await axios.post(
       "/certificate/generate",
@@ -64,7 +69,7 @@ const Certificate = () => {
           </label>
         </form>
         <button className="certificate-button" onClick={generateCertificate}>
-          Generate Certificate
+          Get Certificate
         </button>
       </div>
     </div>

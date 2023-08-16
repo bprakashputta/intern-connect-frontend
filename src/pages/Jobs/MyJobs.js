@@ -1,4 +1,3 @@
-/* eslint-disable no-unused-vars */
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import api from "../../api/base";
@@ -15,8 +14,8 @@ function Jobs() {
 
   const { userInfo } = useSelector((state) => state.signIn);
   const { jobs } = useSelector((state) => state.loadJobs);
+
   const jobIds = jobs ? jobs.map((job) => job.job_id) : [];
-  console.log("Job IDs:", jobIds);
 
   const closeForm = () => {
     setShowForm(false);
@@ -24,8 +23,6 @@ function Jobs() {
 
   useEffect(() => {
     dispatch(myJobsLoadAction());
-    const jobIds = jobs ? jobs.map((job) => job.job_id) : [];
-    console.log("Job IDs:", jobIds);
   }, []);
 
   return (
@@ -58,6 +55,7 @@ function Jobs() {
               category={job.job_type ? job.job_type : "No category"}
               location={job.location}
               status={job.status}
+              page="myjobs"
             />
           ))}
       </div>

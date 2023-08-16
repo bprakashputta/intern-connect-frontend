@@ -5,23 +5,31 @@ import { useDispatch, useSelector } from "react-redux";
 import { taskLoadAction } from "../../redux/actions/taskAction";
 import ChatWindow from "../../components/Tasks/Chatwindow";
 import axios from "../../api/base";
-import { useParams } from "react-router-dom";
+import FileList from "../../components/Tasks/FileList";
 
-const CompanyTaskPage = ({ job_id }) => {
-  console.log("jobid", job_id);
+import "../../pages.css/jobs.css";
+
+const CompanyTaskPage = ({ job_id, task_id }) => {
   const [showForm, setShowForm] = useState(false);
+  const [selectedSection, setSelectedSection] = useState("tasks");
+  const [selectedStudent, setSelectedStudent] = useState(null);
+  const [selectedTask, setSelectedTask] = useState(null);
+  const [appliedStudents, setAppliedStudents] = useState(null);
 
   const dispatch = useDispatch();
-  const [selectedSection, setSelectedSection] = useState("tasks");
 
-  const { tasks } = useSelector((state) => state.loadTasks);
   const handleSectionClick = (section) => {
     setSelectedSection(section);
   };
 
-  const [appliedStudents, setAppliedStudents] = useState(null);
   const closeForm = () => {
     setShowForm(false);
+  };
+
+  const handleStudentClick = (studentId) => {
+    setSelectedStudent(studentId);
+    setSelectedSection("tasks");
+    console.log("ss", selectedStudent);
   };
 
   useEffect(() => {
@@ -29,8 +37,12 @@ const CompanyTaskPage = ({ job_id }) => {
     const fetchAppliedStudents = async () => {
       try {
         const response = await axios.get(`/jobs/${job_id}/appliedby`);
-        const appliedStudentsData = response.data.users;
-        setAppliedStudents(appliedStudentsData.map((user) => user));
+        const studenttasks = await axios.get(
+          `/jobs/${job_id}/tasks/${task_id}/allotments/all`
+        );
+        console.log("students", job_id, task_id, studenttasks);
+        const appliedStudentsData = studenttasks.data.users;
+        setAppliedStudents(appliedStudentsData);
       } catch (error) {
         console.error("Error fetching applied students:", error);
       }
@@ -45,26 +57,78 @@ const CompanyTaskPage = ({ job_id }) => {
         <div>
           <button onClick={() => setShowForm(true)}>
             <span className="assigning">
-              <Link to="/task/create" style={{ color: "black", right: "10px" }}>
-                Assign Task
-              </Link>
+              {showForm ? "Close Task Form" : "Add Students"}
             </span>
           </button>
         </div>
-        <h2>Applied Students</h2>
+        <h2 style={{ color: "black", fontSize: "20px", margin: "10px 0" }}>
+          Selected Students
+        </h2>
         {appliedStudents &&
           appliedStudents.map((student) => (
-            <div key={student._id}>
-              <p>{student.firstName + " " + student.lastName}</p>
+            <div
+              key={student._id}
+              style={{
+                backgroundColor: "rgb(3, 3, 61)",
+                borderRadius: "8px",
+                padding: "10px",
+                margin: "10px",
+                boxShadow: "0 2px 4px rgba(0, 0, 0, 0.1)",
+                display: "flex",
+                alignItems: "center",
+                cursor: "pointer",
+              }}
+              onClick={() => handleStudentClick(student)}
+            >
+              <input
+                type="checkbox"
+                style={{
+                  margin: "8px",
+                  width: "20px",
+                  height: "20px",
+                  position: "unset",
+                }}
+              />
+              <p style={{ color: "white", fontSize: "large", margin: 0 }}>
+                {student.firstName + " " + student.lastName}
+              </p>
+              <button
+                style={{
+                  marginLeft: "auto",
+                  padding: "8px",
+                  backgroundColor: "lightgreen",
+                  borderRadius: "4px",
+                  border: "none",
+                  color: "white",
+                  cursor: "pointer",
+                }}
+              >
+                View Profile
+              </button>
+              <button
+                style={{
+                  marginLeft: "10px",
+                  padding: "8px",
+                  backgroundColor: "lightgreen",
+                  borderRadius: "4px",
+                  border: "none",
+                  color: "white",
+                  cursor: "pointer",
+                }}
+              >
+                Certificate
+              </button>
             </div>
           ))}
         {showForm && (
           <div className="form-overlay">
             <div className="form-container">
-              <button className="cancel-button" onClick={closeForm}>
-                &#10005;
-              </button>
-              <AddTask />
+              <button
+                class="circle"
+                data-animation="showShadow"
+                data-remove="3000"
+                onClick={closeForm}
+              ></button>
             </div>
           </div>
         )}
@@ -91,14 +155,34 @@ const CompanyTaskPage = ({ job_id }) => {
           </div>
         </div>
         <div className="section-content">
-          {selectedSection === "tasks" && (
-            <div className="tasks">
-              <ChatWindow sender="company" />
-            </div>
-          )}
-
-          {selectedSection === "submit" && (
-            <div className="submitted-work"></div>
+          {selectedStudent ? (
+            <>
+              {selectedSection === "tasks" && (
+                <div className="tasks">
+                  <div className="">
+                    <h3 className="task-stream">
+                      {selectedStudent.firstName +
+                        " " +
+                        selectedStudent.lastName}
+                    </h3>
+                  </div>
+                  <ChatWindow
+                    sender="company"
+                    taskId={selectedStudent.allotment_id}
+                  />
+                </div>
+              )}
+              {selectedSection === "submit" && (
+                <div className="submitted-work">
+                  <FileList
+                    taskId={selectedStudent.allotment_id}
+                    key={selectedStudent.allotment_id}
+                  />
+                </div>
+              )}
+            </>
+          ) : (
+            <p>Select a student to view tasks and chat window.</p>
           )}
         </div>
       </div>

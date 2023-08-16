@@ -28,10 +28,14 @@ const StudentTaskPage = () => {
       setSelectedSection("Stream");
     }
   };
-
   useEffect(() => {
     console.log("task Load Action");
-    dispatch(tasksForSpecficUserLoadAction());
+    try {
+      dispatch(tasksForSpecficUserLoadAction());
+      console.log(tasks, tasks);
+    } catch (error) {
+      console.error("Error dispatching action:", error);
+    }
   }, [dispatch]);
 
   return (
@@ -81,8 +85,14 @@ const StudentTaskPage = () => {
 
           {selectedSection === "submit" && selectedTask && (
             <div className="submitted-work">
-              <FileList taskId={selectedTask.taskAllotmentId} />
-              <FileUploader taskId={selectedTask.taskAllotmentId} />
+              <FileList
+                taskId={selectedTask.taskAllotmentId}
+                key={selectedTask.taskAllotmentId}
+              />
+              <FileUploader
+                taskId={selectedTask.taskAllotmentId}
+                key={selectedTask.taskAllotmentId}
+              />
             </div>
           )}
         </div>

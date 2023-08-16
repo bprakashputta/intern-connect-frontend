@@ -70,7 +70,9 @@
   display: flex;
   margin-top: 10px;
 }
-
+.addtask-form {
+  background-color: aliceblue;
+}
 .tasks input[type="text"] {
   flex: 1;
   padding: 5px;
@@ -100,6 +102,7 @@
   margin-right: 20px;
   height: 250px;
   background-color: white;
+  /* width: 80%; */
 }
 .task-card-bottom {
   /* background-color: white; */
@@ -114,10 +117,11 @@
     #a2e7fb
   );
   padding: 20px;
-  border-radius: 10px;
-  cursor: pointer;
+  border-radius: 10px 10px 0px 0px;
+  /* cursor: pointer; */
   color: #f0f0f0;
   font-weight: 600;
+  height: 180px;
 }
 
 /* Additional styles can be added as needed */
@@ -265,7 +269,7 @@ button {
 
 .form-overlay {
   position: fixed;
-  top: 0;
+  top: 0px;
   left: 0;
   width: 100%;
   height: 100%;
@@ -278,11 +282,13 @@ button {
 }
 
 .form-container {
-  background-color: #ffffff;
+  background-color: rgb(255, 255, 255);
   padding: 20px;
   border-radius: 8px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  padding: 20px;
+  margin-top: 8%;
+  margin-bottom: 100px;
+  width: 50%;
 }
 
 .cancel-button {
@@ -294,16 +300,20 @@ button {
   font-size: 20px;
   cursor: pointer;
   color: #000000;
+
+  width: 2.25rem;
+  height: 2.25rem;
 }
 
 .task-form {
   width: auto;
+  /* margin: 20px; */
 }
 .task-container {
-  position: relative;
+  /* position: relative;
   width: 100%;
   min-height: 80vh;
-  margin: 10px;
+  margin: 10px; */
 }
 
 .my-tasks {
@@ -340,13 +350,16 @@ button {
   margin-left: 10%;
 }
 
+.message-sender.company {
+  float: right;
+  align-self: flex-end;
+  margin-left: 10%;
+}
+
 .message-sender.other {
   align-self: flex-start;
 }
 
-form {
-  margin-top: 10px;
-}
 .sendMessage {
   width: 100%;
 }
@@ -423,4 +436,151 @@ form {
   padding: 10px;
   border: 3px dashed rgb(0, 183, 255);
   width: 150px;
+}
+
+.input-text input,
+select {
+  display: block;
+  /* background: rgba(0, 0, 0, 0.1); */
+
+  color: rgba(0, 0, 0, 0.6);
+  font-family: inherit;
+  font-size: inherit;
+  font-weight: 500;
+  line-height: inherit;
+  transition: 0.3s ease;
+}
+.input-text input:focus {
+  color: rgba(0, 0, 0, 0.8);
+}
+
+select {
+  border: 1px solid #ccc;
+  font-size: 16px;
+}
+
+select option {
+  background-color: #f8f8f8;
+  color: #333;
+  padding: 8px;
+}
+
+select option:checked {
+  background-color: #007bff;
+  color: #fff;
+}
+
+.close-form {
+  display: inline-block;
+}
+
+.circle {
+  width: 40px;
+  height: 40px;
+  background: transparent;
+  -moz-border-radius: 50%;
+  -webkit-border-radius: 50%;
+  border-radius: 50%;
+  position: absolute;
+  margin: 10px 20px;
+  display: flex;
+  top: 30px;
+  left: 400px;
+}
+.circle:after {
+  width: 24px;
+  height: 4px;
+  background-color: rgb(3, 3, 61);
+  content: "";
+  left: 50%;
+  top: 50%;
+  margin-left: -12px;
+  margin-top: -2px;
+  position: absolute;
+  -moz-transform: rotate(-45deg);
+  -ms-transform: rotate(-45deg);
+  -webkit-transform: rotate(-45deg);
+  transform: rotate(-45deg);
+  /*@include transform-origin(100%,100%);*/
+}
+.circle:before {
+  left: 50%;
+  top: 50%;
+  margin-left: -12px;
+  margin-top: -2px;
+  width: 24px;
+  height: 4px;
+  background-color: rgb(3, 3, 61);
+  content: "";
+  position: absolute;
+  -moz-transform: rotate(45deg);
+  -ms-transform: rotate(45deg);
+  -webkit-transform: rotate(45deg);
+  transform: rotate(45deg);
+  /*@include transform-origin(0%,0%);*/
+}
+
+.circle[data-animation="showShadow"] {
+  -moz-box-shadow: 0px 0px 0px 0px rgb(3, 3, 61) inset;
+  -webkit-box-shadow: 0px 0px 0px 0px rgb(3, 3, 61) inset;
+  box-shadow: 0px 0px 0px 0px rgb(3, 3, 61) inset;
+  -moz-transition: cubic-bezier(0.175, 0.885, 0.52, 1.775) 200ms;
+  -o-transition: cubic-bezier(0.175, 0.885, 0.52, 1.775) 200ms;
+  -webkit-transition: cubic-bezier(0.175, 0.885, 0.52, 1.775) 200ms;
+  transition: cubic-bezier(0.175, 0.885, 0.52, 1.775) 200ms;
+  border: 0px solid white;
+}
+.circle[data-animation="showShadow"]:before,
+.circle[data-animation="showShadow"]:after {
+  -moz-transition: cubic-bezier(0.175, 0.885, 0.52, 1.775) 200ms;
+  -o-transition: cubic-bezier(0.175, 0.885, 0.52, 1.775) 200ms;
+  -webkit-transition: cubic-bezier(0.175, 0.885, 0.52, 1.775) 200ms;
+  transition: cubic-bezier(0.175, 0.885, 0.52, 1.775) 200ms;
+}
+.circle[data-animation="showShadow"]:not(.showShadow):hover {
+  -moz-box-shadow: 0px 0px 0px 6px rgb(3, 3, 61) inset;
+  -webkit-box-shadow: 0px 0px 0px 6px rgb(3, 3, 61) inset;
+  box-shadow: 0px 0px 0px 6px rgb(3, 3, 61) inset;
+}
+.circle[data-animation="showShadow"]:not(.showShadow):hover:before {
+  -moz-transform: scale(0.7) rotate(45deg);
+  -ms-transform: scale(0.7) rotate(45deg);
+  -webkit-transform: scale(0.7) rotate(45deg);
+  transform: scale(0.7) rotate(45deg);
+  -moz-transition-delay: 100ms;
+  -o-transition-delay: 100ms;
+  -webkit-transition-delay: 100ms;
+  transition-delay: 100ms;
+}
+.circle[data-animation="showShadow"]:not(.showShadow):hover:after {
+  -moz-transform: scale(0.7) rotate(-45deg);
+  -ms-transform: scale(0.7) rotate(-45deg);
+  -webkit-transform: scale(0.7) rotate(-45deg);
+  transform: scale(0.7) rotate(-45deg);
+  -moz-transition-delay: 100ms;
+  -o-transition-delay: 100ms;
+  -webkit-transition-delay: 100ms;
+  transition-delay: 100ms;
+}
+
+.circle.showShadow {
+  -moz-transition: ease-out 300ms;
+  -o-transition: ease-out 300ms;
+  -webkit-transition: ease-out 300ms;
+  transition: ease-out 300ms;
+  -moz-transform: scale(0);
+  -ms-transform: scale(0);
+  -webkit-transform: scale(0);
+  transform: scale(0);
+  opacity: 0;
+}
+
+.all-tasks {
+  margin-top: 100px;
+}
+
+.task-list {
+  display: flex;
+  flex-wrap: wrap;
+  /* justify-content: center; To horizontally center the row */
 }

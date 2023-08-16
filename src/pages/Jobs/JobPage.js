@@ -25,9 +25,9 @@ function Jobs() {
                     <div className="search-div">
                       <SearchInput />
                     </div>
-                    <p class="text">
+                    {/* <p class="text">
                       49 Results found for <span>"Frontend developer"</span>
-                    </p>
+                    </p> */}
                   </div>
                 </div>
               </div>

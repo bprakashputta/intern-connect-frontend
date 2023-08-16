@@ -17,6 +17,7 @@ const CardElement = ({
   job_id,
   addAppliedStudent,
   status,
+  page,
 }) => {
   const [isFavorite, setIsFavorite] = useState(false);
   const dispatch = useDispatch();
@@ -101,10 +102,11 @@ const CardElement = ({
             color: "#fff",
             border: "none",
             padding: "5px 10px",
-            cursor: "pointer",
+            cursor: userType === "company" ? "not-allowed" : "pointer",
             marginLeft: "10px",
           }}
           onClick={handleApplyClick}
+          disabled={userType === "company"}
         >
           {currentStatus ? "Applied" : "Apply"}
         </button>
@@ -170,17 +172,33 @@ const CardElement = ({
             View Details...
           </Link>
 
-          {userType === "company" && (
+          {page === "myjobs" && (
             <Link
-              to={`/${job_id}/taskpage`}
+              to={`/jobs/${job_id}/tasks/all`}
               style={{
                 color: "blue",
                 textDecoration: "none",
                 border: "1px solid blue",
                 padding: "10px",
+                margin: "10px",
               }}
             >
-              View Students...
+              Add Tasks...
+            </Link>
+          )}
+
+          {page === "myapplications" && (
+            <Link
+              to={`/${job_id}/tasks/taskpage`}
+              style={{
+                color: "blue",
+                textDecoration: "none",
+                border: "1px solid blue",
+                padding: "10px",
+                margin: "10px",
+              }}
+            >
+              View status...
             </Link>
           )}
         </button>

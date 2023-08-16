@@ -1,9 +1,13 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
-import React, { useState, useEffect } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import { Link, useNavigate, useLocation } from "react-router-dom";
 import "../../componentsCss/Bars/navbar.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faSignOutAlt, faUser } from "@fortawesome/free-solid-svg-icons";
+import {
+  faSignOutAlt,
+  faUser,
+  faBriefcase,
+} from "@fortawesome/free-solid-svg-icons";
 import { userLogoutAction } from "../../redux/actions/userAction";
 import { useDispatch } from "react-redux";
 
@@ -12,6 +16,7 @@ const Navbar = () => {
   const [colorChange, setColorChange] = useState(false);
   const navigate = useNavigate();
   const [dropdownVisible, setDropdownVisible] = useState(false);
+  const dropdownRef = useRef(null);
 
   const dispatch = useDispatch();
   const userInfo = JSON.parse(localStorage.getItem("userInfo"));
@@ -21,7 +26,11 @@ const Navbar = () => {
   const handleDropdownToggle = () => {
     setDropdownVisible(!dropdownVisible);
   };
-
+  const handleClickOutside = (event) => {
+    if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
+      setDropdownVisible(false);
+    }
+  };
   useEffect(() => {
     const fetchLoggedInUser = async () => {
       try {
@@ -46,6 +55,12 @@ const Navbar = () => {
     fetchLoggedInUser();
   }, []);
 
+  useEffect(() => {
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, []);
   const handleLogout = async () => {
     try {
       dispatch(userLogoutAction());
@@ -132,7 +147,7 @@ const Navbar = () => {
                       </button>
                     </a>
                     <ul className="nav navbar-nav">
-                      <li className="dropdown">
+                      <li className="dropdown" ref={dropdownRef}>
                         {dropdownVisible && (
                           <ul
                             className="dropdown-menu dropdown-menu-right"
@@ -156,6 +171,13 @@ const Navbar = () => {
                               </a>
                             </li>
                             <li>
+                              <FontAwesomeIcon
+                                icon={faBriefcase}
+                                style={{
+                                  height: "15px",
+                                  marginRight: "10px",
+                                }}
+                              />
                               <Link to={getDestinationURL()}>
                                 <button>
                                   {userInfo.userType === "user"
@@ -165,11 +187,6 @@ const Navbar = () => {
                               </Link>
                             </li>
 
-                            <li>
-                              <a href="/taskpage">
-                                <button>View Tasks</button>
-                              </a>
-                            </li>
                             <li>
                               <FontAwesomeIcon
                                 icon={faSignOutAlt}
