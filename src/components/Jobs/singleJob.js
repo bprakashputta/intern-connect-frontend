@@ -7,12 +7,10 @@ import {
   deleteJobApplicationAction,
 } from "../../redux/actions/jobApplicationAction";
 import Footerbar from "../Bars/Footerbar";
-import { userApplyJobAction } from "../../redux/actions/userAction";
 import { useTheme } from "@emotion/react";
 import "../../componentsCss/singlejob.css";
 
 const SingleJob = () => {
-  const { palette } = useTheme();
   const dispatch = useDispatch();
   const { singleJob } = useSelector((state) => state.singleJob);
   const [applied, setApplied] = useState(false);
@@ -26,8 +24,6 @@ const SingleJob = () => {
     singleJob && setApplied(singleJob.applied);
   }, []);
   console.log(singleJob);
-
-  const { singleCompany } = useSelector((state) => state.singleCompany);
 
   const applyForAJob = async () => {
     try {
