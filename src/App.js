@@ -70,8 +70,8 @@ function App() {
             <Route path="/addjob" element={<AddJob />} />
             <Route path="/admin" element={<Admin />} />
             <Route path="/task" element={<TaskList />} />
-            <Route path="/:job_id/:task_id/taskpage" element={<Taskpage />} />
-            <Route path="/jobs/:job_id/tasks/all" element={<AllTasks />} />
+            <Route path="/:job_id/taskpage" element={<Taskpage />} />
+            {/* <Route path="/task/create" element={<AddTask />} /> */}
             <Route path="/task/:id" element={<ViewTask />} />
             <Route path="/payment" element={<RazorPay />} />
 

@@ -117,7 +117,6 @@ function TaskForm({ job_id }) {
                 }
                 style={{
                   height: "150px",
-
                   width: "80%",
                   margin: "auto",
                 }}
