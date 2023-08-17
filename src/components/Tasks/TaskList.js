@@ -40,7 +40,7 @@ const TaskList = ({ tasks, handleTaskClick, page }) => {
               >
                 <FontAwesomeIcon
                   icon={faEllipsisV}
-                  style={{ float: "right" }}
+                  style={{ float: "right", width: "5px" }}
                 />
               </button>
 

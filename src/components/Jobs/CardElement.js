@@ -189,22 +189,7 @@ const CardElement = ({
 
           {page === "myapplications" && (
             <Link
-              to={`/${job_id}/tasks/taskpage`}
-              style={{
-                color: "blue",
-                textDecoration: "none",
-                border: "1px solid blue",
-                padding: "10px",
-                margin: "10px",
-              }}
-            >
-              View status...
-            </Link>
-          )}
-
-          {page === "myapplications" && (
-            <Link
-              to={`/${job_id}/taskpage`}
+              to={`/${job_id}/task/taskpage`}
               style={{
                 color: "blue",
                 textDecoration: "none",

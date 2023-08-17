@@ -7,7 +7,7 @@ import FileUploader from "../../components/Tasks/FileUploader";
 import ChatWindow from "../../components/Tasks/Chatwindow";
 import FileList from "../../components/Tasks/FileList";
 
-const StudentTaskPage = () => {
+const StudentTaskPage = ({ job_id }) => {
   const dispatch = useDispatch();
 
   const [selectedSection, setSelectedSection] = useState("Stream");

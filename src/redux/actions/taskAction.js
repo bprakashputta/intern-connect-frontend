@@ -36,8 +36,8 @@ export const tasksForSpecficUserLoadAction = () => async (dispatch) => {
 
     console.log("Fetching tasks for user:", userInfo._id);
 
-    const { data } = await axios.get(`task/${userInfo._id}/all`);
-    console.log("Fetched tasks:", data);
+    const { data } = await axios.get(`/task/${userInfo._id}/all`);
+    console.log("Fetched tasks:", data.tasks);
 
     dispatch({
       type: TASK_LOAD_SUCCESS,
