@@ -56,6 +56,7 @@ function FileUploader({ taskId }) {
       });
 
       console.log("File uploaded:", response.data.fileUrl);
+      setFileList([]);
     } catch (error) {
       console.error("Failed to upload file:", error);
     }

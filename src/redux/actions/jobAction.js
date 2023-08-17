@@ -125,7 +125,7 @@ export const jobsAppliedLoadAction = () => async (dispatch) => {
     const { data } = await axios.get(
       `/jobapplication/appliedby/${userInfo._id}`
     );
-    console.log(data);
+    console.log("data", data);
     dispatch({
       type: JOB_LOAD_SUCCESS,
       payload: data,

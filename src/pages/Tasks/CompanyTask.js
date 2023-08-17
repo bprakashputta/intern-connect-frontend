@@ -1,35 +1,33 @@
 import React, { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
-import AddTask from "../../components/Tasks/AddTask";
-import { useDispatch, useSelector } from "react-redux";
+
+import { useDispatch } from "react-redux";
 import { taskLoadAction } from "../../redux/actions/taskAction";
 import ChatWindow from "../../components/Tasks/Chatwindow";
 import axios from "../../api/base";
-import { useParams } from "react-router-dom";
+import FileList from "../../components/Tasks/FileList";
 
 import "../../pages.css/jobs.css";
 
-const CompanyTaskPage = ({ job_id }) => {
+const CompanyTaskPage = ({ job_id, task_id }) => {
   const [showForm, setShowForm] = useState(false);
   const [selectedSection, setSelectedSection] = useState("tasks");
-  const [selectedStudentId, setSelectedStudentId] = useState(null);
+  const [selectedStudent, setSelectedStudent] = useState(null);
+  const [appliedStudents, setAppliedStudents] = useState(null);
 
   const dispatch = useDispatch();
-  const { tasks } = useSelector((state) => state.loadTasks);
-  const { jobs } = useSelector((state) => state.loadJobs);
 
   const handleSectionClick = (section) => {
     setSelectedSection(section);
   };
 
-  const [appliedStudents, setAppliedStudents] = useState(null);
   const closeForm = () => {
     setShowForm(false);
   };
 
   const handleStudentClick = (studentId) => {
-    setSelectedStudentId(studentId);
-    setSelectedSection("tasks"); // Display the chat window when student is selected
+    setSelectedStudent(studentId);
+    setSelectedSection("tasks");
+    console.log("ss", selectedStudent);
   };
 
   useEffect(() => {
@@ -37,7 +35,11 @@ const CompanyTaskPage = ({ job_id }) => {
     const fetchAppliedStudents = async () => {
       try {
         const response = await axios.get(`/jobs/${job_id}/appliedby`);
-        const appliedStudentsData = response.data.users;
+        const studenttasks = await axios.get(
+          `/jobs/${job_id}/tasks/${task_id}/allotments/all`
+        );
+        console.log("students", job_id, task_id, studenttasks);
+        const appliedStudentsData = studenttasks.data.users;
         setAppliedStudents(appliedStudentsData);
       } catch (error) {
         console.error("Error fetching applied students:", error);
@@ -53,12 +55,12 @@ const CompanyTaskPage = ({ job_id }) => {
         <div>
           <button onClick={() => setShowForm(true)}>
             <span className="assigning">
-              {showForm ? "Close Task Form" : "Assign Task"}
+              {showForm ? "Close Task Form" : "Add Students"}
             </span>
           </button>
         </div>
         <h2 style={{ color: "black", fontSize: "20px", margin: "10px 0" }}>
-          Applied Students
+          Selected Students
         </h2>
         {appliedStudents &&
           appliedStudents.map((student) => (
@@ -74,7 +76,7 @@ const CompanyTaskPage = ({ job_id }) => {
                 alignItems: "center",
                 cursor: "pointer",
               }}
-              onClick={() => handleStudentClick(student._id)}
+              onClick={() => handleStudentClick(student)}
             >
               <input
                 type="checkbox"
@@ -101,6 +103,19 @@ const CompanyTaskPage = ({ job_id }) => {
               >
                 View Profile
               </button>
+              <button
+                style={{
+                  marginLeft: "10px",
+                  padding: "8px",
+                  backgroundColor: "lightgreen",
+                  borderRadius: "4px",
+                  border: "none",
+                  color: "white",
+                  cursor: "pointer",
+                }}
+              >
+                Certificate
+              </button>
             </div>
           ))}
         {showForm && (
@@ -112,10 +127,6 @@ const CompanyTaskPage = ({ job_id }) => {
                 data-remove="3000"
                 onClick={closeForm}
               ></button>
-              {/* <button className="cancel-button" onClick={closeForm}>
-                &#10005;
-              </button> */}
-              <AddTask />
             </div>
           </div>
         )}
@@ -142,24 +153,30 @@ const CompanyTaskPage = ({ job_id }) => {
           </div>
         </div>
         <div className="section-content">
-          {selectedStudentId ? (
+          {selectedStudent ? (
             <>
               {selectedSection === "tasks" && (
                 <div className="tasks">
+                  <div className="">
+                    <h3 className="task-stream">
+                      {selectedStudent.firstName +
+                        " " +
+                        selectedStudent.lastName}
+                    </h3>
+                  </div>
                   <ChatWindow
                     sender="company"
-                    studentTasks={
-                      tasks
-                        ? tasks.filter(
-                            (task) => task.student_id === selectedStudentId
-                          )
-                        : []
-                    }
+                    taskId={selectedStudent.allotment_id}
                   />
                 </div>
               )}
               {selectedSection === "submit" && (
-                <div className="submitted-work"></div>
+                <div className="submitted-work">
+                  <FileList
+                    taskId={selectedStudent.allotment_id}
+                    key={selectedStudent.allotment_id}
+                  />
+                </div>
               )}
             </>
           ) : (

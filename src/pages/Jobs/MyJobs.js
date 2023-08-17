@@ -1,4 +1,3 @@
-/* eslint-disable no-unused-vars */
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import api from "../../api/base";
@@ -24,8 +23,6 @@ function Jobs() {
 
   useEffect(() => {
     dispatch(myJobsLoadAction());
-
-    const jobIds = jobs ? jobs.map((job) => job.job_id) : [];
   }, []);
 
   return (

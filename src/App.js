@@ -23,11 +23,12 @@ import ViewTask from "./components/Tasks/ViewTask";
 import Taskpage from "./pages/Tasks/Taskpage";
 import { useSelector } from "react-redux";
 import ProfilePage from "./pages/ProfilePage";
-import AddTask from "./components/Tasks/AddTask";
 import TaskList from "./components/Tasks/TaskList";
 import Dashboard from "./pages/Admin/Dashboard";
 import Certificate from "./pages/Certificate";
-import CompanyTaskPage from "./pages/Tasks/CompanyTask";
+import RazorPay from "./pages/Razorpay";
+
+import AllTasks from "./components/Tasks/AllTasks";
 
 function App() {
   const { userInfo } = useSelector((state) => state.signIn);
@@ -67,9 +68,10 @@ function App() {
             <Route path="/addjob" element={<AddJob />} />
             <Route path="/admin" element={<Admin />} />
             <Route path="/task" element={<TaskList />} />
-            <Route path="/:job_id/taskpage" element={<Taskpage />} />
-            {/* <Route path="/task/create" element={<AddTask />} /> */}
+            <Route path="/:job_id/:task_id/taskpage" element={<Taskpage />} />
+            <Route path="/jobs/:job_id/tasks/all" element={<AllTasks />} />
             <Route path="/task/:id" element={<ViewTask />} />
+            <Route path="/payment" element={<RazorPay />} />
 
             <Route path="/certificate" element={<Certificate />} />
             <Route path="*" element={<PageNotFound />} />

@@ -218,8 +218,11 @@ function Home() {
                 <div className="process">
                   <h3>Complete Your Profile</h3>
                   <span>
-                    Lorem Ipsum is simply dummy text of the printing and
-                    typesetting industry.
+                    <p>
+                      Welcome to our platform! We're excited to have you join
+                      our community. To get started, please complete your
+                      profile information.
+                    </p>
                   </span>
 
                   <div className="button-signup">
@@ -246,8 +249,9 @@ function Home() {
                 <div className="process">
                   <h3>Apply Internships</h3>
                   <span>
-                    Lorem Ipsum is simply dummy text of the printing and
-                    typesetting industry.
+                    Explore and apply for exciting internship opportunities that
+                    align with your skills and interests. Gain valuable
+                    experience and kick-start your career journey.
                   </span>
                 </div>
               </div>
@@ -256,8 +260,9 @@ function Home() {
                 <div className="process">
                   <h3>Complete Tasks</h3>
                   <span>
-                    Lorem Ipsum is simply dummy text of the printing and
-                    typesetting industry.
+                    Engage with real-world projects from companies looking for
+                    talented individuals like you. Complete tasks, demonstrate
+                    your skills, and make a meaningful impact.
                   </span>
                 </div>
               </div>
@@ -268,8 +273,9 @@ function Home() {
                 <div className="process">
                   <h3>Get Certificates</h3>
                   <span>
-                    Lorem Ipsum is simply dummy text of the printing and
-                    typesetting industry.
+                    Showcase your achievements and skills by earning
+                    certificates for the tasks you've successfully completed.
+                    Build a strong profile that highlights your accomplishments.
                   </span>
                 </div>
                 {/* <div className="profile-img">
@@ -297,18 +303,20 @@ function Home() {
             </div>
             <div className="texting">
               <p>
-                Lorem Ipsum is simply dummy text of the printing and typesetting
-                industry. Lorem Ipsum has been the industry's standard dummy
-                text ever since the 1500s, when an unknown printer took a galley
-                of type and scrambled it to make a type specimen book. It has
-                survived not only five centuries, but also the leap into
-                electronic typesetting, remaining. Lorem Ipsum is simply dummy
-                text of the printing and typesetting industry. Lorem Ipsum has
-                been the industry's standard dummy text ever since the 1500s,
-                when an unknown printer took a galley of type and scrambled it
-                to make a type specimen book. It has survived not only five
-                centuries, but also the leap into electronic typesetting,
-                remaining .
+                InternConnect is a leading platform for internship
+                opportunities, designed to connect students and companies. Our
+                platform provides a seamless experience for students seeking
+                valuable real-world experiences and companies looking to engage
+                with young talents. Since our inception, we've been at the
+                forefront of revolutionizing the internship landscape. Our
+                commitment to quality has made us the industry standard, earning
+                the trust of students, educators, and companies alike.
+                <p>
+                  Our platform has empowered countless individuals to embark on
+                  meaningful career journeys. We're proud to have facilitated
+                  connections that have not only spanned five centuries but also
+                  embraced the technological advancements of our times.
+                </p>
               </p>
             </div>
             <div className="social_icons">

@@ -102,10 +102,11 @@ const CardElement = ({
             color: "#fff",
             border: "none",
             padding: "5px 10px",
-            cursor: "pointer",
+            cursor: userType === "company" ? "not-allowed" : "pointer",
             marginLeft: "10px",
           }}
           onClick={handleApplyClick}
+          disabled={userType === "company"}
         >
           {currentStatus ? "Applied" : "Apply"}
         </button>
@@ -173,7 +174,7 @@ const CardElement = ({
 
           {page === "myjobs" && (
             <Link
-              to={`/${job_id}/taskpage`}
+              to={`/jobs/${job_id}/tasks/all`}
               style={{
                 color: "blue",
                 textDecoration: "none",
@@ -182,13 +183,13 @@ const CardElement = ({
                 margin: "10px",
               }}
             >
-              View Students...
+              Add Tasks...
             </Link>
           )}
 
           {page === "myapplications" && (
             <Link
-              to={`/${job_id}/taskpage`}
+              to={`/${job_id}/task/taskpage`}
               style={{
                 color: "blue",
                 textDecoration: "none",

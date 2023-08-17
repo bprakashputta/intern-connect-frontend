@@ -102,6 +102,7 @@
   margin-right: 20px;
   height: 250px;
   background-color: white;
+  /* width: 80%; */
 }
 .task-card-bottom {
   /* background-color: white; */
@@ -116,10 +117,11 @@
     #a2e7fb
   );
   padding: 20px;
-  border-radius: 10px;
-  cursor: pointer;
+  border-radius: 10px 10px 0px 0px;
+  /* cursor: pointer; */
   color: #f0f0f0;
   font-weight: 600;
+  height: 180px;
 }
 
 /* Additional styles can be added as needed */
@@ -348,6 +350,12 @@ button {
   margin-left: 10%;
 }
 
+.message-sender.company {
+  float: right;
+  align-self: flex-end;
+  margin-left: 10%;
+}
+
 .message-sender.other {
   align-self: flex-start;
 }
@@ -565,4 +573,14 @@ select option:checked {
   -webkit-transform: scale(0);
   transform: scale(0);
   opacity: 0;
+}
+
+.all-tasks {
+  margin-top: 100px;
+}
+
+.task-list {
+  display: flex;
+  flex-wrap: wrap;
+  /* justify-content: center; To horizontally center the row */
 }

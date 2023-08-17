@@ -7,6 +7,7 @@ const ChatWindow = ({ sender, taskId }) => {
   useEffect(() => {
     const fetchChatMessages = async () => {
       try {
+        console.log("taskid", taskId);
         const response = await axios.get(`/taskallotment/view/${taskId}`, {
           baseURL: process.env.BACKEND_APP_SERVER_URL,
         });

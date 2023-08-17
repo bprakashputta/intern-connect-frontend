@@ -95,7 +95,9 @@ nav a:hover {
     margin-right: 10px;
   }
 }
-
+.navbar-nav a {
+  margin-right: 3px;
+}
 /* Styles for screens between 576px and 767px (Mobile Landscape) */
 @media (min-width: 576px) and (max-width: 767px) {
   .navbar-bg-class {
@@ -148,13 +150,16 @@ nav a:hover {
   line-height: 1.5rem;
   width: 100%;
   text-align: left;
-  margin: 10px;
-  padding: 10px 15px;
+  margin-left: 20px;
+  padding: 10px 15px 0px 0px;
+  margin-right: 0px;
 }
 .dropdown:hover .dropdown-menu {
   display: block;
   opacity: 1;
   top: 60px;
+  position: fixed;
+  width: 180px;
   color: rgb(8, 122, 244);
 }
 

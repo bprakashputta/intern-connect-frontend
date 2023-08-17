@@ -2,9 +2,8 @@ import React, { useState } from "react";
 import axios from "../../api/base";
 import "../../pages/Tasks/tasks.css";
 
-function TaskForm() {
+function TaskForm({ job_id }) {
   const [task, setTask] = useState({
-    assigned_by: "",
     task_id: "",
     title: "",
     description: "",
@@ -13,35 +12,58 @@ function TaskForm() {
     attachments: [],
   });
 
-  const handleSubmit = async (event) => {
-    event.preventDefault();
-    await axios
-      .post("/taskallotment/create", task)
-      .then((response) => response.json())
-      .then((data) => {
-        console.log("Task submitted successfully:", data);
-        alert("Task submitted successfully!");
-        setTask({
-          assigned_by: "",
-          task_id: "",
-          title: "",
-          description: "",
-          status: "open",
-          due_date: null,
-          attachments: [],
-        });
-      })
-      .catch((error) => {
-        console.error("Error submitting task:", error);
-        alert("Error submitting task. Please try again later.");
-      });
+  const handleChange = (name, value) => {
+    if (name === "attachments") {
+      const attachmentsArray = Array.from(value); // Convert FileList to an array
+      setTask((prevTask) => ({
+        ...prevTask,
+        attachments: attachmentsArray,
+      }));
+    } else {
+      setTask((prevTask) => ({
+        ...prevTask,
+        [name]: value,
+      }));
+    }
   };
 
-  const handleChange = (name, value) => {
-    setTask((prevTask) => ({
-      ...prevTask,
-      [name]: value,
-    }));
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+    try {
+      console.log("Task before submission:", task);
+      const formData = new FormData();
+      for (const [key, value] of Object.entries(task)) {
+        if (key === "attachments") {
+          for (let i = 0; i < value.length; i++) {
+            formData.append("attachments", value[i]);
+          }
+        } else {
+          formData.append(key, value);
+        }
+      }
+      console.log("FormData before submission:", formData);
+
+      const response = await axios.post(
+        "http://www.localhost:8080/task/create",
+        { ...task, job_id }
+      );
+      console.log("Task submitted successfully:", response.data);
+      alert("Task submitted successfully!");
+      setTask({
+        task_id: "",
+        title: "",
+        description: "",
+        status: "open",
+        due_date: null,
+        attachments: [],
+      });
+    } catch (error) {
+      console.error("Error submitting task:", error);
+      if (error.response) {
+        console.log("Error response from server:", error.response.data);
+      }
+      alert("Error submitting task. Please try again later.");
+    }
   };
 
   return (
@@ -52,33 +74,11 @@ function TaskForm() {
         </div>
         <div className="addtask-form">
           <div className="input-text" style={{ justifyContent: "center" }}>
-            <div className="mt-4 ">
-              <div className="task-input">
-                <label>
-                  Task_Id:
-                  <input
-                    type="text"
-                    name="task_id"
-                    value={task.task_id}
-                    onChange={(e) =>
-                      handleChange(e.target.name, e.target.value)
-                    }
-                  />
-                </label>
-              </div>
-            </div>
             <div>
               <div className="mt-4">
                 <label>
                   Job_Id:
-                  <input
-                    type="text"
-                    name="job_id"
-                    value={task.job_id}
-                    onChange={(e) =>
-                      handleChange(e.target.name, e.target.value)
-                    }
-                  />
+                  <input type="text" name="job_id" value={job_id} />
                 </label>
               </div>
             </div>
@@ -117,7 +117,6 @@ function TaskForm() {
                 }
                 style={{
                   height: "150px",
-                  lineHeight: "150px",
                   width: "80%",
                   margin: "auto",
                 }}
@@ -131,11 +130,11 @@ function TaskForm() {
                 <select
                   name="status"
                   value={task.status}
-                  onChange={handleChange}
+                  onChange={(e) => handleChange(e.target.name, e.target.value)}
                   style={{ padding: "10px" }}
                 >
                   <option value="open">Open</option>
-                  <option value="close">Closed</option>
+                  <option value="closed">Closed</option>
                 </select>
               </label>
             </div>
@@ -145,8 +144,8 @@ function TaskForm() {
                 <input
                   type="datetime-local"
                   name="due_date"
-                  value={task.due_date}
-                  onChange={handleChange}
+                  value={task.due_date || ""}
+                  onChange={(e) => handleChange(e.target.name, e.target.value)}
                   style={{ padding: "10px" }}
                 />
               </label>
@@ -186,15 +185,3 @@ function TaskForm() {
 }
 
 export default TaskForm;
-
-// Task.model {
-// 	id
-// 	assignedBy : []
-//     assignedTo : []
-//     title:
-//     description:
-//     status:
-//     deadline:
-//     attachments: []
-//     comments: []
-// }

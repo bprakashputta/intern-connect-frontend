@@ -1,16 +1,16 @@
 import React, { useState, useEffect } from "react";
 import axios from "../../api/base";
 
-const FileList = ({ taskId }) => {
+const FileList = ({ taskId, key }) => {
   const [fileList, setFileList] = useState([]);
 
   useEffect(() => {
     fetchFileList();
-  }, []);
+  }, [fileList, key]);
 
   const fetchFileList = async () => {
     try {
-      const response = await axios.get(`file/list/${taskId}`);
+      const response = await axios.get(`/file/list/${taskId}`);
       setFileList(response.data.fileList);
     } catch (error) {
       console.error(error);
@@ -19,7 +19,7 @@ const FileList = ({ taskId }) => {
 
   return (
     <div className="submitted">
-      <h2>Your Submitted Work</h2>
+      <h2> Submitted Work</h2>
       {fileList.map((file) => (
         <div
           key={file.fileName}
