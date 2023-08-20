@@ -796,3 +796,28 @@ button:hover .button-text {
   padding: 15px;
   font-weight: 600;
 }
+
+/* Inside your CSS file */
+@keyframes loading {
+  0% {
+    max-width: 0;
+  }
+}
+
+/* Apply styles to the ::before pseudo-element */
+.animate-text::before {
+  content: attr(textStyle);
+  position: absolute;
+  overflow: hidden;
+  max-width: 3em;
+  white-space: nowrap;
+  color: #fff;
+  animation: loading 8s linear;
+}
+
+/* Additional styles for the p element */
+.animate-text {
+  position: relative;
+  color: rgba(0, 0, 0, 0.3);
+  font-size: 1em;
+}
