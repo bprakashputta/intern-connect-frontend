@@ -31,6 +31,7 @@
     "react": "^18.2.0",
     "react-bootstrap": "^2.7.4",
     "react-datepicker": "^4.13.0",
+    "react-device-detect": "^2.2.3",
     "react-dom": "^18.2.0",
     "react-icons": "^4.9.0",
     "react-pro-sidebar": "^1.1.0-alpha.1",
