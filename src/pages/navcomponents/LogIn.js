@@ -94,7 +94,6 @@ function LogIn() {
                       <div className="line"></div>
                     </div>
                     <div className="social-icons">
-                      {/* <a href="http://ec2-3-108-196-182.ap-south-1.compute.amazonaws.com/auth/google/register"> */}
                       <a href="http://localhost:8080/auth/google/register">
                         <button
                           aria-label="Login with Google"
