@@ -1,4 +1,5 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
+import React, { useState, useEffect } from "react";
 
 import Navbar from "./components/Bars/Navbar";
 import Home from "./pages/navcomponents/Home";
@@ -27,7 +28,8 @@ import TaskList from "./components/Tasks/TaskList";
 import Dashboard from "./pages/Admin/Dashboard";
 import Certificate from "./pages/Certificate";
 import RazorPay from "./pages/Razorpay";
-
+import MobileVersion from "./pages/MobileVersion";
+import PrivateRoute from "./pages/RestrictPage";
 import AllTasks from "./components/Tasks/AllTasks";
 
 function App() {
@@ -35,48 +37,81 @@ function App() {
   console.log(userInfo);
   const userType = userInfo?.userType;
 
+  const [isMobile, setIsMobile] = useState(window.innerWidth <= 768);
+
+  const handleResize = () => {
+    setIsMobile(window.innerWidth <= 768);
+  };
+
+  useEffect(() => {
+    window.addEventListener("resize", handleResize);
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, []);
+
   return (
     <div className="App">
       <BrowserRouter>
         <Navbar />
+        {isMobile ? (
+          <MobileVersion />
+        ) : (
+          <>
+            <div className="pages">
+              <Routes>
+                <Route path="/user/login" component={LogIn} />
+                {/* <PrivateRoute path="/restricted" component={RestPage} /> */}
+                <PrivateRoute path="/" component={Home} />
 
-        <div className="pages">
-          <Routes>
-            <Route path="/" element={<Home />} />
-            <Route
-              exact
-              path="/user/profile"
-              element={userType === "company" ? <Profile /> : <UserProfile />}
-            />
+                <Route path="/" element={<Home />} />
+                <Route
+                  exact
+                  path="/user/profile"
+                  element={
+                    userType === "company" ? <Profile /> : <UserProfile />
+                  }
+                />
 
-            <Route path="/user/editprofile" element={<ProfilePage />} />
-            <Route path="/user/login" element={<LogIn />} />
-            <Route path="/user/register" element={<SignUp />} />
-            <Route path="/user/myapplications" element={<MyApplications />} />
-            <Route path="/employer/myjobs" element={<MyJobs />} />
+                <Route path="/user/editprofile" element={<ProfilePage />} />
+                <Route path="/user/login" element={<LogIn />} />
+                <Route path="/user/register" element={<SignUp />} />
+                <Route
+                  path="/user/myapplications"
+                  element={<MyApplications />}
+                />
+                <Route path="/employer/myjobs" element={<MyJobs />} />
 
-            <Route path="/contactus" element={<Contact />} />
-            <Route path="/aboutus" element={<About />} />
-            <Route path="upload" element={<FileUploader />} />
-            <Route path="/jobpage" element={<JobList />} />
-            <Route path="/search/location/:location" element={<JobList />} />
-            <Route path="/search/:keyword" element={<JobList />} />
-            <Route path="/job/:id" element={<SingleJob />} />
-            <Route path="/admin/dashboard" element={<Dashboard />} />
-            <Route exact path="/jobs" element={<Jobs />} />
-            <Route exact path="/users/create" element={<UserForm />} />
-            <Route path="/addjob" element={<AddJob />} />
-            <Route path="/admin" element={<Admin />} />
-            <Route path="/task" element={<TaskList />} />
-            <Route path="/:job_id/:task_id/taskpage" element={<Taskpage />} />
-            <Route path="/jobs/:job_id/tasks/all" element={<AllTasks />} />
-            <Route path="/task/:id" element={<ViewTask />} />
-            <Route path="/payment" element={<RazorPay />} />
+                <Route path="/contactus" element={<Contact />} />
+                <Route path="/aboutus" element={<About />} />
+                <Route path="upload" element={<FileUploader />} />
+                <Route path="/jobpage" element={<JobList />} />
+                <Route
+                  path="/search/location/:location"
+                  element={<JobList />}
+                />
+                <Route path="/search/:keyword" element={<JobList />} />
+                <Route path="/job/:id" element={<SingleJob />} />
+                <Route path="/admin/dashboard" element={<Dashboard />} />
+                <Route exact path="/jobs" element={<Jobs />} />
+                <Route exact path="/users/create" element={<UserForm />} />
+                <Route path="/addjob" element={<AddJob />} />
+                <Route path="/admin" element={<Admin />} />
+                <Route path="/task" element={<TaskList />} />
+                <Route
+                  path="/:job_id/:task_id/taskpage"
+                  element={<Taskpage />}
+                />
+                <Route path="/jobs/:job_id/tasks/all" element={<AllTasks />} />
+                <Route path="/task/:id" element={<ViewTask />} />
+                <Route path="/payment" element={<RazorPay />} />
 
-            <Route path="/certificate" element={<Certificate />} />
-            <Route path="*" element={<PageNotFound />} />
-          </Routes>
-        </div>
+                <Route path="/certificate" element={<Certificate />} />
+                <Route path="*" element={<PageNotFound />} />
+              </Routes>
+            </div>
+          </>
+        )}
       </BrowserRouter>
     </div>
   );
