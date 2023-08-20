@@ -62,7 +62,7 @@ function App() {
               <Routes>
                 <Route path="/user/login" component={LogIn} />
                 {/* <PrivateRoute path="/restricted" component={RestPage} /> */}
-                <PrivateRoute path="/" component={Home} />
+                {/* <PrivateRoute path="/" component={Home} /> */}
 
                 <Route path="/" element={<Home />} />
                 <Route
