@@ -1,4 +1,4 @@
-import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { BrowserRouter, Route, Routes, Navigate } from "react-router-dom";
 import React, { useState, useEffect } from "react";
 
 import Navbar from "./components/Bars/Navbar";
@@ -29,11 +29,11 @@ import Dashboard from "./pages/Admin/Dashboard";
 import Certificate from "./pages/Certificate";
 import RazorPay from "./pages/Razorpay";
 import MobileVersion from "./pages/MobileVersion";
-import PrivateRoute from "./pages/RestrictPage";
 import AllTasks from "./components/Tasks/AllTasks";
 
 function App() {
   const { userInfo } = useSelector((state) => state.signIn);
+  const isAuthenticated = !!userInfo;
   console.log(userInfo);
   const userType = userInfo?.userType;
 
@@ -60,54 +60,69 @@ function App() {
           <>
             <div className="pages">
               <Routes>
-                <Route path="/user/login" component={LogIn} />
-                {/* <PrivateRoute path="/restricted" component={RestPage} /> */}
-                {/* <PrivateRoute path="/" component={Home} /> */}
-
                 <Route path="/" element={<Home />} />
-                <Route
-                  exact
-                  path="/user/profile"
-                  element={
-                    userType === "company" ? <Profile /> : <UserProfile />
-                  }
-                />
+                {isAuthenticated ? (
+                  <>
+                    <Route
+                      path="/user/profile"
+                      element={
+                        userType === "company" ? <Profile /> : <UserProfile />
+                      }
+                    />
 
-                <Route path="/user/editprofile" element={<ProfilePage />} />
-                <Route path="/user/login" element={<LogIn />} />
-                <Route path="/user/register" element={<SignUp />} />
-                <Route
-                  path="/user/myapplications"
-                  element={<MyApplications />}
-                />
-                <Route path="/employer/myjobs" element={<MyJobs />} />
+                    <Route
+                      exact
+                      path="/user/profile"
+                      element={
+                        userType === "company" ? <Profile /> : <UserProfile />
+                      }
+                    />
 
-                <Route path="/contactus" element={<Contact />} />
-                <Route path="/aboutus" element={<About />} />
-                <Route path="upload" element={<FileUploader />} />
-                <Route path="/jobpage" element={<JobList />} />
-                <Route
-                  path="/search/location/:location"
-                  element={<JobList />}
-                />
-                <Route path="/search/:keyword" element={<JobList />} />
-                <Route path="/job/:id" element={<SingleJob />} />
-                <Route path="/admin/dashboard" element={<Dashboard />} />
-                <Route exact path="/jobs" element={<Jobs />} />
-                <Route exact path="/users/create" element={<UserForm />} />
-                <Route path="/addjob" element={<AddJob />} />
-                <Route path="/admin" element={<Admin />} />
-                <Route path="/task" element={<TaskList />} />
-                <Route
-                  path="/:job_id/:task_id/taskpage"
-                  element={<Taskpage />}
-                />
-                <Route path="/jobs/:job_id/tasks/all" element={<AllTasks />} />
-                <Route path="/task/:id" element={<ViewTask />} />
-                <Route path="/payment" element={<RazorPay />} />
+                    <Route path="/user/editprofile" element={<ProfilePage />} />
 
-                <Route path="/certificate" element={<Certificate />} />
-                <Route path="*" element={<PageNotFound />} />
+                    <Route
+                      path="/user/myapplications"
+                      element={<MyApplications />}
+                    />
+                    <Route path="/employer/myjobs" element={<MyJobs />} />
+
+                    <Route path="upload" element={<FileUploader />} />
+                    <Route path="/jobpage" element={<JobList />} />
+                    <Route
+                      path="/search/location/:location"
+                      element={<JobList />}
+                    />
+                    <Route path="/search/:keyword" element={<JobList />} />
+                    <Route path="/job/:id" element={<SingleJob />} />
+                    <Route path="/admin/dashboard" element={<Dashboard />} />
+                    <Route exact path="/jobs" element={<Jobs />} />
+                    <Route exact path="/users/create" element={<UserForm />} />
+                    <Route path="/addjob" element={<AddJob />} />
+                    <Route path="/admin" element={<Admin />} />
+                    <Route path="/task" element={<TaskList />} />
+                    <Route
+                      path="/:job_id/:task_id/taskpage"
+                      element={<Taskpage />}
+                    />
+                    <Route
+                      path="/jobs/:job_id/tasks/all"
+                      element={<AllTasks />}
+                    />
+                    <Route path="/task/:id" element={<ViewTask />} />
+                    <Route path="/payment" element={<RazorPay />} />
+
+                    <Route path="/certificate" element={<Certificate />} />
+                    <Route path="*" element={<PageNotFound />} />
+                  </>
+                ) : (
+                  <>
+                    <Route path="/user/login" element={<LogIn />} />
+                    <Route path="/user/register" element={<SignUp />} />
+                    <Route path="/contactus" element={<Contact />} />
+                    <Route path="/aboutus" element={<About />} />
+                    <Route path="*" element={<Navigate to="/user/login" />} />
+                  </>
+                )}
               </Routes>
             </div>
           </>

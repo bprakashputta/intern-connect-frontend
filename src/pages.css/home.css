@@ -804,20 +804,51 @@ button:hover .button-text {
   }
 }
 
-/* Apply styles to the ::before pseudo-element */
-.animate-text::before {
-  content: attr(textStyle);
-  position: absolute;
-  overflow: hidden;
-  max-width: 3em;
-  white-space: nowrap;
-  color: #fff;
-  animation: loading 8s linear;
+.msg .note {
+  transform-origin: bottom right;
+  color: white;
+  font-weight: 600;
+  position: relative;
+  font-size: 0.8rem;
+  padding: 0.7rem 1.1rem 0.7rem 0.9rem;
 }
 
-/* Additional styles for the p element */
-.animate-text {
-  position: relative;
-  color: rgba(0, 0, 0, 0.3);
-  font-size: 1em;
+.msg .note:before {
+  z-index: -1;
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: #0497dc;
+  border-radius: 1.1rem;
+  box-shadow: 0 0.5rem 4rem -0.7rem rgba(4, 151, 220, 0.9);
+}
+
+.msg .note:after {
+  position: absolute;
+  content: "";
+  border-radius: 50%;
+  width: 20px;
+  height: 20px;
+  right: -16px;
+  bottom: -3px;
+  border-bottom: 8px solid #0497dc;
+  transform: rotate(60deg);
+}
+
+.msg {
+  text-align: right;
+  position: absolute;
+  right: 10;
+  bottom: -1.2rem;
+  font-size: 0.9rem;
+  height: 100px;
+  top: 300px;
+  width: 90%;
+}
+
+.msg .note {
+  animation: pop 0.3s cubic-bezier(0.36, -0.04, 0.15, 1.64) 0.2s both;
 }

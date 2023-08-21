@@ -102,6 +102,7 @@ nav a:hover {
 @media (min-width: 576px) and (max-width: 767px) {
   .navbar-bg-class {
     height: 60px;
+    width: 500px;
   }
 
   .nav-text {
