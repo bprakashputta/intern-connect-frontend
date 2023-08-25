@@ -139,7 +139,7 @@ function SignUp() {
                             <div class="line"></div>
                           </div>
                           <div class="social-icons">
-                            <a href="http://localhost:8080/auth/google/register">
+                            <a href={process.env.REACT_APP_BACKEND_SERVER_URL +"/auth/google/register"}>
                               <button
                                 aria-label="Signup with Google"
                                 class="icon "

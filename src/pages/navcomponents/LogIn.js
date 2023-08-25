@@ -94,7 +94,7 @@ function LogIn() {
                       <div className="line"></div>
                     </div>
                     <div className="social-icons">
-                      <a href="http://localhost:8080/auth/google/register">
+                      <a href={process.env.REACT_APP_BACKEND_SERVER_URL +"/auth/google/register"}>
                         <button
                           aria-label="Login with Google"
                           className="icon "
