@@ -44,7 +44,7 @@ function TaskForm({ job_id }) {
       console.log("FormData before submission:", formData);
 
       const response = await axios.post(
-        "http://www.localhost:8080/task/create",
+        process.env.REACT_APP_BACKEND_SERVER_URL+"/task/create",
         { ...task, job_id }
       );
       console.log("Task submitted successfully:", response.data);

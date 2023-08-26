@@ -17,7 +17,7 @@ const Razorpay = () => {
 
     try {
       const response = await axios.post(
-        "http://www.localhost:8080/payment/order",
+        process.env.REACT_APP_BACKEND_SERVER_URL+"/payment/order",
         {
           amount: parsedAmount,
         }
@@ -38,7 +38,7 @@ const Razorpay = () => {
       const order = await createOrder();
       const {
         data: { key_id },
-      } = await axios.get("http://www.localhost:8080/payment/get-key");
+      } = await axios.get(process.env.REACT_APP_BACKEND_SERVER_URL + "/payment/get-key");
       console.log(key_id);
 
       const options = {
@@ -48,7 +48,7 @@ const Razorpay = () => {
         name: "InternConnect",
         description: "Payment for Intern Completion",
         order_id: order.data.id,
-        callback_url: "http://localhost:8080/payment/paymentverification",
+        callback_url: process.env.REACT_APP_BACKEND_SERVER_URL+"/payment/paymentverification",
 
         theme: {
           color: "#121212",

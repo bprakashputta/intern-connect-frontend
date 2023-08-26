@@ -64,7 +64,7 @@ const MultiStepForm = () => {
     globlUserData["userGlobalData"] = formData;
     try {
       axios
-        .post("http://localhost:8080/test", formData)
+        .post(process.env.REACT_APP_BACKEND_SERVER_URL+"/test", formData)
         .then(function (response) {
           setMessage("Your profile has been created successfully");
         })
